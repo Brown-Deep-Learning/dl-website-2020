@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CS147 - Deep Learning | Brown University</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <link rel="stylesheet" type="text/css" href="../../../style.css" />
+        <link rel="stylesheet" type="text/css" href="../../../normalize.css" />
+
+        <!-- for syntax highlighting of code blocks -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"
+        />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script
+            charset="UTF-8"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/languages/go.min.js"
+        ></script>
+        <script>
+            hljs.initHighlightingOnLoad();
+        </script>
+
+        <!-- MathJax -->
+        <script>
+            MathJax = {
+                tex: {
+                    inlineMath: [
+                        ["$", "$"],
+                        ["\\(", "\\)"],
+                    ],
+                },
+                svg: {
+                    fontCache: "global",
+                },
+            };
+        </script>
+        <script
+            type="text/javascript"
+            id="MathJax-script"
+            async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
+        ></script>
+
+        <!-- NOTE: Script closing tags need to be on separate line for markdown-to-html script to process them properly :-(  -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script
+            type="text/javascript"
+            src="../../../random-bowties.js"
+        ></script>
+        <script
+            type="text/javascript"
+            src="../../../create-sidebar.js"
+        ></script>
+        <script type="text/javascript" src="../../../common.js"></script>
+    </head>
+
+    <body>
+        <header>
+            <div class="page__header">
+                <div class="page__title">
+                    <img src="../../../assets/planets/2.png" />
+                    Assignment 2
+                </div>
+
+                <!-- kept for spacing-->
+                <div class="page__header__quote"></div>
+
+                <nav id="navbar">
+                    <button id="hamburger" onclick="toggleMobileMenu(this)">
+                        <div id="hamburger-bar-1"></div>
+                        <div id="hamburger-bar-2"></div>
+                        <div id="hamburger-bar-3"></div>
+                    </button>
+                    <a class="nav-link" href="../../../index.html">Home</a>
+                    <a class="nav-link" href="../../../resources.html"
+                        >Resources</a
+                    >
+                    <a class="nav-link" href="../../../lectures.html"
+                        >Lectures</a
+                    >
+                    <a class="nav-link" href="../../../assignments.html"
+                        >Assignments</a
+                    >
+                    <a class="nav-link" href="../../../labs.html">Labs</a>
+                    <a class="nav-link" href="../../../calendar.html"
+                        >Calendar &amp; Hours</a
+                    >
+                    <a class="nav-link" href="../../../staff.html">Staff</a>
+                </nav>
+            </div>
+        </header>
+        <main class="hw_page hw2-content">
+            <section class="has-sidebar">
+                <h1 id="hw2-cifar2-convolutional-neural-networks">
+                    HW2: CIFAR2: Convolutional Neural Networks
+                </h1>
+                <p>
+                    <strong>Conceptual Questions</strong> due
+                    <strong>Monday, 10/05/20 at 11:59pm AoE</strong>
+                </p>
+                <p>
+                    <strong>Code</strong> due
+                    <strong>Friday, 10/09/20 at 11:59pm AoE</strong>
+                </p>
+                <p>
+                    As Blueno travels through deep space, he decides to make
+                    good use of the travel time to finally learn to distinguish
+                    the furry, four-legged creatures he often sees walking
+                    around. However, Blueno thinks he might need a little help.
+                    He&#39;s travelling alone, so we won&#39;t be there to help
+                    him, but we can help him in a different way. We decide to
+                    build a model that he can access on his spaceship to
+                    hopefully aid him in learning to recognize cats vs. dogs.
+                </p>
+                <p>
+                    In this assignment, you will be building a Convolutional
+                    Neural Network (CNN) with pooling layers using the CIFAR
+                    dataset to learn to distinguish cats and dogs.
+                    <strong
+                        ><em
+                            >Please read this handout in its entirety before
+                            beginning the assignment.</em
+                        ></strong
+                    >
+                </p>
+                <h2 id="conceptual-questions">Conceptual Questions</h2>
+                <p>
+                    From homework 2 onward, we will no longer use
+                    Gradescope&#39;s online assignment feature for conceptual
+                    questions (which was used in hw1); instead we will do pdf
+                    submissions to Gradescope. Please submit your pdf with answers
+                    to all conceptual questions as one pdf on Gradescope under 
+                    HW2 Conceptual Questions: CIFAR2: Convolutional Neural Networks. 
+                    When submitting the pdf to Gradescope, be sure to select in Gradescope 
+                    which pages match with which questions. LaTex is recommended but not required.
+                </p>
+                <p>
+                    2470 students only: If you are in 2470, all conceptual
+                    questions (including non-2470 ones) should be written as one
+                    pdf and submitted to the &quot;[CS2470] Hw2 Conceptual
+                    Questions: Convolution Neural Networks&quot; assignment. <strong>Do
+                    not submit also to the CS1470 conceptual assignment.</strong>
+                </p>
+                <p>
+                    You can find the conceptual questions as a pdf 
+                    <a href="https://brown-deep-learning.github.io/dl-website-2020/projects/public/hw2-cnn/hw2-conceptual-q.pdf">here</a>, 
+                    and remember to submit on Gradescope as one single PDF.
+                </p>
+                <p>
+                    <em>Note</em> these questions are due before the coding
+                    portion of the assignment.
+                </p>
+                <h2 id="getting-the-stencil">Getting the Stencil</h2>
+                <p>
+                    Please click
+                    <a href="https://classroom.github.com/a/U8t-D4ea">here</a>
+                    to get the stencil code. Reference this
+                    <a
+                        href="https://docs.google.com/document/d/1HnBhzdOGbUrTwh9TaaxrSusn8TObltn3c7FgKjdVImI/edit?usp=sharing"
+                        >guide</a
+                    >
+                    for more information about GitHub and GitHub Classroom.
+                    There are two bash scripts in the root directory of the hw
+                    repository, <code>create_venv.sh</code> for creating a
+                    virtual environment and <code>download.sh</code> for
+                    downloading the data (if it exists for that homework). You
+                    need to run <code>download.sh</code> to get the data.
+                    However, if you created a virtual environment for the last
+                    homework or you&#39;re working on the department machine
+                    from <code>ssh</code>, you do not need to run
+                    <code>create_venv.sh</code> (you will still need to activate
+                    the virtualenv you created in hw1 by running
+                    <code>source &lt;path to virtual env&gt;/bin/activate</code
+                    >, e.g. if your virtualenv created in hw1 is located at
+                    <code>/User/blueno/cs1470/hw1/env</code>, you need to
+                    activate the virtualenv with
+                    <code>source /User/blueno/cs1470/hw1/env/bin/activate</code
+                    >.) You can run a bash script with the command
+                    <code>./script_name.sh</code> (ex:
+                    <code>./download.sh</code>).
+                </p>
+                <p>
+                    The stencil should contain these files: assignment.py,
+                    convolution.py and preprocess.py.
+                </p>
+                <h2 id="setup">Setup</h2>
+                <p>
+                    Work on this assignment off of the stencil code provided,
+                    but
+                    <strong
+                        >do not change the stencil except where
+                        specified.</strong
+                    >
+                    Changing the stencil will result in incompatiblity with the
+                    autograder and result in a low grade. You shouldn&#39;t
+                    change any method signatures or add any trainable parameters
+                    to <strong>init</strong> that we don&#39;t give you (other
+                    instance variables are fine).
+                </p>
+                <p>
+                    <strong
+                        >This assignment should take longer to run than the
+                        previous assignment. If completed correctly, the model
+                        should train and test within 15 minutes on a department
+                        machine.</strong
+                    >
+                    While you will mainly be using TensorFlow functions, the
+                    second part of the assignment requires you to write your own
+                    convolution function, which is very computationally
+                    expensive. To counter this, we only require that you print
+                    the accuracy across the test set after finishing all
+                    training. On a department machine, training should take
+                    about 3 minutes and testing using your own convolution
+                    should take about 2 minutes. While writing your code locally
+                    may be easier, we recommend running your code on department
+                    machines to avoid straining your personal computer.
+                </p>
+                <p>
+                    This assignment requires the TensorFlow, NumPy, and
+                    Matplotlib packages. These should all be installed already
+                    in the virtualenv we provide, and you should be good to go
+                    as long as you&#39;ve activated it.
+                </p>
+                <p>
+                    To activate the virtual environment on a department machine,
+                    you can run:
+                </p>
+                <pre><code class="lang-bash"><span class="hljs-keyword">source</span> <span class="hljs-regexp">/course/</span>cs1470<span class="hljs-regexp">/tf-2.3/</span>bin<span class="hljs-regexp">/activate</span>
+            </code></pre>
+                <p>
+                    You can also check out the Python virtual environment guide
+                    to set up TensorFlow 2.3 on your local machine.
+                </p>
+                <p>
+                    Please note again that if you installed a virtual
+                    environment onto your local machine
+                    <strong
+                        >you do not need to use create_venv.sh to install the
+                        virtual environment again</strong
+                    >. The environment you created previously will work for this
+                    assignment as well. See previous section (Setup) for how to
+                    activate that hw1 environment.
+                </p>
+                <h2 id="assignment-overview">Assignment Overview</h2>
+                <p>
+                    Your task is a binary classification rather than multi-class
+                    classification problem. We are doing
+                    <strong>CIFAR2, not CIFAR10</strong>. While the CIFAR10
+                    dataset has 10 possible classes (airplane, automobile, bird,
+                    cat, deer, frog, horse, ship, and truck), you will build a
+                    CNN to take in an image and correctly predict its class to
+                    either be a cat or dog, hence CIFAR2. We limit this
+                    assignment to a binary classification problem so that you
+                    can train the model in a reasonable amount of time.
+                </p>
+                <p>The assignment has <strong>three parts</strong>:</p>
+                <ol>
+                    <li>
+                        <strong>Conceptual Questions:</strong> Answer questions
+                        related to the assignment and class material on
+                        Gradescope. If you are taking 2470, you must also answer
+                        the additional questions on Gradescope marked with
+                        CS2470.
+                    </li>
+                    <li>
+                        <strong>Model:</strong> Build the model. Our stencil
+                        provides a model class with several methods and
+                        hyperparameters you need to use for your network.
+                    </li>
+                    <li>
+                        <strong>Convolution Function</strong> Fill out a
+                        function that performs the convolution operator. See
+                        Roadmap below for more information on parts 2 and 3.
+                    </li>
+                </ol>
+                <p>
+                    You should include a brief README with your model&#39;s
+                    accuracy and any known bugs.
+                </p>
+                <h2 id="roadmap">Roadmap</h2>
+                <p>
+                    You will notice that the structure of the Model class is
+                    very similar to the Model class defined in your first
+                    assignment.
+                    <strong
+                        >We strongly suggest that you first complete the Intro
+                        to TensorFlow Lab before starting this
+                        assignment.</strong
+                    >
+                    The lab includes many explanations about the way a Model
+                    class is structured, what variables are, and how things work
+                    in TensorFlow. If you come into hours with questions about
+                    TensorFlow related material that is covered in the lab, we
+                    will direct you to the lab.
+                </p>
+                <p>
+                    Below is a brief outline of some things you should do. We
+                    expect you to fill in some of the missing gaps (review
+                    lecture slides to understand the pipeline) as this is your
+                    second assignment.
+                </p>
+                <h3 id="step-1-preprocess-the-data">
+                    Step 1. Preprocess the data
+                </h3>
+                <ul>
+                    <li>
+                        We have provided you with a function
+                        <code>unpickle(file)</code> in the preprocess file
+                        stencil, which unpickles an object and returns a
+                        dictionary. <strong>Do not edit it</strong>. We have also already
+                        extracted the inputs and labels from the dictionary in 
+                        <code>get_data</code> so you have no need to deal with
+                        the pickled file or the dictionary.
+                    </li>
+                    <li>
+                        You will want to limit the inputs and labels returned by
+                        <code>get_data</code> to those representing the first
+                        and second classes of your choice. For every image and
+                        its corresponding label, if the label is not of the
+                        first or second class, then remove the image and label
+                        from your inputs and labels arrays. You might find
+                        <code>numpy.nonzero</code>[<a
+                            href="https://numpy.org/doc/1.18/reference/generated/numpy.nonzero.html"
+                            >https://numpy.org/doc/1.18/reference/generated/numpy.nonzero.html</a
+                        >] useful for finding only the indices of your labels
+                        which correspond to the first and second class.
+                    </li>
+                    <li>
+                        At this point, your inputs are still two dimensional.
+                        You will want to reshape your inputs into (-1, 3, 32,
+                        32) using
+                        <code>tf.reshape(inputs, (-1, 3, 32 ,32))</code> and
+                        then transpose them using
+                        <code>tf.transpose(inputs, perm=[0,2,3,1])</code> so
+                        that the final inputs you return have shape
+                        (num_examples, 32, 32, 3), where the width is 32, height
+                        is 32, and number of channels is 3.
+                    </li>
+                    <li>
+                        You now have inputs and labels of only two classes, but
+                        the label numbers do not represent the binary inputs.
+                        You will want to re-number the labels such that the cat label class is 0 
+                        and the dog label is 1 (for your own training purposes, it doesn't matter which is which; 
+                        however, we require this specificity for our autograder). You might find
+                        <code>numpy.where</code> [<a
+                            href="https://numpy.org/doc/stable/reference/generated/numpy.where.html"
+                            >https://numpy.org/doc/stable/reference/generated/numpy.where.html</a
+                        >] useful in the renumbering process.
+                    </li>
+                    <li>
+                        After doing that, you will want to turn your labels into
+                        one hot vectors, where the index with a 1 represents the
+                        class of the correct image. You can do this with the
+                        function <code>tf.one_hot</code>.
+                    </li>
+                    <li>
+                        This can be a bit confusing so we&#39;ll just make it
+                        clear:
+                        <strong
+                            >your labels should be of size (num_images,
+                            num_classes).</strong
+                        >
+                        So for example, if your first class is a cat and your
+                        second class is sushi, the corresponding label of the
+                        first image might be [0, 1] where a 1 in the second
+                        index means that it&#39;s sushi.
+                    </li>
+                </ul>
+                <p>
+                    <em>Note:</em> You should normalize the input pixel values
+                    so that they range from 0 to 1 to avoid any numerical
+                    overflow issues. This can be done by dividing each pixel
+                    value by 255.
+                </p>
+                <p>
+                    You&#39;re going to be calling get_data on both the training
+                    and testing data files in <code>assignment.py</code>. The
+                    testing and training data files to be read in are in the
+                    following format:
+                </p>
+                <ul>
+                    <li>
+                        <code>train</code>: A pickled object of 50,000 train
+                        images and labels. This includes images and labels of
+                        all 10 classes. After unpickling the file, the
+                        dictionary will have the following elements:
+                        <ul>
+                            <li>
+                                data -- a 50000x3072 numpy array of uint8s. Each
+                                row of the array stores a 32x32 color image. The
+                                first 1024 entries contain the red channel
+                                values, the next 1024 the green, and the final
+                                1024 the blue. The image is stored in row-major
+                                order, so that the first 32 entries of the array
+                                are the red channel values of the first row of
+                                the image.
+                            </li>
+                            <li>
+                                labels -- a list of 50000 numbers in the range
+                                0-9. The number at index i indicates the label
+                                of the ith image in the array data.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <code>test</code>: A pickled object of 10,000 test
+                        images and labels. This includes images and labels of
+                        all 10 classes. Unpickling the file gives a dictionary
+                        with the same key values as above.
+                    </li>
+                </ul>
+                <p>
+                    <em>Note</em> If you download the dataset from online, the
+                    training data is actually divided into batches. We have done
+                    the job of repickling all of the batches into one single
+                    train file for your ease.
+                </p>
+                <h3 id="step-2-create-your-model">Step 2. Create your model</h3>
+                <p>
+                    <strong
+                        >You will not receive credit if you use the tf.keras,
+                        tf.layers, and tf.slim libraries for anything but your
+                        optimizer (and Model inheriting from tf.keras.Model is
+                        ok too). You may use
+                        <a
+                            href="https://www.tensorflow.org/api_docs/python/tf/keras/optimizers"
+                            >tf.keras.optimizers</a
+                        >.</strong
+                    >
+                </p>
+                <ul>
+                    <li>
+                        Again, you should initialize all hyperparameters within
+                        the constructor even though this is not customary. This
+                        is still necessary for the autograder. Consider
+                        what&#39;s being learned in a CNN and intialize those as
+                        trainable parameters. In the last assignment, it was our
+                        weights and biases. This time around, you will still
+                        want weights and biases, but there are other things that
+                        are being learned!
+                    </li>
+                    <li>
+                        We recommend using an Adam Optimizer
+                        [<code>tf.keras.optimizers.Adam</code>] with a learning
+                        rate of 1e-3, but feel free to experiment with whatever
+                        produces the best results.
+                    </li>
+                    <li>
+                        Weight variables should be initialized from a normal
+                        distribution (<code>tf.random.truncated_normal</code>)
+                        with a standard deviation of 0.1.
+                    </li>
+                    <li>
+                        You may use any permutation and number of convolution,
+                        pooling, and feed forward layers, as long as you
+                        <strong
+                            >use at least one convolution layer with strides of
+                            [1, 1, 1, 1], one pooling layer, and one fully
+                            connected layer.</strong
+                        >
+                    </li>
+                </ul>
+                <p>
+                    <em>Note</em> the Dense/Fully Connected Layers are like the
+                    linear layers created in the last assignment with a weight
+                    and bias.
+                </p>
+                <ul>
+                    <li>
+                        If you are having trouble getting started with model
+                        architecture, we have provided an example below:
+                        <ul>
+                            <li>
+                                Convolution Layer 1
+                                <a
+                                    href="https://www.tensorflow.org/api_docs/python/tf/nn/conv2d"
+                                    >[<code>tf.nn.conv2d</code>]</a
+                                >. It is recommended that you also use a bias for your convolutional layers.
+                                You can use <a
+                                    href="https://www.tensorflow.org/api_docs/python/tf/nn/bias_add"
+                                    >[<code>tf.nn.bias_add</code>]</a
+                                > to add the bias after your convolution operation.
+                                <ul>
+                                    <li>
+                                        16 filters of width 5 and height 5
+                                        [<code
+                                            >tf.Variable(tf.random.truncated_normal([5,5,3,16],
+                                            stddev=...))</code
+                                        >]
+                                    </li>
+                                    <li>strides of 2 and 2</li>
+                                    <li>same padding</li>
+                                </ul>
+                            </li>
+                            <li>
+                                Batch Normalization 1
+                                <a
+                                    href="https://www.tensorflow.org/api_docs/python/tf/nn/batch_normalization"
+                                    >[<code>tf.nn.batch_normalization</code>]</a
+                                >
+                                <ul>
+                                    <li>
+                                        Get the mean and variance using
+                                        <a
+                                            href="https://www.tensorflow.org/api_docs/python/tf/nn/moments"
+                                            >[<code>tf.nn.moments</code>]</a
+                                        >.
+                                        Pass in [0,1,2] as the axes as we want to do "global normalization".
+                                        You'll also need to pass in a "variance_epsilon," this is for the purpose of
+                                        not dividng by 0 if the variance is 0. We recommend you pass in 1e-5 or a
+                                        smaller number.
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                ReLU Nonlinearlity 1
+                                <a
+                                    href="https://www.tensorflow.org/api_docs/python/tf/nn/relu"
+                                    >[<code>tf.nn.relu</code>]</a
+                                >
+                            </li>
+                            <li>
+                                Max Pooling 1
+                                <a
+                                    href="https://www.tensorflow.org/api_docs/python/tf/nn/max_pool"
+                                    >[<code>tf.nn.max_pool</code>]</a
+                                >
+                                <ul>
+                                    <li>kernels of width 3 and height 3</li>
+                                    <li>strides of 2 and 2</li>
+                                </ul>
+                            </li>
+                            <li>
+                                Convolution Layer 2
+                                <ul>
+                                    <li>20 filters of width 5 and height 5</li>
+                                    <li>strides up to you</li>
+                                    <li>same padding</li>
+                                </ul>
+                            </li>
+                            <li>Batch Normalization 2</li>
+                            <li>ReLU Nonlinearlity 2</li>
+                            <li>
+                                Max Pooling 2
+                                <ul>
+                                    <li>kernels of width 2 and height 2</li>
+                                    <li>strides up to you</li>
+                                </ul>
+                            </li>
+                            <li>
+                                Convolution Layer 3
+                                <ul>
+                                    <li>20 filters of width 3 and height 3</li>
+                                    <li>strides <strong>must be 1 and 1</strong></li>
+                                    <li>same padding</li>
+                                </ul>
+                            </li>
+                            <li>Batch Normalization 3</li>
+                            <li>ReLU Nonlinearlity 3</li>
+                            <li>
+                                Dense Layer 1
+                                <ul>
+                                    <li>
+                                        Dropout with rate 0.3
+                                        <a
+                                            href="https://www.tensorflow.org/api_docs/python/tf/nn/dropout"
+                                        >
+                                            [<code>tf.nn.dropout</code>]</a
+                                        >
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                Dense Layer 2
+                                <ul>
+                                    <li>Dropout with rate 0.3</li>
+                                </ul>
+                            </li>
+                            <li>Dense Layer 3</li>
+                            <li>
+                                Fill out the call function using the trainable
+                                variables you&#39;ve created. Your call function
+                                should return the logits. Note that in the lab,
+                                we mentioned using a @tf.function decorator to
+                                tell TF to run it in graph execution. Do NOT do
+                                this for this assignment - we&#39;ll explain why
+                                the forward pass has to be run in eager
+                                execution later. The parameter
+                                <code>is_testing</code> will be used later, do
+                                not worry about it when implementing everything
+                                in this part.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        Calculate the average softmax cross-entropy loss on the
+                        logits compared to the labels. We suggest using
+                        <a
+                            href="https://www.tensorflow.org/api_docs/python/tf/nn/softmax_cross_entropy_with_logits"
+                            ><code
+                                >tf.nn.softmax_cross_entropy_with_logits</code
+                            ></a
+                        >.
+                    </li>
+                </ul>
+                <h3 id="step-3-train-and-test">Step 3. Train and test</h3>
+                <ul>
+                    <li>
+                        In the main function, you will want to get your train
+                        and test data, initialize your model, and train it for
+                        many epochs. We suggest training for 10 epochs. For the
+                        autograder, we will train it for at most 25 epochs (hard
+                        limit of 15 minutes). We have provided for you a train
+                        and test method to fill out. The train method will take
+                        in the model and do the forward and backward pass for
+                        <strong>a SINGLE epoch</strong>. Yes, this means that,
+                        unlike the first assignment, your
+                        <code>main</code> function will have a for loop that
+                        goes through the number of epochs, calling train each
+                        time.
+                    </li>
+                    <li>
+                        Even though this is technically part of preprocessing,
+                        you should shuffle your inputs and labels when TRAINING.
+                        Keep in mind that they have to be shuffled in the same
+                        order. We suggest creating a range of indices of length
+                        num_examples, then using <code>tf.random.shuffle</code>.
+                        Finally you can use
+                        <code>tf.gather(train_inputs, indices)</code> to shuffle
+                        your inputs. You can do the same with your labels to
+                        ensure they are shuffled the same way.
+                    </li>
+                    <li>
+                        <strong
+                            >Make sure you&#39;ve reshaped inputs in
+                            preprocessing into shape (batch_size, width, height,
+                            in_channels) before calling model.call().</strong
+                        >
+                        When training, you might find it helpful to actually
+                        call <code>tf.image.random_flip_left_right</code> on
+                        your batch of image inputs to increase accuracy.
+                        <strong>Do not call this when testing</strong>.
+                    </li>
+                    <li>
+                        Call the model&#39;s forward pass and calculate the loss
+                        within the scope of <code>tf.GradientTape</code>. Then
+                        use the model&#39;s optimizer to apply the gradients to
+                        your model&#39;s trainable variables outside of the
+                        GradientTape. If you&#39;re unsure about this part,
+                        please refer to the lab. This is synonymous with doing
+                        the <code>gradient_descent</code> function in the first
+                        assignment, except that TensorFlow handles all of that
+                        for you!
+                    </li>
+                    <li>
+                        If you&#39;d like, you can calculate the train accuracy
+                        to check that your model does not overfit the training
+                        set. If you get upwards of 80% accuracy on the training
+                        set but only 65% accuracy on the testing set, you might
+                        be overfitting.
+                    </li>
+                    <li>
+                        The test method will take in the same model, now with
+                        trained parameters, and return the accuracy given the
+                        test data and test labels.
+                    </li>
+                </ul>
+                <h3 id="step-4-creating-your-own-conv2d-">
+                    Step 4. Creating your own <code>conv2d</code>
+                </h3>
+                <p>
+                    Before starting this part of the assignment,
+                    <strong
+                        >you should ensure that you have an accuracy of at least
+                        70%</strong
+                    >
+                    on the test set using only TensorFlow functions for the
+                    problem of classifying dogs and cats.
+                </p>
+                <p>
+                    As a new addition to this assignment, you will be
+                    implementing your very own convolution function! print(Deep
+                    Learning == TensorFlow tutorial) ----&gt; False!
+                </p>
+                <p>
+                    For the sake of simple math calculations (less is more,
+                    no?), we&#39;ll require that our
+                    <code>conv2d</code> function
+                    <strong>only works with a stride of 1</strong> (for both
+                    width and height). This is because the calculation for
+                    padding size changes as a result of the stride, which would
+                    be way more complex and unreasonable for a second
+                    assignment.
+                </p>
+                <p>
+                    Do <strong>NOT</strong> change the parameters of the conv2d
+                    function we have provided. Even though the
+                    <code>conv2d</code> function takes in a strides argument,
+                    you should <strong>ALWAYS</strong> pass in [1, 1, 1, 1].
+                    Leaving in strides as an argument was a conscious design
+                    choice - if you wanted to eventually make the conv2d
+                    function work for other kinds of strides in your own time,
+                    this would allow you to easily change it.
+                </p>
+                <ul>
+                    <li>
+                        Your inputs will have 4 dimensions. If we are to use
+                        this <code>conv2d</code> function for the first layer,
+                        the inputs would be [batch_size, in_height, in_width,
+                        input_channels].
+                    </li>
+                    <li>
+                        You should ensure that the input&#39;s number of
+                        &quot;in channels&quot; is equivalent to the
+                        filters&#39; number of &quot;in channels&quot;. Make
+                        sure to add an assert statement or throw an error if the
+                        number of input in channels are not the same as the
+                        filters in channels. You will lose points if you do not
+                        do this.
+                    </li>
+                    <li>
+                        When calculating how much padding to use for SAME
+                        padding, padding is just
+                        <code>(filter_size - 1)/2</code> if you are using
+                        strides of 1. The calculation of padding differs if you
+                        increase your strides and is much more complex, so we
+                        won’t be dealing with that. If you are interested, you
+                        may read about it
+                        <a
+                            href="http://cs231n.github.io/convolutional-networks/"
+                            >here</a
+                        >. If padding is not an integer, you can just round down
+                        using <code>math.floor</code>.
+                    </li>
+                    <li>
+                        You can use this hefty NumPy function
+                        <code>np.pad</code> to pad your input!
+                    </li>
+                    <li>
+                        After padding (if needed), you will want to go through
+                        the entire batch of images and perform the convolution
+                        operator on each image. There are two ways of going
+                        about this - you can continuously append to multi
+                        dimensional NumPy arrays to an output array or you can
+                        create a NumPy array with the correct output dimensions,
+                        and just update each element in the output as you
+                        perform the convolution operator. We suggest doing the
+                        latter - it&#39;s conceptually easier to keep track of
+                        things this way.
+                    </li>
+                    <li>
+                        Your output dimension height is equal to
+                        <code
+                            >(in_height + 2*padY - filter_height) / strideY +
+                            1</code
+                        >
+                        and your output dimension width is equal to
+                        <code
+                            >(in_width + 2*padX - filter_width) / strideX +
+                            1</code
+                        >. Again, <code>strideX</code> and
+                        <code>strideY</code> will always be 1 for this
+                        assignment. Refer to the CNN slides if you&#39;d like to
+                        understand this derivation.
+                    </li>
+                    <li>
+                        You will want to iterate the entire height and width
+                        including padding, stopping when you cannot fit a filter
+                        over the rest of the padding input. For convolution with
+                        many input channels, you will want to perform the
+                        convolution per input channel and sum those dot products
+                        together.
+                    </li>
+                </ul>
+                <h3 id="step-5-testing-your-own-conv2d-">
+                    Step 5. Testing your own <code>conv2d</code>
+                </h3>
+                <ul>
+                    <li>
+                        We have provided for you a few tests that compare the
+                        result of your very own <code>conv2d</code> and
+                        TensorFlow&#39;s <code>conv2d</code>. If you&#39;ve
+                        implemented it correctly, the results should be very
+                        similar.
+                    </li>
+                    <li>
+                        <strong
+                            >The last super important part of this project is
+                            that you should call your
+                            <code>conv2d</code> function IN your model.</strong
+                        >
+                        TensorFlow cannot build a graph/differentiate with NumPy
+                        operators so you should not add a @tf.function
+                        decorator.
+                    </li>
+                    <li>
+                        In your model, you should set <code>is_testing</code> to
+                        True when testing, then make sure that if
+                        <code>is_testing</code> is True, you use your own
+                        convolution rather than TensorFlow&#39;s
+                        <code>conv2d</code> on a
+                        <strong>SINGLE</strong> convolution layer. If you follow
+                        the architecture described above, we suggest adding in
+                        an if statement before the third convolution layer (ie.
+                        switch out the <code>conv2d</code> for your third
+                        convolution). This part will take the longest, and is
+                        why we say it might actually take up to 15 minutes on a
+                        local machine.
+                    </li>
+                </ul>
+                <p>
+                    <strong>Mandatory and Non-mandatory Hyperparameters</strong
+                    >: You can train with any batch size but you are limited to
+                    training for at most 25 epochs.
+                    <strong
+                        >However, your model must train using TensorFlow
+                        functions and test using your own convolution function
+                        without timing out on Gradescope.</strong
+                    >
+                    Again, the parameters we suggest are training for 25 epochs
+                    using a batch size of 64.
+                </p>
+                <p>
+                    <em>Hint</em> If you are having difficulty running within
+                    the time frame, consider using matrix multiplication or
+                    <a
+                        href="https://www.tensorflow.org/api_docs/python/tf/tensordot"
+                        >tensordot</a
+                    >
+                    to replace one (or more) of your inner for loops.
+                </p>
+                <h2 id="visualizing-results">Visualizing Results</h2>
+                <p>
+                    We have written two methods for you to visualize your
+                    results. The created visuals
+                    <strong
+                        >will not be graded and are entirely for your
+                        benefit</strong
+                    >. You can use it to check out your doggos and kittens.
+                </p>
+                <ul>
+                    <li>
+                        We&#39;ve provided the
+                        <code
+                            >visualize_results(image_inputs, logits,
+                            image_labels, first_label, second_label)</code
+                        >
+                        method for you to visualize your predictions against the
+                        true labels using matplotlib, a useful Python library
+                        for plotting graphs. This method is currently written
+                        with the image_labels having a shape of (num_images,
+                        num_classes).
+                        <strong><em>DO NOT EDIT THIS FUNCTION.</em></strong> You
+                        should call this function after training and testing,
+                        passing into into <code>visualize_results</code> an
+                        input of 50 images, 50 probabilities, 50 labels, the
+                        first label name, and second label name.
+                    </li>
+                    <li>
+                        Unlike the first assignment, you will need to pass in
+                        the strings of the first and second classes. A
+                        <code>visualize_results</code> method call might look
+                        like:
+                        <code
+                            >visualize_results(image_inputs, logits,
+                            image_labels, &quot;cat&quot;,
+                            &quot;dog&quot;)</code
+                        >.
+                    </li>
+                    <li>
+                        This should result in two visuals, one for correct
+                        predictions, and one for incorrect predictions. You
+                        should do this after you are sure you have met the
+                        benchmark for test accuracy.
+                    </li>
+                    <li>
+                        We have also provided the
+                        <code>visualize_loss(losses)</code> method for you to
+                        visualize your loss per batch over time. Your model or
+                        your training function should have a list
+                        <code>loss_list</code> to which you can append batch
+                        losses to during training. You should call this function
+                        after training and testing, passing in
+                        <code>loss_list</code>.
+                    </li>
+                </ul>
+                <h2 id="cs2470-students">CS2470 Students</h2>
+                <p>There are two extra requirements for CS2470 students.</p>
+                <ol>
+                    <li>
+                        <p>
+                            Please complete the CS2470-only conceptual questions
+                            <strong>in addition</strong> to the coding
+                            assignment and the CS1470 conceptual questions.
+                            <strong
+                                >Note: Questions about 2470 will only be
+                                answered on Piazza, or by TAs marked with an
+                                asterisk (*) on the calendar.</strong
+                            >
+                        </p>
+                        <ol>
+                            <li>
+                                <strong
+                                    >You must receive an accuracy of at least
+                                    75% within 25 epochs of training your
+                                    model.</strong
+                                >
+                                This means that you must choose an
+                                architecture/play around with hyperparameters to
+                                reach a higher accuracy.
+                            </li>
+                        </ol>
+                        <p>
+                            <em>Hint</em> Consider implementing cutout (as
+                            discussed in this
+                            <a href="https://arxiv.org/abs/1708.04552">paper</a>
+                            from the conceptual questions) and/or playing around
+                            with the dropout rate.
+                        </p>
+                    </li>
+                </ol>
+                <h2 id="autograder">Autograder</h2>
+                <p>
+                    Your model must complete training within 15 minutes AND
+                    under 25 epochs on Gradescope.
+                </p>
+                <p>
+                    Our autograder will import your model and your preprocessing
+                    functions. We will feed the result of your
+                    <code>get_data</code> function called on a path to our data
+                    and pass the result to your train method in order to return
+                    a fully trained model. After this, we will feed in your
+                    trained model, alongside the TA pre-processed data, to our
+                    custom test function. This will just batch the testing data
+                    using YOUR batch size and run it through your model&#39;s
+                    <code>call</code> function.
+                    <strong
+                        >However, we will test that your model can test with any
+                        batch size, meaning that you should not hardcode
+                        <code>self.batch_size</code> in your
+                        <code>call</code> function.</strong
+                    >
+                    The <strong>logits</strong> which are returned will then be
+                    fed through an accuracy function. Additionally, we will test
+                    your conv2d function. In order to ensure you don&#39;t lose
+                    points, you need to make sure that you... A) correctly
+                    return training inputs and labels from
+                    <code>get_data</code>, B ) ensure that your model&#39;s
+                    <code>call</code> function returns logits from the inputs
+                    specified, and that it does not break on different batch
+                    sizes when testing, and C) it does not rely on any packages
+                    outside of tensorflow, numpy, matplotlib, or the python
+                    standard library.
+                </p>
+                <h2 id="grading">Grading</h2>
+                <p>
+                    <strong>Code:</strong> You will be primarily graded on
+                    functionality. Your model should run within 15 minutes and
+                    25 epochs on Gradescope and have an accuracy that is at
+                    least greater than
+                    <strong
+                        >70% on the testing data (or 75% for CS2470
+                        students)</strong
+                    >.
+                </p>
+                <p>
+                    <strong>Conceptual:</strong> You will be primarily graded on
+                    correctness (when applicable), thoughtfulness, and clarity.
+                </p>
+                <p>
+                    <strong
+                        >You will not receive credit if you use the tf.keras,
+                        tf.layers, and tf.slim libraries for anything but your
+                        optimizer.</strong
+                    >
+                </p>
+                <h2 id="handing-in">Handing In</h2>
+                <p>
+                    You should submit the assignment via Gradescope under the
+                    corresponding project assignment. You should upload a zipped
+                    file from your local computer by zipping up your
+                    <code>hw2</code> folder
+                </p>
+                <p><strong>IMPORTANT!</strong></p>
+                <ol>
+                    <li>
+                        Please make sure your <code>assignment.py</code>,
+                        <code>preprocess.py</code>, and
+                        <code>convolution.py</code> are in “hw2/code” this is
+                        very important for our autograder to work!
+                    </li>
+                    <li>
+                        DELETE the data folder before you zip up your code, it
+                        might be too big to upload to Gradescope
+                    </li>
+                </ol>
+                <p>
+                    <strong
+                        >IF YOU ARE IN 2470: PLEASE REMEMBER TO ADD A BLANK FILE
+                        CALLED “2470student” IN THE hw2/code DIRECTORY, WE ARE
+                        USING THIS AS A FLAG TO GRADE 2470 SPECIFIC
+                        REQUIREMENTS, FAILURE TO DO SO MEANS LOSING POINTS ON
+                        THIS ASSIGNMENT</strong
+                    >
+                </p>
+                <h2 id="cats-vs-dogs-">Cats vs. Dogs?</h2>
+                <p>
+                    &quot;I am currently neither, and I have been both in the
+                    past&quot; - Daniel Ritchie
+                </p>
+                <p>&quot;Definitely dogs.&quot; - Kevin Du</p>
+                <p>
+                    &quot;Introvertly a cat, extrovertly a dog&quot; - Koyena
+                    Pal
+                </p>
+                <p>
+                    &quot;I love doge and can I has cheesburger&quot; - Bryce
+                    Blinn
+                </p>
+                <p>
+                    &quot;I love my dog! I think cats are secretly plotting the
+                    destruction of the human race&quot; - George Lee
+                </p>
+                <p>
+                    Blueno loves all of his furry friends. Here is one of his
+                    favorite pics of him and his pal Brady, who he now realizes
+                    is a dog.
+                </p>
+                <p>
+                    <img
+                        style="height: 300px; margin: 10px"
+                        src="blueno-with-dog.png"
+                    />
+                </p>
+                <p>
+                    <img
+                        style="height: 150px; margin: 10px"
+                        src="https://media3.giphy.com/media/yNrO4XhUNf0zK/giphy.gif"
+                    /><img
+                        style="height: 150px; margin: 10px"
+                        src="https://media1.giphy.com/media/Rh3C5O8eLkr04/source.gif"
+                    /><img
+                        style="height: 150px; margin: 10px"
+                        src="https://media2.giphy.com/media/j2Fwurg6KtC2Q/source.gif"
+                    /><img
+                        style="height: 150px; margin: 10px"
+                        src="https://media1.giphy.com/media/RvsgIECoRvKuI/source.gif"
+                    />
+                </p>
+            </section>
+            <aside class="not-mobile"></aside>
+        </main>
+
+        <footer class="dark-footer">
+            <img
+                id="footer-earmuffs"
+                class="random-earmuffs"
+                src="http://cs.brown.edu/courses/cs1470/assets/sparkles/sparkle1.png"
+            />
+            <ul class="menu">
+                <li>
+                    &copy; 2019 CS1470/2470 TA Staff | Computer Science
+                    Department | Brown University
+                </li>
+            </ul>
+            <br />
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CS147 - Deep Learning | Brown University</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="../../../style.css">
+    <link rel="stylesheet" type="text/css" href="../../../normalize.css">
+
+    <!-- for syntax highlighting of code blocks -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script charset="UTF-8"
+        src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/languages/go.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
+
+    <!-- MathJax -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+        </script>
+
+    <!-- NOTE: Script closing tags need to be on separate line for markdown-to-html script to process them properly :-(  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js">
+    </script>
+    <script type="text/javascript" src="../../../random-bowties.js">
+    </script>
+    <script type="text/javascript" src="../../../create-sidebar.js">
+    </script>
+    <script type="text/javascript" src="../../../common.js">
+    </script>
+
+</head>
+
+<body>
+    <header>
+        <div class="page__header">
+            <div class="page__title">
+                <img src="../../../assets/planets/7.png" />
+                Assignment 7
+            </div>
+
+
+            <!-- kept for spacing-->
+            <div class="page__header__quote">
+            </div>
+
+            <nav id="navbar">
+                <button id="hamburger" onclick="toggleMobileMenu(this)">
+                    <div id="hamburger-bar-1"></div>
+                    <div id="hamburger-bar-2"></div>
+                    <div id="hamburger-bar-3"></div>
+                </button>
+                <a class="nav-link" href="../../../index.html">Home</a>
+                <a class="nav-link" href="../../../resources.html">Resources</a>
+                <a class="nav-link" href="../../../lectures.html">Lectures</a>
+                <a class="nav-link" href="../../../assignments.html">Assignments</a>
+                <a class="nav-link" href="../../../labs.html">Labs</a>
+                <a class="nav-link" href="../../../calendar.html">Calendar &amp; Hours</a>
+                <a class="nav-link" href="../../../staff.html">Staff</a>
+            </nav>
+        </div>
+    </header>
+    <main class="hw7-content">
+        <section class="has-sidebar">
+            <h1 id="hw7dcgan">HW7: DCGAN</h1>
+            <p><strong>Assignment Optional</strong></p>
+            <p><strong>IMPORTANT: Note that, as we reach the end of the semester, we are giving you less information about the model architecture than we have in previous assignments. This information is contained within the paper, which we ask that you read in its entirety. As you may be experiencing in your final projects, the ability to read academic papers and reproduce their results is an essential skill for those working in this field.</strong></p>
+            <p>In this assignment, you will implement a Generative Adversarial Network which generates images of human faces.
+                This assignment builds upon skills and knowledge you’ve acquired by doing both the GAN lab and the convolutional autoencoder lab.
+                As in the GAN lab, your model will use a basic generator + discriminator setup, where training alternates between updating the generator and the discriminator.
+                Like the convolutional autoencoder lab, your networks will be convolutional: the generator will be an up-convolutional network which maps a random latent code to an image, and the discriminator will be a down-convolutional network which maps an image to a real/fake probability.
+                The model you will implement will be based on the ‘DCGAN’ architecture described in <a href="https://arxiv.org/abs/1511.06434">this paper</a>.
+                DCGANs are a standard baseline for generative image-based modeling. They replace max pooling with convolutional stride, eliminate fully connected layers, and use transposed convolution for upsampling.</p>
+            <h2 id="conceptual-questions">Conceptual Questions</h2>
+            <p>You can access the conceptual questions on the course website, but as this assignment is optional we will not have you submit them. They are solely for your viewing benefit.</p>
+            <h2 id="getting-the-stencil">Getting the stencil</h2>
+            <p>Please click <a href="https://classroom.github.com/a/BTVwhwvU">here</a> to get the stencil code. Reference this <a href="https://docs.google.com/document/d/1HnBhzdOGbUrTwh9TaaxrSusn8TObltn3c7FgKjdVImI/edit?usp=sharing">guide</a> or these <a href="https://docs.google.com/presentation/d/1w_dzls2rfabUrhrQz9f5QU71t7HmLdHJFS8BnHz_q7E/edit?usp=sharing">slides</a> for more information about GitHub and GitHub Classroom.</p>
+<p>To get the data, please run the included script in the hw7 directory.</p>
+<p><em>Note</em>, you may choose to develop your project in REPL.it, an online IDE linked to your GitHub Repo, but make sure you still git commit and push!</p>
+<h2 id="setup">Setup</h2>
+<p>This assignment is computation heavy and requires you to use a GPU (via GCP). See the GCP lab if you need a refresher on how that works.</p>
+<h3 id="data">Data</h3>
+<p>We&#39;ll be using images from the CelebA dataset (short for “Celebrity Faces with Attributes”) for this assignment.</p>
+<p>We’re not using the attributes for this project, so the data just includes images of faces.
+You can find the data in the following location:</p>
+<p>Run the <code>download.sh</code> script to extract the dataset.</p>
+<p>This should create a data/celebA folder.</p>
+<p>Here are some examples of what the outputs of your model might look like:</p>
+<p><img src="img/1.png" alt="dcgan_1">
+<img src="img/2.png" alt="dcgan_2">
+<img src="img/3.png" alt="dcgan_3">
+<img src="img/4.png" alt="dcgan_4">
+<img src="img/5.png" alt="dcgan_5">
+<img src="img/6.png" alt="dcgan_6">
+<img src="img/7.png" alt="dcgan_7">
+<img src="img/8.png" alt="dcgan_8"></p>
+<h3 id="packages">Packages</h3>
+<p>There are some new packages that you will need to run this assignment. Make sure to install them LOCALLY with pip before moving on:</p>
+<pre><code><span class="hljs-attribute">tqdm</span> 
+request 
+tensorflow_gan 
+imageio
+tensorflow_hub
+</code></pre><p>If you would like to know what each of these packages do, feel free to look them up!</p>
+<h3 id="layers">Layers</h3>
+<p>Once again, you can use keras layers to construct your model. If you wish, you may use the <a href="https://www.tensorflow.org/versions/r2.0/api_docs/python/tf/keras/Sequential">keras sequential API</a> as an easier and quicker way to create your model.</p>
+<h3 id="argparse">Argparse</h3>
+<p>For this assignment, we&#39;ve written the stencil with the <a href="https://docs.python.org/3/library/argparse.html">argparse</a> library. argparse allows us to adjust hyperparameters using the command line so that you can tune hyperparmeters without having to keep modifying your file once you&#39;ve transferred it to GCP.</p>
+<p>We&#39;ve defined several hyperparameters for you, which you can access using <code>args.VARIABLE_NAME</code>. For instance, if you wanted to access the batch size variable, you would use <code>args.batch_size</code>.</p>
+<p>These parameters have default values, and you can adjust the values of these parameters via the command line. In order to test your model, for example, run <code>python assignment.py --mode test</code>.</p>
+<h2 id="assignment-overview">Assignment Overview</h2>
+<p>In this assignment we will not give the specific implementation details, as they are outlined in the paper. However, we will give you the general steps your implementation should follow:</p>
+<h2 id="roadmap">Roadmap</h2>
+<ol>
+<li>Load and preproccess the image data (The stencil code already does this for you).</li>
+<li>Build the DCGAN generator network (details in the paper)</li>
+<li>Build the DCGAN discriminator network (details in the paper) <em>Note</em> Remember that your discriminator loss will be the sum of two different losses: one for the real images and one for the fake images.</li>
+<li>Set up training losses (remember that you should be using binary cross entropy, which is its own unique loss function).</li>
+<li>Train and save the model. Remember that you will need to use two gradient tapes in order to track only the necessary operations for your discriminator and generator. Also, we recommend using the same batch size and optimization settings as in the DCGAN paper, since it can be difficult to get GANs to train stably. Finally, you should average the FID scores across an entire epoch and return it from your train method.</li>
+<li>Test the model by generating some image samples from random vectors.</li>
+</ol>
+<h2 id="running-your-code">Running Your Code</h2>
+<p>The model you’ll implement for this assignment is much more computationally intensive than models in previous assignments, so you&#39;ll need to run the code on a GPU-equipped machine. We recommend using a Google Compute Engine instance for this, though you&#39;re more than welcome to use another GPU-capable machine if you have access to one, but make sure that your program runs on the course&#39;s GCP environment before handing in. Not doing so may cause you to fail the autograder unnecessarily. Google Colab is another option, though you may need to make alterations to your file such that it will run in Colab.</p>
+<p>Refer to the lab on GCP if you&#39;ve forgotten how to run or generate an instance.</p>
+<p>In our experiments, this model needs to train for ~5-6 epochs before it starts producing nice-looking images. This takes roughly 2 hours on a GCP machine with a Tesla K80 GPU.</p>
+<p>However, you should start to see some vaguely face-like structures emerging after only a couple of epochs. Furthermore, if your model is not going to train stably, this will become evident very early on (after just a couple dozen iterations, usually). Training instability looks like one of the generator or discriminator losses (usually the discriminator) going to zero. Once one network’s loss goes to zero, the other one no longer receives any training signal and can’t make training progress.</p>
+<h2 id="saving-your-trained-model">Saving Your Trained Model</h2>
+<p>Be sure to save your model after every epoch.</p>
+<h3 id="evaluation">Evaluation</h3>
+<p>Evaluating generative models such as GANs is much more difficult than classifiers--there&#39;s no obvious &#39;accuracy compared to ground truth&#39; measure that we can use.
+One method that has emerged is the <a href="https://nealjean.com/ml/frechet-inception-distance/">Frechet Inception Distance</a> (FID), which runs real and  generated images through an image classification network (specifically, an Inception network) and compares the activations produced by both.
+Ideally, the generated images should produce similar activations as the real ones.
+The stencil code for this assignment includes code to compute the FID after each epoch of training.</p>
+<h2 id="tips-other-notes">Tips &amp; Other Notes</h2>
+<ul>
+<li>You will find default arguments (such as the number of epochs) in the stencil python script. Spend some time reading them to familiarize yourself with them.</li>
+<li>Use keras&#39;s conv2d and conv2d_transpose for convolution and transposed convolution.</li>
+<li>Use batch normalization after every layer of the generator except for the output layer. For the discriminator, use batch normalization after every layer except for the input (first) layer. This improves training convergence. The DCGAN paper describes this, but it&#39;s worth mentioning again here.</li>
+<li>Use ReLU in between every layer of the generator and tanh on the output. Use LeakyReLU with a slope (alpha) of 0.2 between every layer of the discriminator. Like above, the DCGAN paper describes this, but it&#39;s worth still mentioning.</li>
+<li>We’ve found that training is more stable if you update the generator parameters twice for every update to the discriminator parameters. If you’d like to play around with the number of updates to the generator, the stencil code script accepts a command line argument <code>--num-gen-updates</code> that you can use for this purpose.</li>
+</ul>
+<h2 id="grading">Grading</h2>
+<p>Since this is an optional assignment, you will not be formally graded! However, the Gradescope autograder will still be up for you to test your GAN implementation if you so desire. For reference, originally to receive full credit for this auto-graded portion of this assignment, your model must achieve an FID (mentioned in the Evaluation section) of less than 500 after no more than 7 epochs or 3.5 hours of training on a GCP environment with the setup specified in the GCP lab. If you are taking the class as a graduate student, your model must achieve a FID of 210 or less.</p>
+<p>If you are in CS2470, your FID score must be no less than 250.</p>
+<p>Our autograder will NOT call your train function and instead simply evaluate using the saved weights.</p>
+<p><strong>IMPORTANT: We will NOT manually run your code if it fails the autograder, meaning that you will receive a 0/30 if your handin fails. Please run your model on GCP before handing in to make sure that you don&#39;t run into any errors.</strong></p>
+<h2 id="handing-in">Handing In</h2>
+<p>In your README, document any known bugs.</p>
+<p>For the handin, you should submit a saved model, which should include a directory called <code>variables</code> (tensorflow should generate this automatically when you save) and another that includes the file <code>saved_model.pb</code>. You should also ensure that your model is in the <code>generator</code> directory.    </p>
+<p>You should be saving your model every epoch, and just submit the one with the best FID score.</p>
+<p>You should submit the assignment via Gradescope under the corresponding project assignment by zipping up your hw7 folder.</p>
+<p><strong>IMPORTANT!</strong>
+Please make sure your <code>assignment.py, preprocess.py</code> files are in <code>hw7/code</code> this is very important for our autograder to work!
+DELETE the data folder before you zip up your code, it might be too big to upload to Gradescope</p>
+        </section>
+        <aside class="not-mobile">
+        </aside>
+    </main>
+
+    <footer class="dark-footer">
+        <img id="footer-earmuffs" class="random-earmuffs" src="http://cs.brown.edu/courses/cs1470/img/sparkle.png">
+        <ul class="menu">
+            <li>&copy; 2019 and 2020 CS1470/2470 TA Staff | Computer Science Department | Brown University</li>
+        </ul>
+        <br>
+    </footer>
+
+</body>
+
+</html>

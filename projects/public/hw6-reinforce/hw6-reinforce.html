@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CS147 - Deep Learning | Brown University</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="../../../style.css">
+    <link rel="stylesheet" type="text/css" href="../../../normalize.css">
+
+    <!-- for syntax highlighting of code blocks -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script charset="UTF-8"
+        src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/languages/go.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
+
+    <!-- MathJax -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+        </script>
+
+    <!-- NOTE: Script closing tags need to be on separate line for markdown-to-html script to process them properly :-(  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js">
+    </script>
+    <script type="text/javascript" src="../../../random-bowties.js">
+    </script>
+    <script type="text/javascript" src="../../../create-sidebar.js">
+    </script>
+    <script type="text/javascript" src="../../../common.js">
+    </script>
+
+</head>
+
+<body>
+    <header>
+        <div class="page__header">
+            <div class="page__title">
+                <img src="../../../assets/planets/6.png" />
+                Assignment 6
+            </div>
+
+
+            <!-- kept for spacing-->
+            <div class="page__header__quote">
+            </div>
+
+            <nav id="navbar">
+                <button id="hamburger" onclick="toggleMobileMenu(this)">
+                    <div id="hamburger-bar-1"></div>
+                    <div id="hamburger-bar-2"></div>
+                    <div id="hamburger-bar-3"></div>
+                </button>
+                <a class="nav-link" href="../../../index.html">Home</a>
+                <a class="nav-link" href="../../../resources.html">Resources</a>
+                <a class="nav-link" href="../../../lectures.html">Lectures</a>
+                <a class="nav-link" href="../../../assignments.html">Assignments</a>
+                <a class="nav-link" href="../../../labs.html">Labs</a>
+                <a class="nav-link" href="../../../calendar.html">Calendar &amp; Hours</a>
+                <a class="nav-link" href="../../../staff.html">Staff</a>
+            </nav>
+        </div>
+    </header>
+    <main class="hw6-content">
+        <section class="has-sidebar">
+            <h1 id="hw6-reinforce-and-reinforce-with-baseline">HW6: REINFORCE and REINFORCE with Baseline</h1>
+            <p><strong>Written Questions Due Monday, 11/16/20 at 11:59pm AoE</strong><br><strong>Code Due Friday, 11/20/20 at 11:59pm AoE</strong></p>
+            <p>Blueno is now floating in outer space playing with a cartpole. As he tries to keep it balanced by applying appropriate forces to a pivot point, he realizes it is  very hard and remembers his best friend, Reinforcement Learning! It is a nice enough friend to tell Blueno only how good or bad he is doing, which Blueno can rely on to modify his behavior.</p>
+            <p>In previous assignments, we have had labeled data. We could feed in an input, and tell our model to predict our labels. However, what if we do not know what those labels are? What if we do not know much about our task either? How do we learn if we only have something that tells us how good or bad we are doing?</p>
+            <p>Here in this assignment, we will be tackling this <em>deep question</em> by learning how to play <a href="https://gym.openai.com/envs/CartPole-v1/">Cartpole</a>, the world&#39;s most thrilling and entertaining game, using two RL algorithms: 1) REINFORCE and 2) REINFORCE with Baseline.</p>
+            <h2 id="conceptual-questions">Conceptual Questions</h2>
+            <p>Please fill out the conceptual questions on Gradescope under &quot;Hw6 Conceptual Questions: Policy Gradient Reinforcement Learning.&quot; Upload your assignments as pdfs on Gradescope.</p>
+            <h2 id="getting-the-stencil">Getting the stencil</h2>
+            <p>Please click on <a href="https://classroom.github.com/a/NySpS6-5">Hw6 GitHub Classroom link</a> to get the stencil code. Reference this <a href="https://docs.google.com/document/d/1HnBhzdOGbUrTwh9TaaxrSusn8TObltn3c7FgKjdVImI/edit?usp=sharing">guide</a> or <a href="https://docs.google.com/presentation/d/1w_dzls2rfabUrhrQz9f5QU71t7HmLdHJFS8BnHz_q7E/edit?usp=sharing">these</a> slides for more information about GitHub and GitHub Classroom. There is one bash script in the root directory of the hw repository, create_venv.sh for creating a virtual environment. Students might not need to run create_venv.sh as we would also provide our course’s public virtual environment that they can use. You will find the assignment.py, reinforce.py, and reinforce_with_baseline.py files inside the code folder and the README.</p>
+            <h2 id="assignment-overview">Assignment Overview</h2>
+            <p>For this assignment, you will not need to preprocess any data as all data for this assignment will be collected interactively, via the CartPole-v1 environment of OpenAI Gym (woohoo!).</p>
+            <p>OpenAI Gym provides an easy-to-use interface for AIs to play games.</p>
+            <p>You can give the gym environment an action, and it will 1) update the state of the game and 2) return you the next state, the reward of taking the action, and whether you arrived at a terminal state.</p>
+            <p>In CartPole, you are training a simple agent (a cart) to balance a pole. Hence, CartPole.</p>
+            <h2 id="setup">Setup</h2>
+            <p>Work on this assignment off of the stencil code provided, but <strong>do not change the stencil except where specified.</strong> Changing the stencil will result in incompatibility with the autograder and result in a low grade. You shouldn&#39;t change any method signatures.</p>
+            <p>To run the virtual environment on a department machine, you can run: <code>source /course/cs1470/tf-2.3/bin/activate</code>.</p>
+            <p>You can also check out the Python virtual environment guide to set up TensorFlow 2.3 on your local machine.</p>
+            <h2 id="roadmap">Roadmap</h2>
+            <h3 id="step-1-reinforce">Step 1: REINFORCE</h3>
+            <p>This is the first RL algorithm you will implement for this assignment. This part of the assignment will be done in <code>reinforce.py</code>.</p>
+            <p>The REINFORCE algorithm is a Policy Gradient method. In other words, it directly learns a function for mapping states to probability distributions over possible actions. It then samples from this distribution to pick its next move.</p>
+            <p>Going forward, &quot;model&quot; refers to the neural net that generates a policy and trains the policy for the agent, and the &quot;agent&quot; uses the policy and gathers data.</p>
+            <p><strong><strong>init</strong></strong></p>
+            <p>In the <code>__init__</code> function you will be taking in two parameters: <code>state_size</code> and <code>num_actions</code>. <code>state_size</code> represents the number of parameters that define the state, and <code>num_actions</code> represents the number of actions in an environment. Here you will create a network that will take an input of size <code>[num_inputs, state_size]</code> and produce a <strong>probability distribution</strong> of size <code>[num_inputs, num_actions]</code>.</p>
+            <p><strong>call</strong></p>
+            <p>In the call function, your model will take your state(s) and return your policy, a probability distribution over the action space based on the state(s). The call function will take in a batch of states with shape <code>[episode_length, state_size]</code> and return a policy of shape <code>[episode_length, num_actions].</code> <code>episode_length</code> represents the number of steps taken in the one whole episode of a game and may vary across different episodes.</p>
+            <p><strong>loss</strong></p>
+            <p>In the loss function, you will take in <code>states</code>, <code>actions</code>, and <code>discounted_rewards</code>. <code>states</code> is the history of states encountered throughout the episode and will be of shape <code>[episode_length, state_size]</code>. <code>actions</code> is the history of actions taken in the episode and is a list of integer indices of shape <code>[episode_length]</code>. <code>discounted_rewards</code> represents the discounted sum of future rewards for each timestep in the episode and has shape <code>[episode_length]</code>.</p>
+            <p>The formula for the loss our model minimizes is:</p>
+            <p><img src="http://cs.brown.edu/courses/cs1470/img/reinforce_loss.png" alt="reinforce loss"></p>
+            <p><em>i</em> represents your current step, <em>a_i</em> represents the action you took at that step, and <em>D_i</em> is the discounted reward at that step.</p>
+            <h3 id="step-2-training">Step 2: Training</h3>
+            <p>This part will be implemented in <code>assignment.py</code>.</p>
+            <p><strong>Discounted Rewards</strong></p>
+            <p>Recall from our Reinforce lecture, the value of taking a given action should not just be the single reward resulting from that action. This is because the benefits of taking a &quot;good&quot; action could be seen later on in the episode. Instead, your estimate for the reward resulting from an action should also take into account future rewards in timesteps after the agent (controlled by the model) took that action. However, sooner rewards are probably more related to our action, while rewards farther into the future are probably less dependent on that action.</p>
+            <p>Fill out the <code>discount</code> function that will map our <code>[episode_length]</code> sized <code>rewards</code> list containing the reward received at each time step to the <strong>discounted sum of future rewards</strong> from that time step, using the discount factor. You should reference the Reinforce lecture for the formula for discounted rewards.</p>
+            <p>Recall also that <em>&gamma;</em> represents the discount factor and is usually set to 0.99.</p>
+            <p><strong>train</strong></p>
+            <p>Your <code>train</code> function will take in the environment and the model and will train on one episode. Using <code>tf.GradientTape</code>, call <code>generate_trajectory</code> on the environment and model to get <code>states</code>, <code>actions</code>, and <code>rewards</code>. Convert <code>states</code> to a numpy array and pass them into your model&#39;s loss function, where you&#39;ll use the model&#39;s call function to get your action probabilities. Calculating your loss will require a history of the discounted rewards throughout the episode; with the discounted rewards, calculate the loss on this episode and use the tape to apply the gradients. Lastly, return the total reward of the game, which is the sum of the rewards across the episode (not discounted). If both part 1 and 2 work correctly, the model should successfully train on Cartpole!</p>
+            <p><strong>Running the Model</strong></p>
+            <p>Your assignment.py should be able to run both your Reinforce and Reinforce with Baseline
+            models. You can run it with:\
+            \
+            <strong><code>python assignment.py [MODEL TYPE]</code></strong>\
+            \
+            Where MODEL TYPE is &quot;REINFORCE&quot; or &quot;REINFORCE_BASELINE.&quot;</p>
+            <h3 id="step-3-reinforce-with-baseline">Step 3: REINFORCE with Baseline</h3>
+            <p><strong>Do not attempt part 3 without first completing and testing part 1!!</strong> Otherwise, welcome to part 3! This part of the assignment will be done in <code>reinforce_with_baseline.py</code> and will build directly off of part 1 (that&#39;s why it&#39;s important that part 1 works before moving on to this part).</p>
+            <p><strong>init</strong></p>
+            <p>In the <code>__init__</code> function you will be taking in two parameters: <code>state_size</code> and <code>num_actions</code>. Again, <code>state_size</code> represents the number of parameters that define the state, and <code>num_actions</code> represents the number of actions in the environment. Since REINFORCE with Baseline builds off of REINFORCE, feel free to just copy paste your network defined in part 1&#39;s <code>__init__</code>! Note that this is now our <strong>actor</strong> network, as it returns the &quot;policy&quot; which defines how the agent will act.</p>
+            <p>What spices up this algorithm, though, is that you will also need your &quot;baseline&quot;, or <strong>&quot;critic&quot;</strong>. This is a new separate feed forward network that will take an input of size <code>[num_inputs, state_size]</code> and produce an array of <strong>values</strong> of size <code>[num_inputs, 1]</code> (1 value per inputted state) that estimates how &quot;good&quot; that state is. Hence, we&#39;ll call this other network the <strong>critic</strong> network. Note that since the output of the critic network is values, the softmax function should <strong>not</strong> be applied.</p>
+            <p>Recommended Layout of Critic Feed Forward Network: 1) One Dense layer with outputs size <code>hidden_size</code> (where <code>hidden_size</code> is up to you) and 2) One Dense layer with outputs size 1.</p>
+            <p><em>Note</em>: The last layer must be one with outputs size 1 and cannot use softmax.</p>
+            <p><strong>call</strong></p>
+            <p>In the <code>call</code> function you will want to call your actor network on your states, which will yield your &quot;policy&quot; distribution across actions for each state. You again can reuse this from part 1!</p>
+            <p><strong>value_function</strong></p>
+            <p>In <code>value_function</code>, you will want to call your critic network on the batch of states, which will yield the estimated value for each state in the batch.</p>
+            <p><strong>loss</strong></p>
+            <p>This loss function will also be a bit different from part 1&#39;s. As before, the loss function will take in <code>states</code>, <code>actions</code> and <code>discounted_rewards</code>, which all represent the same things as in part 1.</p>
+            <p>Here we need to calculate the loss over our actor network <strong>and</strong> our critic network, which are two separate networks. The formulas for these losses and are defined in the A2C lecture.</p>
+            <p>Note that you use the advantage in the loss of your actor and your critic. For your actor loss <strong>you must stop the gradient from being applied to the advantage calculation</strong>. You can use <code>tf.stop_gradient</code> to do this. Note that you should only stop the gradient for your actor loss, not your critic loss.</p>
+            <h2 id="visualizing-results">Visualizing Results</h2>
+            <p>We have provided the function, <code>visualize_data</code>, which plots the reward through episodes.</p>
+            <p>In addition, if you would like to see your agent perform, call <code>env.render()</code> every time you perform an action. It is useful to see how your model is learning to perform a given task. <strong>When you turn your assignment in however, turn rendering off.</strong></p>
+            <h2 id="requirements">Requirements</h2>
+            <p>Our autograder will call your <code>train</code> function for 650 episodes to train it. After your model is trained, we will test by collecting rewards over the last 50 episodes, using your actor function to make decisions. For REINFORCE, you must receive an average reward > 200 over the last 50 episodes. For REINFORCE with baseline, you must receive an average reward > 300 over the last 50 episodes. Each model must not take over 7 minutes to train on a department machine. As a reference, our REINFORCE trains within 5 minutes and gets average rewards of over 450, and our REINFORCE with baseline trains within 5 minutes and gets rewards of 500.</p>
+            <p><em>&quot;Challenge&quot; accuracy thresholds (mandatory for CS2470 students and optional for CS1470 students):</em><br>Consistently get > 400 on REINFORCE and > 480 on REINFORCE with baseline.</p>
+            <p>Hint: If you&#39;re having trouble getting a consistently high average score, consider setting a <a href="https://keras.io/api/optimizers/learning_rate_schedules/">learning rate schedule</a>. </p>
+            <h2 id="cs2470-students">CS2470 Students</h2>
+            <p>Please complete the CS2470-only conceptual questions <strong>in addition</strong> to the coding assignment and the CS1470 conceptual questions.<br><em>Note</em>: Questions about 2470 will only be answered on Piazza, or by TAs marked with an asterisk (*) on the calendar.</p>
+            <h2 id="readme">README</h2>
+            <p>Please submit a README, where you record the performance of both architectures and note any bugs.</p>
+            <h2 id="handing-in">Handing In</h2>
+            <p>You should submit the assignment via Gradescope under the corresponding project assignment by zipping up your hw6 folder. </p>
+            <p><strong>IMPORTANT<br>Please make sure your assignment.py, reinforce.py, and reinforce_with_baseline.py files are in “hw6/code.” This is very important for our autograder to work!</strong></p>
+            <p><strong>If you are in CS2470, please remember to add a blank file called “2470student” in the hw6/code directory. We are using this as a flag to grade CS2470 specific requirements, and failure to do so means losing points on this assignment.</strong></p>
+        </section>
+        <aside class="not-mobile">
+        </aside>
+    </main>
+
+    <footer class="dark-footer">
+        <img id="footer-earmuffs" class="random-earmuffs" src="http://cs.brown.edu/courses/cs1470/img/sparkle.png">
+        <ul class="menu">
+            <li>&copy; 2019 CS1470/2470 TA Staff | Computer Science Department | Brown University</li>
+        </ul>
+        <br>
+    </footer>
+
+</body>
+
+</html>

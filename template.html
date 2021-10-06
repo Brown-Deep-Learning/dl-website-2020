@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CS147 - Deep Learning | Brown University</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- NOTE: Template needs absolute paths since actual created files may be in different subdirectories  -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="normalize.css">
+
+    <!-- for syntax highlighting of code blocks -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
+
+    <!-- MathJax -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+        </script>
+
+    <!-- NOTE: Script closing tags need to be on separate line for markdown-to-html script to process them properly :-(  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js">
+    </script>
+    <script type="text/javascript" src="http://cs.brown.edu/courses/cs1470/random-bowties.js">
+    </script>
+    <script type="text/javascript" src="http://cs.brown.edu/courses/cs1470/create-sidebar.js">
+    </script>
+
+
+</head>
+
+<body>
+    <header>
+        <div class="page__header">
+            <div class="page__title">
+                <img src="assets/sparkles/sparkle4.png" />
+                Page Title
+            </div>
+            <div class="page__header__quote">
+                "Blueno leaving left a black hole in my heart"
+            </div>
+            <nav id="navbar">
+                <button id="hamburger" onclick="toggleMobileMenu(this)">
+                    <div id="hamburger-bar-1"></div>
+                    <div id="hamburger-bar-2"></div>
+                    <div id="hamburger-bar-3"></div>
+                </button>
+                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="resources.html">Resources</a>
+                <a class="nav-link" href="lectures.html">Lectures</a>
+                <a class="nav-link" href="assignments.html">Assignments</a>
+                <a class="nav-link" href="labs.html">Labs</a>
+                <a class="nav-link" href="calendar.html">Calendar &amp; Hours</a>
+                <a class="nav-link" href="staff.html">Staff</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="has-sidebar">
+        </section>
+        <aside>
+        </aside>
+    </main>
+
+    <footer class="dark-footer">
+        <img id="footer-earmuffs" class="random-earmuffs"
+            src="http://cs.brown.edu/courses/cs1470/img/bowties/sparkle.png">
+        <ul class="menu">
+            <li>&copy; 2020 CS1470/2470 TA Staff | Computer Science Department | Brown University</li>
+        </ul>
+        <br>
+    </footer>
+
+</body>
+
+</html>

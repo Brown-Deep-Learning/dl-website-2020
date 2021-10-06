@@ -1,0 +1,187 @@
+---
+layout: dlday
+---
+
+{% assign devpost_released = true %}
+
+<div class='container' id='content'>
+<div class='row'>
+<div class='col-md-12' id='maincontent'>
+
+    <div class='title'>Brown Deep Learning Day 2020</div>
+
+    <p>Welcome to Deep Learning Day! The students of <a href='http://cs.brown.edu/courses/csci1470/'>CSCI 1470/2470 Deep Learning</a> have been working hard over the past few weeks on their own open-ended, group final projects. In a normal semester, we'd take over Sayles Hall for the day so that students could present their work via posters and oral presentations. Unfortunately, that's not possible this year. Since Deep Learning Day was originally designed to mimic the structure of a machine learning research conference, we've decided to take inspiration from how such conferences are conducting themselves virtually this year.</p>
+    
+    <p>Below, you'll find a list of all course final projects; we provide sort and filter functionality to make it easier to find projects of interest to you. Clicking on the project name will take you to a <a href='https://devpost.com/'>Devpost</a> page for the project, where you can view a poster and video explaining the project, as well as leave comments or questions for the project group members. Students in CSCI 1470 were expected to re-implement an existing reseach paper and prepare a short teaser video (Poster); students in CSCI 2470 and those in 1470 completing capstones were expected to attempt a novel project idea and prepare a longer explanatory video (Oral).</p>
+
+    <p>Check out the awesome work by our students, and show your support by leaving comments on their project pages!</p>
+
+    {% if devpost_released == false %} 
+        <p>
+            <b style="color:#ff0000;">Links to project Devpost pages will be made available by 9am EST on Friday 12/11</b>
+        </p>
+    {% endif %}
+
+    <div id='research-section' class='mainitem'>
+        <div class='anchor'>
+            <a name='research'> </a>
+            <div class='mainheader'>List of Projects</div>
+        </div>
+        <div id='pubstable' class='table-group'>
+            <div class='row'>
+                <div class='col-auto'>Filter by Area:</div>
+                <div class='col-auto'>
+                    {% assign areas = site.data.projects | map: "area" | uniq | sort %}
+                    <select class="form-control table-filter" filterdata='projarea' id="select-area">
+                        <option></option>
+                        {% for area in areas %}
+                            <option>{{area}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class='col-auto'>Filter by Mentor TA:</div>
+                <div class='col-auto'>
+                    {% assign mentors = site.data.projects | map: "mentor" | uniq | sort %}
+                    <select class="form-control table-filter" filterdata='projmentor' id="select-prof">
+                        <option></option>
+                        {% for mentor in mentors %}
+                            <option>{{mentor}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class='table-page-search row'>
+                <div class="table-search col">
+                    <input class="search" placeholder="Search within project names, group members, etc.">
+                </div>
+            </div>
+            <table class='table-list table table-striped table-sm table-responsive-sm' data-currentpage=1>
+                <thead class='thead-dark'>
+                    <th style='width: 18%'><button type='button' class='sort' data-sort='projarea'>Subject Area<span class='caret'></span></button></th>
+                    <th style='width: 30%'><button type='button' class='sort' data-sort='title'>Project Name<span class='caret'></span></button></th>
+                    <th style='width: 30%'><button type='button' class='sort' data-sort='projmembers'>Group Members<span class='caret'></span></button></th>
+                    <th style='width: 6%'><button type='button' class='sort' data-sort='projtype'>Type<span class='caret'></span></button></th>
+                    <th style='width: 16%'><button type='button' class='sort' data-sort='projmentor'>Mentor TA<span class='caret'></span></button></th>
+                </thead>
+                <tbody class='list'>
+                    {% for proj in site.data.projects %}
+                        {% if proj.is_oral %}
+                            {% assign projtype = "oral" %}
+                        {% else %}
+                            {% assign projtype = "poster" %}
+                        {% endif %}
+                        <tr class='proj_{{projtype}}' data-title='{{proj.title}}'>
+                            <td class='projarea'>{{proj.area}}</td>
+                            <td class='projtitle'>
+                                {% if devpost_released %}
+                                    <a href='{{proj.devpost}}'>{{proj.title}}</a>
+                                {% else %}
+                                    {{proj.title}}
+                                {% endif %}
+                            </td>
+                            <td class='projmembers'>{{proj.members}}</td>
+                            <td class='projtype'>{{projtype | capitalize}}</td>
+                            <td class='projmentor'>{{proj.mentor}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class='row noresult'>
+                <div class='col'>No Results Found</div>
+            </div>
+        </div>
+    </div>
+
+<!-- <div id='research-section' class='mainitem'>
+    <div class='anchor'>
+        <a name='research'> </a>
+        <div class='mainheader'>List of Projects</div>
+    </div>
+    <div id='pubstable' class='table-group'>
+        <div class='row'>
+            <div class='col-auto'>Filter by Area:</div>
+            <div class='col-auto'>
+                <select class="form-control table-filter" filterdata='areas' id="select-area">
+                    <option></option>
+                    {% for area in site.data.areas %}
+                        <option>{{area[0]}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class='col-auto'>Filter by Faculty:</div>
+            <div class='col-auto'>
+                <select class="form-control table-filter" filterdata='profs' id="select-prof">
+                    <option></option>
+                    {% assign lastnames = site.data.faculty | map: "lastname" | sort %}
+                    {% for fac in lastnames %}
+                        <option>{{fac}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class='table-page-search row'>
+            <div class="table-search col">
+                <input class="search" placeholder="Search within project names, group members, etc.">
+            </div>
+        </div>
+        <table class='table-list table table-striped table-sm table-responsive-sm' data-currentpage=1>
+            <thead class='thead-dark'>
+                <th style='width: 6%'><button type='button' class='sort' data-sort='pubyear'>Year<span class='caret'></span></button></th>
+                <th style='width: 37%'><button type='button' class='sort' data-sort='title'>Title<span class='caret'></span></button></th>
+                <th style='width: 37%'><button type='button' class='sort' data-sort='author'>Authors<span class='caret'></span></button></th>
+                <th style='width: 20%'><button type='button' class='sort' data-sort='pubvenue'>Venue<span class='caret'></span></button></th>
+            </thead>
+            <tbody class='list'>
+                {% for pub in site.data.pubs %}
+                    {% assign firstauthor = pub.author.first | split: " " | last %}
+                    {% if pub.areas.size == 0 %}
+                        {% assign pubareas = '["Other"]' %}
+                    {% else %}
+                        {% assign pubareas = pub.areas_string %}
+                    {% endif %}
+                    <tr data-title='{{pub.title}}' data-author='{{firstauthor}}' data-profs='{{pub.profs_string}}' data-areas='{{pubareas}}'>
+                        <td class='pubyear'>{{pub.year}}</td>
+                        <td class='pubtitle'>
+                            {% if pub.eprint %}
+                                <a target='_blank' href='{{pub.eprint}}'>{{pub.title}}</a>
+                            {% elsif pub.url %}
+                                <a target='_blank' href='{{pub.url}}'>{{pub.title}}</a>
+                            {% else %}
+                                {{pub.title}}
+                            {% endif %}
+                        </td>
+                        <td class='pubauthors'>
+                            {% for author in pub.author %}
+                                {% assign facmatches = site.data.faculty | where: 'pubname', author %}
+                                {% assign studmatches = site.data.students | where: 'pubname', author %}
+                                {% if facmatches.size == 1 %}
+                                    <a target='_blank' href='{{facmatches.first.homepage}}'>{{author}}</a>{% if pub.author.size > 1 and forloop.last == false %},{% endif %}
+                                {% elsif studmatches.size == 1 %}
+                                    <a target='_blank' href='{{studmatches.first.link}}'>{{author}}</a>{% if pub.author.size > 1 and forloop.last == false %},{% endif %}
+                                {% else %}
+                                    {{author}}{% if pub.author.size > 1 and forloop.last == false %},{% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                        <td class='pubvenue'>
+                            {% if pub.journal %}
+                                {{pub.journal}}
+                            {% elsif pub.conference %}
+                                {{pub.conference}}
+                            {% elsif pub.book %}
+                                {{pub.book}}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class='row noresult'>
+            <div class='col'>No Results Found</div>
+        </div>
+    </div>
+</div> -->
+
+</div>
+</div>
+</div>

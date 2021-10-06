@@ -1,0 +1,62 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{physics}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,    
+    urlcolor=blue,
+}
+
+
+\title{Homework 7: DCGAN}
+\date{Due Dec 6th, 2019 at 11:59pm}
+\author{CS 1470/2470}
+\begin{document}
+
+\maketitle
+
+\section{Conceptual Questions}
+\begin{enumerate}
+\item What is the discriminator loss? What is the generator loss? What are they each measuring? (2-4 sentences)
+
+\item Why do we alternate between training the generator and training the discriminator? (2-4 sentences)
+
+\item One common problem encountered during GAN training is mode collapse. Explain what mode collapse is and why it occurs. (2-4 sentences)
+
+\item Recall that the generator's objective is to minimize the following loss function: 
+\begin{align*}
+    L_G = \mathop{\mathbb{E}}_{z\sim p_z(z)}[log(1 - D(G(z))]
+\end{align*}
+The authors of the \href{https://arxiv.org/pdf/1406.2661.pdf}{original GAN paper} propose using a slightly modified loss function for training the generator. State the function and describe why it is favorable, in your own words.  (2-4 sentences)
+
+\item We use Frechet Inception Distance (FID) to evaluate the performance of our model. What does FID measure? What are some of its limitations? (2-4 sentences)
+
+
+\end{enumerate}
+
+
+\section{Ethical Implications}
+\begin{enumerate}
+\item Question 1
+Lawmakers are increasingly interested in regulating deepfakes; for instance, \href{https://techcrunch.com/2019/06/13/deepfakes-accountability-act-would-impose-unenforceable-rules-but-its-a-start/}{this} is an analysis of the DEEPFAKES bill in the US house. (California and Texas have passed related bills.) 
+
+\begin{enumerate}
+    \item A lawmaker has reached out to you to explain to them how deepfakes ``work" -- they have read some news articles that talk about something called GANs, but want to know more. Explain in laypersons' terms what a ``GAN" is, and how it can be used to produce something like a deepfake. (4-6 sentences)
+    \item Suppose you've just published a paper describing an algorithm where, if given a video, the algorithm can tell whether or not it is a deepfake. You want to use this new development to reduce potential harms of deepfakes; in what settings might this algorithm be used, and by whom? 
+    What (potentially non-technical) considerations need to be made when using this algorithm (e.g. free speech), and how will those decisions be made? (3-4 sentences)
+    
+\end{enumerate}
+\end{enumerate}
+
+\section{CS2470-only Questions}
+
+\begin{enumerate}
+\item The model you implemented for this assignment is built upon convolutional layers. A newly proposed model, authored by none other than Ian Goodfellow, is the Self-Attention Generative Adversarial Network (SAGAN), which has achieved state-of-the-art results in image generation tasks for multi-class datasets. You can find the paper \href{https://arxiv.org/abs/1805.08318}{here}. What is the motivation for using self-attention in the image setting? How do the authors incorporate self-attention into their model? 
+\item Regular GAN's suffer from the vanishing gradient problem. An attempt to alleviate this issue is using Wasserstein loss. What is  Wasserstein loss, and how is it different from the regular GAN loss function? Why does it not suffer as badly from vanishing gradients?
+\item  Find a GAN paper that interests you. Describe in detail the modifications it makes to regular GAN's, specifically in regards to its loss function and model architecture.
+\end{enumerate}
+\end{document}

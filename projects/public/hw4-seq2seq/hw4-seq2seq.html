@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CS147 - Deep Learning | Brown University</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="../../../style.css">
+    <link rel="stylesheet" type="text/css" href="../../../normalize.css">
+
+    <!-- for syntax highlighting of code blocks -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script charset="UTF-8"
+        src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/languages/go.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
+
+    <!-- MathJax -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+        </script>
+
+    <!-- NOTE: Script closing tags need to be on separate line for markdown-to-html script to process them properly :-(  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js">
+    </script>
+    <script type="text/javascript" src="../../../random-bowties.js">
+    </script>
+    <script type="text/javascript" src="../../../create-sidebar.js">
+    </script>
+    <script type="text/javascript" src="../../../common.js">
+    </script>
+
+</head>
+
+<body>
+    <header>
+        <div class="page__header">
+            <div class="page__title">
+                <img src="../../../assets/planets/4.png" />
+                Assignment 4
+            </div>
+
+
+            <!-- kept for spacing-->
+            <div class="page__header__quote">
+            </div>
+
+            <nav id="navbar">
+                <button id="hamburger" onclick="toggleMobileMenu(this)">
+                    <div id="hamburger-bar-1"></div>
+                    <div id="hamburger-bar-2"></div>
+                    <div id="hamburger-bar-3"></div>
+                </button>
+                <a class="nav-link" href="../../../index.html">Home</a>
+                <a class="nav-link" href="../../../resources.html">Resources</a>
+                <a class="nav-link" href="../../../lectures.html">Lectures</a>
+                <a class="nav-link" href="../../../assignments.html">Assignments</a>
+                <a class="nav-link" href="../../../labs.html">Labs</a>
+                <a class="nav-link" href="../../../calendar.html">Calendar &amp; Hours</a>
+                <a class="nav-link" href="../../../staff.html">Staff</a>
+            </nav>
+        </div>
+    </header>
+    <main class="hw4-content">
+        <section class="has-sidebar">
+            <h1 id="hw4-machine-translation">HW4: Machine Translation</h1>
+<p><strong>Conceptual Questions</strong> due <strong>Friday, 10/30/20 at 11:59pm AoE</strong>
+<strong>Code</strong> due <strong>Wednesday, 11/4/20 at 11:59pm AoE</strong></p>
+<p>Buenos días. اهلا وسهلا. 你好. Bonjour. Hello.
+During Blueno&#39;s fantastical journey through space, he has found himself at Space Customs and needs to declare the cool space rock he found when hanging out with Matt Damon. But Alas! The customs officers all speak different languages, none of which is Lamp/Bear-compatible! Blueno needs our help to translate his intricate Lamp/Bear thoughts into a language these customs officers understand!</p>
+<h2 id="conceptual-questions">Conceptual Questions</h2>
+<p>Please fill out the conceptual questions on Gradescope under Hw 4 Conceptual Questions: Machine Translation. Please upload your assignments as pdfs on Gradescope.</p>
+<p>Your README should contain your perplexity and any bugs you have.</p>
+<h2 id="getting-the-stencil">Getting the stencil</h2>
+<p>Please click <a href="https://classroom.github.com/a/vzm3_eA3">here</a> to get the stencil code. Reference this <a href="https://docs.google.com/document/d/1HnBhzdOGbUrTwh9TaaxrSusn8TObltn3c7FgKjdVImI/edit?usp=sharing">guide</a> or <a href="https://docs.google.com/presentation/d/1w_dzls2rfabUrhrQz9f5QU71t7HmLdHJFS8BnHz_q7E/edit?usp=sharing">these</a> slides for more information about GitHub and GitHub Classroom.</p>
+<p>There are two bash scripts in the root directory of the hw repository, create_venv.sh for creating a virtual environment and download.sh for downloading the data (if it exists for that homework). Students need to run download.sh to get the data, but they might not need to run create_venv.sh as we would also provide our course’s public virtual environment that they can use (to be created when the requirements.txt is finalized)</p>
+<h2 id="setup">Setup</h2>
+<p>Work on this assignment off of the stencil code provided, but <strong>do not change the stencil except where specified.</strong> Changing the stencil will result in incompatiblity with the autograder and result in a low grade. For this assignment, a significant amount of code is provided. You shouldn&#39;t change any method signatures.</p>
+<p><em>Note</em> For this assignment, you might also need the [ghast] (<a href="https://pypi.org/project/ghast/">https://pypi.org/project/ghast/</a>) library. This may be necessary if you want to speed up your code.</p>
+<h2 id="assignment-overview">Assignment Overview</h2>
+<p>This assignment has <strong>2 main parts.</strong></p>
+<p>You will implement two different types of sequence to sequence model. One is based on Recurrent Neural Networks, the other one Transformers. However, since both of these models are trying to solve the same problems, they share the same preprocessing, training, and testing. In addition, we provide you with Transformer helper functions. However, you will implement self attention.</p>
+<h2 id="roadmap">Roadmap</h2>
+<h3 id="step-1-preprocessing">Step 1: Preprocessing</h3>
+<p>We have provided you with several helper functions to help with preprocessing.</p>
+<ul>
+<li>pad_corpus : pads the corpus to make all inputs the same length. It does this by adding <em>PAD</em> tokens to the end of the french and english sentences. It also adds a <em>START</em> token to the beginning of the english sentence. </li>
+<li>build_vocab : returns a dictionary from words to IDs, and also the ID associated with padding. You can build your vocab only using the training data.</li>
+<li>convert_to_id : converts sentences to their ID form</li>
+<li>read_data : load text data from file</li>
+</ul>
+<p>You must implement the get_data() function. This function takes training file and testing files, and uses the helper functions provided to return the processed data, vocab dictionaries, and the english padding ID.</p>
+<p>In this function you should:</p>
+<ul>
+<li><p>Read the French training data and the English training data</p>
+</li>
+<li><p>Read the French testing data and the English testing data</p>
+</li>
+<li><p>Call pad_corpus on the training and testing data. <strong>This assignment differs from the previous assignment in that each input is a single sentence</strong>. For each unpadded French/English sentence, you should first cut off all tokens that make the sentence longer than French/English window size.
+Then, because French is your encoding language, you should pad your French data such that they look like &quot;French sentence tokens + Stop token(s)&quot;. English, as your decoding language, will have corresponding padded data that look like &quot;Start token + English sentence tokens + Stop token(s)&quot;.</p>
+</li>
+<li><p>Build the French and English vocabularies from the training data, then use the vocabularies to convert the sentences to ID form. <strong>Unlike the last assignment, you must make two separate dictionaries, one for French and one for English</strong>.</p>
+</li>
+<li><p>Return the processed data, dictionaries and the English padding ID</p>
+</li>
+</ul>
+<p>By law, the official records, (Hansards) of the Canadian Parliament must be transcribed in both English and French. Therefore, they provide a fantastic set of mappings for a machine translation model. We are providing you with a modified version of the corpus that only includes sentences shorter than 12 words.</p>
+<p>Here&#39;s what you should find in the data folder:
+french_training_file - fls.txt
+english_training_file - els.txt
+french_test_file - flt.txt
+english_test_file - elt.txt</p>
+<h3 id="step-2-rnn-machine-translation">Step 2: RNN Machine Translation</h3>
+<p>For this homework, you will build two neural network that encodes the French sentence and then decodes out the English translation. In this part you will build an RNN based encoder-decoder architecture.</p>
+<p>You should use at least one RNN to encode the French embeddings into a single vector, which is then passed to the decoder. This decoder RNN is initialized with the output of the encoder. </p>
+<p>The decoder performs similiarly to the language model in the last assignment. The decoder should take the english inputs shifted over one timestep, and use the combined hidden state and shifted input to predict the next english word. This procedure is called Teacher Forcing.</p>
+<p>In other words, we initialize the decoder with the &quot;encoded&quot; French sentence, then give it the previous correct English word and have it guess the next, as if we were language modeling. Teacher forcing helps stabilize training.</p>
+<p>Create your RNN model</p>
+<ul>
+<li>Fill out the init function, and define your trainable variables and hyperparametsrs. </li>
+<li>Fill out the call function using the trainable variables you&#39;ve created.</li>
+<li>Calculate the softmax cross-entropy loss on the probabilities compared to the labels (These should NOT be one hot vectors). <code>We again recommend using tf.keras.losses.sparse_categorical_crossentropy</code>. In addition, you must now give loss a mask. This is because many of the output labels will be padding, and we do not want to include padding in our loss calculation. </li>
+<li>Your mask should be a tensor of 1s and 0s or booleans, and the same dimension as your labels. There should be a 0/False value corresponding to each <em>PAD</em> token.</li>
+<li>We ask that you use <code>reduce_sum</code> in the loss function instead of <code>reduce_mean</code>. This will simplify the process for when you compute per symbol accuracy.</li>
+</ul>
+<h3 id="mandatory-hyperparameters-for-rnn">Mandatory Hyperparameters for RNN</h3>
+<p>You must use separate embedding matrices for your French and English inputs. In addition, you must use at least two RNNS: one for your encoder, the other for your decoder.</p>
+<p>While not required, a learning rate of 0.01 and a batch size of 100 is recommended. Additionally we recomend choosing embeddings/hidden layer sizes between 32-256. We also suggest using a standard deviation of 0.01 for your embedding matrices (if you do not use Keras).</p>
+<p><strong>While the specifications for your architecture are flexible, your RNN seq2seq model must train and be evaluated within 40 minutes on Gradescope!</strong></p>
+<p><strong>Your target perplexity should be &lt;=20, and your target per symbol accuracy &gt; 58.</strong> As a reference point, our RNN model trains within 22 minutes and receives a perplexity of around 10.</p>
+<h3 id="step-3-running-the-model">Step 3: Running the Model</h3>
+<p>Fill out training and testing in assignment.py</p>
+<ul>
+<li>In assignment.py, you will want to get your train and test data, initialize your model, and train it.  We have provided you with a train and test method to fill out. The train method will take in the model and do the forward and backward pass.</li>
+<li>Note that you will initialize both the RNN and the Transformer in assignment.py this time.</li>
+<li>In training and testing steps, you should batch your data. The french version of a sentence will serve as your encoder input.
+To construct your decoder labels for each sentence, you should remove the <em>START</em> token. Similarly, you will want to remove the last padding token for your decoder input. By removing these two elements, you ensure your decoder input is the same dimension as your decoder labels, and that you are predicting the NEXT English word at each place in your window.</li>
+</ul>
+<p>Your assignment.py should be now able to run both your RNN and Transformer model. You can run it with:</p>
+<p><strong>python assignment.py [MODEL TYPE]</strong></p>
+<p>Where MODEL_TYPE is &quot;RNN&quot; or &quot;TRANSFORMER.&quot;</p>
+<h3 id="step-4-transformers-machine-translation">Step 4: Transformers Machine Translation</h3>
+<p>RNNs are neat. However, since 2017, there has been a new cool kid on the Natural Language Processing block: Transformers. Transformer based models have produced state-of-the-art performance on a variety of NLP tasks, including language modeling and translation.</p>
+<p>These architectures rely on stacked self-attention modules, rather than recurrence. We will be implementing a simplified version of the <a href="https://arxiv.org/pdf/1706.03762.pdf">Attention Is All You Need</a> architecture. </p>
+<p>These attention modules turn a sequence of embeddings into Queries, Keys, and Values. Just like how each timestep has a word embedding, in self-attention, each timestep has a query, key, and value embedding. The queries are compared to every key to produce an attention matrix. This attention matrix is then used to create new embeddings for each timestep.</p>
+<p>Self-attention can be fairly confusing. Thus, we encourage students to refer back to the lecture slides.
+Another great resource that explains the intuition/implementation of Transformers can be found <a href="http://jalammar.github.io/illustrated-transformer/">here</a>.</p>
+<p>For this part of the assignment, we give you code for Transformer blocks, which you can use like RNN layers. This code can be found in transformer_funcs.py However, it is not complete: <strong>you must implement the single attention head functionality. Do this by filling in the Single Self_Attention function and the Atten_Head class.</strong></p>
+<p>If you are in 2470, you should also implement multi-headed attention (with three heads) as well, and use it in your model. </p>
+<p>Create your Transformer model</p>
+<ul>
+<li>Fill out the init function, and define your trainable variables.</li>
+</ul>
+<p>Instead of RNNs, you should use at least one <code>transformer.Transformer_Block</code> for your encoder and at least one <code>transformer.Transformer_Block</code> for your decoder.</p>
+<p><strong>The transformer block takes the following arguments: (embedding_size,is_decoder=False/True,multi_headed=False/True).</strong> You can find this in transformer_funcs.py.</p>
+<p>You also must define and use two transformer.Position_Encoding_Layers to add positional embeddings to your French and English embeddings.</p>
+<p>Additionally, please note that, for this architecture, your embedding/hidden_state size must be the same for your word embeddings and transformer blocks.</p>
+<ul>
+<li>Fill out the call function using the trainable variables you&#39;ve created.</li>
+<li>You can reuse your loss function from the rnn_model.py.</li>
+</ul>
+<p>Fill out the Self_Attention Function and Atten_Head class in transformer_funcs.py</p>
+<ul>
+<li>Please refer to the lecture slides, and/or the <a href="http://jalammar.github.io/illustrated-transformer/">illustrated transformer</a>.</li>
+</ul>
+<h3 id="mandatory-hyperparameters-for-transformer">Mandatory Hyperparameters for Transformer</h3>
+<p>You must use separate embedding matrices for your French and English inputs.
+Don&#39;t forget to add positional embeddings to your French and English embeddings using different Positional_Encoder_Layers.</p>
+<p>In addition, you must use at least two transformer blocks: one for your encoder, the other for you decoder.
+While not required, a learning rate of 0.001 and a batch size of 100 is recommended. Also we recommend drawing embedding/hidden layer sizes from the range 32-256.</p>
+<p><strong>While the specifications for your architecture are flexible, your Transformer seq2seq model must train and be evaluated within 40 minutes on Gradescope!</strong></p>
+<p><strong>Your target perplexity should also be &lt;=15, and your target per symbol accuracy should be &gt;= 65.</strong></p>
+<h2 id="visualizing-results">Visualizing Results</h2>
+<h3 id="visualizing-attention-matrix">Visualizing Attention Matrix</h3>
+<p>For the transformer part of the assignment, we&#39;ve provided a graphical display of your attention matrix, which is built in to the stencil! To turn it on, change this line:
+    <code>av.setup_visualization(enable=False)</code>
+    to this:
+    <code>av.setup_visualization(enable=True)</code>
+    in your main function. Once you complete testing, the line:
+    <code>av.show_atten_heatmap()</code>
+    at the end will bring up your attention matrix for a random sentence encountered during testing. This works by sampling the output of your Attention_Matrix function during the testing phase of your decoder block.</p>
+<p>We recommend turning on the attention matrix display after you think your model is working.</p>
+<h2 id="cs2470-students">CS2470 Students</h2>
+<p>You will have to also implement the Multi-Headed attention class. This class should create <strong>3</strong> self attention heads, and combine their result.</p>
+<p>Also please complete the CS2470-only conceptual questions <strong>in addition</strong> to the coding assignment and the CS1470 conceptual questions.
+ <strong>Note: Questions about 2470 will only be answered on Piazza, or by TAs marked with an asterisk (*) on the calendar.</strong></p>
+<h2 id="grading">Grading</h2>
+<p><strong>Code:</strong> You will be primarily graded on functionality. <strong>Your RNN model should have a perplexity should be &lt;=20, and your target per symbol accuracy &gt; 58, and your Transformer model should have a perplexity that is &lt;=15, and your target per symbol accuracy should be &gt;= 65.</strong></p>
+<p><strong>Conceptual:</strong> You will be primarily graded on correctness (when applicable), thoughtfulness, and clarity. </p>
+<h2 id="autograder">Autograder</h2>
+<p>Your RNN model must complete training in under 30 minutes, and your Transformer model should complete training in under 30 minutes on a department machine.</p>
+<p>Our autograder will import your model and your preprocessing functions. We will feed the result of your <code>get_data</code> function called on a path to our data and pass the result to your train method in order to return a fully trained model. We will test using our testing function.</p>
+<h2 id="handing-in">Handing In</h2>
+<p>Handing in the conceptual of this assignment is similar to previous homeworks. On Gradescope, make sure you submit to the 1470 version ONLY if you&#39;re enrolled in 1470, or the 2470 version ONLY if you&#39;re enrolled in 2470.</p>
+<p>Handing in the programming of this assignment will be a little bit different. Because Gradescope times out at 40 minutes, and both RNN and Transformer models may collectively take longer than 40 min to train, there are two separate assignments: 1) [Transformers] Hw4 Programming Assignment: Machine Translation, and 2) [RNN] Hw4 Programming Assignment: Machine Translation. You <strong>must</strong> submit your same code (a zip of the hw4 directory containing a code directory) to both assignments.</p>
+<p>IMPORTANT!
+Please make sure all *.py are in “hw4/code” this is very important for our autograder to work!
+DELETE the data folder before you zip up your code, it might be too big to upload to Gradescope</p>
+<p>IF YOU ARE IN 2470: PLEASE REMEMBER TO ADD A BLANK FILE CALLED “2470student” IN THE hw4/code DIRECTORY, WE ARE USING THIS AS A FLAG TO GRADE 2470 SPECIFIC REQUIREMENTS, FAILURE TO DO SO MEANS LOSING POINTS ON THIS ASSIGNMENT.</p>
+        </section>
+        <aside class="not-mobile">
+        </aside>
+    </main>
+
+    <footer class="dark-footer">
+        <img id="footer-earmuffs" class="random-earmuffs" src="http://cs.brown.edu/courses/cs1470/img/sparkle.png">
+        <ul class="menu">
+            <li>&copy; 2019 CS1470/2470 TA Staff | Computer Science Department | Brown University</li>
+        </ul>
+        <br>
+    </footer>
+
+</body>
+
+</html>

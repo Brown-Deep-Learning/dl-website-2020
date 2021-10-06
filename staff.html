@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Staff | CS147 - Deep Learning | Brown University</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,700,700i&display=swap" rel="stylesheet">
+    <link rel="preload" as="font" type="font/woff2" href="assets/inter-latin.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="assets/krona-one-latin.woff2" crossorigin>
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="normalize.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="jquery.csv.min.js"></script>
+    <script type="text/javascript" src="random-bowties.js"></script>
+    <script type="text/javascript" src="common.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="page__header">
+            <div class="page__title">
+                <img src="assets/sparkles/sparkle4.png" />
+                Staff
+            </div>
+            <div class="page__header__quote">
+                "Since Blueno isn't fully trained yet, he'll have to be careful not to overshoot on his descent."
+            </div>
+            <nav id="navbar">
+                <button id="hamburger" onclick="toggleMobileMenu(this)">
+                    <div id="hamburger-bar-1"></div>
+                    <div id="hamburger-bar-2"></div>
+                    <div id="hamburger-bar-3"></div>
+                </button>
+                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="resources.html">Resources</a>
+                <a class="nav-link" href="lectures.html">Lectures</a>
+                <a class="nav-link" href="assignments.html">Assignments</a>
+                <a class="nav-link" href="labs.html">Labs</a>
+                <a class="nav-link" href="calendar.html">Calendar &amp; Hours</a>
+                <a class="nav-link" href="staff.html">Staff</a>
+            </nav>
+        </div>
+    </header>
+    <main class="dark">
+        <section>
+            <h1>Instructor</h1>
+            <div id="instructors"></div>
+            <h2>HTAs</h2>
+            <div id="htas"></div>
+            <h2>UTAs</h2>
+            <div id="tas"></div>
+            <script type="text/javascript" src="staff.js"></script>
+        </section>
+    </main>
+    <footer class="dark-footer">
+        <img id="footer-earmuffs" class="random-earmuffs" src="img/sparkle.png">
+        <ul class="menu">
+            <li>&copy; 2020 CS1470/2470 TA Staff | Computer Science Department | Brown University</li>
+        </ul>
+        <br>
+    </footer>
+</body>
+
+</html>

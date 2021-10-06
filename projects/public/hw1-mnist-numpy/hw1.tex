@@ -1,0 +1,112 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{physics}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+
+\title{Homework 1: MNIST with NumPy}
+\date{Due September 21, 2020 at 11:59pm AoE}
+\author{CS 1470/2470}
+\begin{document}
+
+\maketitle
+
+\section{Conceptual Questions}
+\begin{enumerate}
+
+  \item What is the difference between the ``Perceptron Learning Algorithm'' and the algorithm we implemented in this assignment? (2-5 sentences) 
+  
+    \textit{Hint: Consider how and when we update weights.}
+
+    \item In lecture, the update rule for weights in a single layer, multi-class neural network with cross entropy loss was defined as follows:
+   
+   Let $w_{ji}$ be the weight that corresponds to the $j$th class and the $i$th input feature, $x_i$. Let $c$ equal the correct class for a given input. Our loss is then:
+  
+       \[L = -\log(P_c) \]
+
+    If $j=c$, then: 
+    \[ \pdv{L}{w_{ji}} = (P_j-1)x_i  \]
+    
+    Otherwise:
+        \[ \pdv{L}{w_{ji}} = P_jx_i  \]
+
+    We use these partial derivatives to descend our gradients as follows:    
+    
+    \[ w_{ji} = w_{ji} -  \pdv{L}{w_{ji}}  \cdot \alpha  \]
+    
+    where $\alpha$ is the learning rate.
+
+    \textbf{Derive the above values for $\pdv{L}{w_{ji}}$ from cross entropy loss.}
+    
+    \textit{Hints:}
+    \begin{enumerate}
+        \item \textit{Consider the two cases of $j$.}
+        \item \textit{Start by expanding out $L$.}
+        
+    \end{enumerate}
+
+    \item Why do we use a bias vector in our forward pass? (2-4 sentences)
+
+    
+\item Why are GPUs invaluable for training neural networks? What properties of neural networks make them well-suited for execution on GPUs? (2-5 sentences)
+
+\item (Optional) Have feedback for this assignment? Found something confusing? We'd love to hear from you!
+
+
+
+\end{enumerate}
+
+
+\section{Ethical Implications}
+\begin{enumerate}
+\item Create a scenario where MNIST is used to create a model to solve a social problem in the real world (e.g read and sort area codes on mail for postal services). (4-10 sentences)
+
+\item How can you collect datasets of handwriting samples from people in a privacy-preserving way? (4 sentences minimum)
+
+\item What are 2-3 potential biases the model in your scenario may have? What are possible consequences for each bias you identified? (4 sentences minimum)
+
+\item How can you modify the model, dataset, and/or use of the model to mitigate the potential social issues or biases from part (b)? (4 sentences minimum)
+    
+\end{enumerate}
+
+\section{CS2470-only Questions: Part 1}
+
+\begin{enumerate}
+
+    \item Cross entropy is a useful loss function for classification, but it is not appropriate for all tasks. Another common loss function is the \emph{squared error loss}:
+    \begin{equation*}
+        L(\mathbf{y}, \mathbf{a}) = (\mathbf{y} - \mathbf{a})^2
+    \end{equation*}
+   where $\mathbf{a}$ is the answer. This type of loss is useful for e.g. training a neural to predict temperature given input data about a place on earth (e.g. its latitude and longitude, the time of year, etc.).\\
+    \textbf{Derive $\frac{\partial L}{\partial w_{i}}$ for a single-layer network with this loss function}.
+
+    \item In your introductory calculus class, you were likely exposed to the following simple algorithm for finding the minimum of a function: take the derivative of the function, set it to zero, then solve the equation. Neural networks are differentiable, so why don't we use this algorithm (instead of gradient descent) to minimize the loss? (1-4 sentences)
+    
+    \item Prove that SGD with a batch size of 1 gives an unbiased estimate of the `true gradient' (i.e. the gradient calculated over the entire training set). Assume that the batch is selected uniformly at random from the full training set.\\
+    \textit{Hints:}
+    \begin{enumerate}
+        \item \textit{Recall that an estimator $\hat{f}$ is an unbiased estimator of a function $f$ if $\mathbb{E}[\hat{f}] = f$.}
+        \item \textit{Both expectation and differentiation are linear operators.}
+        
+    \end{enumerate}
+    
+\end{enumerate}
+
+\section{CS2470-only Questions: Part 2}
+
+    In the assignment, you will see that our single-layer neural network can classify the digit with pretty good accuracy. Still, there are several ways in which one could improve the accuracy of the model. The paper in the link below suggests an easy way to increase the performance without changing the architecture of our network: training several identical models! Please read the following paper and answer the following questions.
+    \newline \newline
+    Link:\href{https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6065510} 
+    (you might need Brown authentication for accessing this paper)
+
+\begin{enumerate}
+
+    \item What is the committee? Why would it help increase the performance of the model?
+    
+    \item What is the preprocessing they implement in this paper? How does preprocessing prevent the models' errors from being strongly correlated to each other?
+    
+\end{enumerate}
+
+\end{document}
+

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CS147 - Deep Learning | Brown University</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="../../../style.css">
+    <link rel="stylesheet" type="text/css" href="../../../normalize.css">
+    <!-- for syntax highlighting of code blocks -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script charset="UTF-8"
+        src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/languages/go.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
+
+    <!-- MathJax -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+        </script>
+
+    <!-- NOTE: Script closing tags need to be on separate line for markdown-to-html script to process them properly :-(  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js">
+    </script>
+    <script type="text/javascript" src="../../../random-bowties.js">
+    </script>
+    <script type="text/javascript" src="../../../create-sidebar.js">
+    </script>
+    <script type="text/javascript" src="../../../common.js">
+    </script>
+
+</head>
+
+<body>
+    <header>
+        <div class="page__header">
+            <div class="page__title">
+                <img src="../../../assets/planets/5.png" />
+                Assignment 5
+            </div>
+
+
+            <!-- kept for spacing-->
+            <div class="page__header__quote">
+            </div>
+
+            <nav id="navbar">
+                <button id="hamburger" onclick="toggleMobileMenu(this)">
+                    <div id="hamburger-bar-1"></div>
+                    <div id="hamburger-bar-2"></div>
+                    <div id="hamburger-bar-3"></div>
+                </button>
+                <a class="nav-link" href="../../../index.html">Home</a>
+                <a class="nav-link" href="../../../resources.html">Resources</a>
+                <a class="nav-link" href="../../../lectures.html">Lectures</a>
+                <a class="nav-link" href="../../../assignments.html">Assignments</a>
+                <a class="nav-link" href="../../../labs.html">Labs</a>
+                <a class="nav-link" href="../../../calendar.html">Calendar &amp; Hours</a>
+                <a class="nav-link" href="../../../staff.html">Staff</a>
+            </nav>
+        </div>
+    </header>
+    <main class="hw5-content">
+        <section class="has-sidebar">
+            <h1 id="hw5-mpnns-message-passing-neural-networks">HW5: MPNNs: Message Passing Neural Networks</h1>
+            <p><strong>Conceptual Questions</strong> due <strong>Monday, 11/09/2020 at 11:59pm AoE</strong></p>
+            <p><strong>Code</strong> due <strong>Friday, 11/13/2020 at 11:59pm AoE</strong></p>
+            <p>Blueno is exuberantly exploring the extravagant extraterrestrial event-horizons. Gazing at the gigantic
+                grandiosity of the galaxies, Blueno gradually grasps their generally graph-like structure. He
+                presumptuously portends that he could predicate the prior proclivities of each planet plan, but so
+                painstaking is such a proposition. Aid Blueno in accurately assigning attributes to graphs according to
+                their actual assembly.</p>
+            <h2 id="conceptual-questions">Conceptual Questions</h2>
+            <p>Please fill out the conceptual questions on Gradescope under <em>&quot;Hw5 Conceptual Questions: Message
+                    Passing Neural Networks.&quot;</em> Please upload your assignments as pdfs on Gradescope. Keep in
+                mind 1470 students should only submit to the 1470 assignment on Gradescope, and 2470 students should
+                only submit to 2470 assignment on Gradescope.</p>
+            <h2 id="getting-the-stencil">Getting the stencil</h2>
+            <p>Please click <a href="https://classroom.github.com/a/b9lnWMQJ">here</a> to get the stencil code.
+                Reference this <a
+                    href="https://docs.google.com/document/d/1HnBhzdOGbUrTwh9TaaxrSusn8TObltn3c7FgKjdVImI/edit?usp=sharing">guide</a>
+                or these <a
+                    href="https://docs.google.com/presentation/d/1w_dzls2rfabUrhrQz9f5QU71t7HmLdHJFS8BnHz_q7E/edit?usp=sharing">slides</a>
+                for more information about GitHub and GitHub Classroom. To get the data, please run the included script
+                in the <code>hw5/code</code> directory.</p>
+            <h2 id="setup">Setup</h2>
+            <p>Work on this assignment off of the stencil code provided, but <strong>do not change the stencil except
+                    where specified.</strong> Changing the stencil will result in incompatibility with the autograder
+                and result in a low grade. You shouldn&#39;t change any method signatures or add any trainable
+                parameters to <code>__init__</code> that we don&#39;t give you or don&#39;t mention (other instance
+                variables are fine). More details on architecture are given later in this handout.</p>
+            <p>To activate the course department machine virtual environment, run the command
+                <code>source /course/cs1470/tf-2.3/bin/activate</code>. You can also use your own virtual environment to
+                run this on your machine.</p>
+            <h3 id="dgl-resources">DGL Resources</h3>
+            <p>DGL is a powerful library for graph representations, and it can be a little tricky to use for the first
+                time! Here are some tips...</p>
+            <p>1) DGL represents their graphs as a DGLGraph class, usually referred to in our code as <code>g</code>.
+            </p>
+            <ul>
+                <li>Nodes are represented as indices (e.g if you have ten nodes in your graph g , <code>g.nodes()</code>
+                    will return <code>[0, 1, 2, ..., 9]</code>)</li>
+                <li>Edges are represented as a tuple of <code>(src, dst)</code>. That is,
+                    <code>([0, 1, 2], [2, 2, 1])</code> represents a graph with an edge from node 0 to node 2, 1 to 2,
+                    and 2 to 1.</li>
+            </ul>
+            <p>We recommend you take a look at the DGL documentation for <a
+                    href="https://docs.dgl.ai/en/latest/guide/graph-graphs-nodes-edges.html#guide-graph-graphs-nodes-edges">1.2
+                    Graphs, Nodes, and Edges</a> for more information.</p>
+            <p>2) Each node has features, which it carries via some attribute. This data will be the node vector that
+                represents the current state of each node during message passing. You&#39;ll need to set data for each
+                node before you do this message passing.</p>
+            <ul>
+                <li>For example, if you have 3 nodes and a tensor <code>t</code> containing node features
+                    <code>a</code>, <code>b</code>, and <code>c</code>, you can set them all at the same time by saying
+                    <code>g.ndata[&#39;node_feats&#39;] = t</code>. This will give node 0 the &quot;a&quot; tensor, 1
+                    the &quot;b&quot; tensor, and 2 the &quot;c&quot; tensor, all queryable under &#39;node_feats&#39;.
+                    You can think of <code>ndata</code> as a map storing all of the data for all the nodes under some
+                    key. In this case, we set the key to &#39;node_feats&#39;.</li>
+            </ul>
+            <p>3) Once the <code>ndata</code> has been set, you&#39;re ready to start message passing. This is handled
+                by calling <code>send_and_recv</code> on your graph with the appropriate arguments. In part 2, you will
+                call send_and_recv from your own custom layer, and in part 3 you will use
+                <code>dgl.DGLGraph.send_and_recv</code>. There is documentation here: <a
+                    href="https://docs.dgl.ai/en/latest/generated/dgl.DGLGraph.send_and_recv.html">send_and_recv</a> and
+                in the stencil.</p>
+            <h2 id="assignment-overview">Assignment Overview</h2>
+            <p>One of the major baselines for networks that operate on graphs are the NCI datasets. These are datasets
+                of molecules that have been annotated with binary labels marking them as either
+                <em>&quot;active&quot;</em> or <em>&quot;inactive&quot;</em> against a certain kind of cancer
+                (specifically, a variant of lung cancer). Note that in this dataset, the atoms and bonds between them
+                are the nodes and edges, respectively. Likewise, each molecule itself is an undirected graph.</p>
+            <p>Typically with a molecule dataset, we would expect the nodes (atoms) to have features, like
+                mass/charge/position, as well as the edges, like the type of bond (single/double etc.). However, this
+                dataset has no other information besides the types of atoms that exist and the bonds between them. This
+                makes each molecule a sort of &quot;symbolic&quot; graph. This will make it a good baseline for the
+                purposes of this assignment even though we&#39;re missing some of the features needed to get high
+                accuracies.</p>
+            <p>In order to classify a molecule (or any of its sub pieces, like certain nodes or edges) correctly, we
+                must learn its structure properly. If we only encode, say, all the nodes into vectors and feed them
+                through a feed-forward layer, we lose all of our information about how this graph is connected! To avoid
+                this, you will implement a neural network that performs <strong>message passing</strong> among nodes,
+                similar to how you&#39;ve seen in lecture.</p>
+            <p>Our stencil provides a model class with several methods and hyperparameters you need to use for your
+                network. You will also answer conceptual questions related to the assignment and class material.</p>
+            <p>You should include a brief README with your model&#39;s accuracy and any known bugs.</p>
+            <h2 id="roadmap">Roadmap</h2>
+            <h3 id="step-1-preprocessing">Step 1: Preprocessing</h3>
+            <h4 id="preprocess-the-data">Preprocess the data</h4>
+            <p>We will be using <code>1-balance.sdf</code> for training and testing.</p>
+            <p>Reading sdf files is a major pain, so we&#39;ve written a parser for you.</p>
+            <ul>
+                <li>Call <code>read_file(file_name)</code> on the file name passed to <code>get_data</code>, and it will
+                    return a list of molecules (see the stencil for more details).<ul>
+                        <li>In essence, a molecule consists of:<ul>
+                                <li>a list of nodes (each &quot;node&quot; is an atomic number of some element)</li>
+                                <li>a list of edges (tuples of integers (i, j) representing a connection between nodes i
+                                    and j)</li>
+                                <li>a label of active or inactive against cancer (0 or 1).</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>From here, you need to one-hot encode these nodes, shuffle the data, and return a training and
+                    testing split of 0.9 to 0.1. Your nodes should be 2-D numpy arrays of size (number_of_atoms x 119)
+                    (more details in stencil).</li>
+                <li>Note that before calling <code>shuffle</code> you should call <code>seed(rd_seed)</code>. This is so
+                    we can check the validity of your inputs with our own in our autograder. Make sure you are using the
+                    <code>shuffle</code> and <code>seed</code> from Python&#39;s <code>random</code> module (these
+                    should already be imported in the stencil). Do not use any sort of random sampling function to
+                    generate your train/test split. <code>shuffle</code> should be the only source of randomness here.
+                </li>
+            </ul>
+            <h4 id="represent-it-as-a-dgl-graph">Represent it as a DGL Graph</h4>
+            <p>In the <code>build_graph</code> method, you should instantiate a DGL Graph and add as many nodes as you
+                have in your molecule. Then, add edges between all nodes. More details on how to set up these graphs can
+                be found in the <a href="https://docs.dgl.ai/en/latest/api/python/graph.html">DGL Graph
+                    Documentation</a>. You should also turn the nodes of the molecule into a tensor and assign it as the
+                initial node features of the graph. The stencil will have more information. You may also find the points
+                in the &quot;DGL Resources&quot; section of this handout helpful.</p>
+            <p>When you are to batching your molecules together in the <code>train</code> and <code>test</code>
+                functions, you&#39;ll need to collect all of the graphs representing each molecule into a list, and then
+                call <a href="https://docs.dgl.ai/en/latest/generated/dgl.batch.html">dgl.batch</a> to turn them into a
+                batched graph that you can perform message passing on as you would a smaller one.</p>
+            <h3 id="step-2-implementing-message-passing">Step 2: Implementing Message Passing</h3>
+            <p>In this section, you will write a basic MPNN with your own message passing algorithm. This message
+                passing algorithm will be written in <code>custom_snr.py</code>. You will be responsible for writing the
+                function <code>custom_send_and_recv</code> (in <code>custom_snr.py</code>). This will show you how MPNNs
+                actually pass messages between nodes. In this function we pass in the message function and reducing
+                function we would like you to use. Note that we will not be using <code>custom_send_and_recv</code> for
+                training on our dataset since our send_and_recv implementations will be inefficient. To handle learning
+                an MPNN on our NCI dataset, you will be able to replace your <code>custom_send_and_recv</code> function
+                with the one from DGL, but you don&#39;t need to worry about that for this step.</p>
+            <p>Your <code>custom_send_and_recv</code> should populate a mailbox with mappings from each node in the
+                graph to mappings of message titles to messages (node -&gt; message_title -&gt; messages_of_that_title).
+                It should then use each node&#39;s messages to compute an updated feature for that node.</p>
+            <p>To check if your message passing implementation works, run <code>python3 custom_snr.py</code> in your
+                command line. It will run the <code>run_tests</code> function in the <code>custom_snr.py</code> file and
+                the visualizer.</p>
+            <p>To learn more about how DGL handles sending and receiving messages, we recommend you read <a
+                    href="https://docs.dgl.ai/en/latest/guide/message.html">Chapter 2: Message Passing</a> from the DGL
+                documentation.</p>
+            <p>Feel free to read the docs and test your implementation against the one from the DGL library (<a
+                    href="https://docs.dgl.ai/en/latest/generated/dgl.DGLGraph.send_and_recv.html">dgl.DGLGraph.send_and_recv</a>)
+                to get started.</p>
+            <h3 id="step-3-the-model-with-dgl-message-passing-">Step 3: The Model (with DGL message passing)</h3>
+            <p>You&#39;ll also notice that you have two classes to fill out this time: One for the <code>Model</code>
+                itself, and one that&#39;s re-used quite a bit: The <code>MPLayer</code> (Message Passing Layer). This
+                handles a single round of message passing in our network. We define it as a layer of sorts so that you
+                can re-use it to perform many rounds of message passing.</p>
+            <p>The overall architecture of your model should look like:</p>
+            <p>1) After representing a batch of molecules as a graph, you want to use a single feed-forward layer as a
+                lifting network to transform our node features from raw features (ie. the symbol of the atom) into a
+                higher dimensional space where we will perform message passing.</p>
+            <p>2) For each MPLayer, pass in the DGL graph. Within the MPLayer <code>call</code> function, either call
+                your <code>custom_send_and_recv</code> or <code>g.send_and_recv</code> depending on the
+                <code>is_testing</code> parameter (when <code>is_testing</code> is True you want to use your custom send
+                and receive implementation). We give you <code>messager</code> and <code>reducer</code>, which are the
+                two functions you want to pass into both send and receive functions. Then, pass the previous node
+                features into a linear layer and store the results back into <code>ndata</code>.</p>
+            <ul>
+                <li>
+                    <p>When computing a message from a node and its vector v1 to a node n2, use the message rule
+                        <code>m = ReLU(f(v1))</code>, where f is a feed-forward layer.</p>
+                </li>
+                <li>
+                    <p>When aggregating messages at a node, just sum them all up and replace the node&#39;s vector with
+                        the result (a la convolution)</p>
+                </li>
+            </ul>
+            <p>3) Back in the Model class, after ReLUing the output of your final MPLayer, you should feed the result
+                into your readout function in order to &quot;classify&quot; the graph into logits. The readout function
+                we request that you implement is a summation over all of the features after they have been fed through a
+                neural network to reduce their dimensionality to 2. You can sum over a batched graph with <a
+                    href="https://docs.dgl.ai/en/latest/generated/dgl.sum_nodes.html">dgl.sum_nodes</a>.</p>
+            <p>MPNNs can be quite finicky, and the dataset is quite small, so our particular recommendation for
+                architecture is:</p>
+            <ul>
+                <li>
+                    <p>Adam optimizer with a learning rate of 1e-4</p>
+                </li>
+                <li>
+                    <p>Lifting layer of size (119, 300)</p>
+                </li>
+                <li>
+                    <p>3 MPLayers of size (300, 300)</p>
+                </li>
+                <li>
+                    <p>Final readout layer of size (300, 2)</p>
+                </li>
+                <li>
+                    <p>Batch size of 10</p>
+                </li>
+            </ul>
+            <p>Feel free to experiment with this.</p>
+            <h3 id="step-4-train-test">Step 4: Train / Test</h3>
+            <p>After reading in your data (<code>1-balance.sdf</code>), you should form a graph out of each of your
+                molecules. You can then batch these into a graph, and run this through your model, which will return
+                logits. Feed these logits and a batch of labels through the given loss function. Follow the steps in the
+                stencil to update your weights correctly from this point. After training has completed for one epoch,
+                print the testing accuracy on the test set.</p>
+            <h2 id="visualizing-results">Visualizing Results</h2>
+            <h3 id="visualizing-message-passing">Visualizing Message Passing</h3>
+            <p>After testing your implementation of message passing, you can visualize it being performed on an
+                arbitrary graph! You&#39;ll want to fill out the <code>run_visualize_message_passing</code> function (in
+                <code>helper.py</code>) by constructing a graph and generating some node features to pass to the first
+                round of messaging. In this function, you&#39;ll want to call <code>visualize_message_passing</code>,
+                another helper function that animates your message passing function for a certain number of rounds. It
+                takes in a number of optional parameters which affect the animation, the graph that&#39;s displayed, and
+                the number of rounds of message passing.</p>
+            <p>We recommend calling <code>run_visualize_message_passing</code> in the <code>main</code> function of
+                <code>custom_snr.py</code>.</p>
+            <p>Once you have the visualization working, feel free to play around with the <code>simple_message</code>
+                function and the parameters of <code>visualize_message_passing</code> to get interesting results!</p>
+            <p>The visualization is powered by <a href="https://matplotlib.org/">matplotlib</a> and <a
+                    href="https://networkx.github.io/documentation/stable/index.html">NetworkX</a>.</p>
+            <h2 id="cs2470-students">CS2470 Students</h2>
+            <p>Please complete the CS2470-only conceptual questions <strong>in addition</strong> to the coding
+                assignment and the CS1470 conceptual questions.</p>
+            <p><strong>Note: Questions about 2470 will only be answered on Piazza, or by TAs marked with an asterisk (*)
+                    on the calendar.</strong></p>
+            <h2 id="grading">Grading</h2>
+            <p><strong>Code:</strong> You will be primarily graded on functionality. As mentioned before, this symbolic
+                graph lacks a lot of details that we&#39;d need to make really good predictions. Because of this, even
+                <a href="https://paperswithcode.com/sota/graph-classification-on-nci1">some novel papers</a> from the
+                last few years struggle to get above 65-70% accuracy. <strong>You will get full points on the autograder
+                    if you get above 65% testing accuracy after any epoch.</strong> Don&#39;t be worried about some
+                variance in testing accuracy. Again due to the small size of the dataset, you should expect some
+                fluctuation in your top accuracy. A correct model should always score above 65%, but you ought to see it
+                break above 70 in many cases.</p>
+            <p><strong>Conceptual:</strong> You will be primarily graded on correctness (when applicable),
+                thoughtfulness, and clarity. </p>
+            <h2 id="handing-in">Handing In</h2>
+            <p>You should submit the assignment via Gradescope under the corresponding project assignment by zipping up
+                your hw5 folder.</p>
+            <p><strong>IMPORTANT!</strong></p>
+            <ol>
+                <li>
+                    <p>Please make sure your files are in &quot;hw5/code&quot;. This is very important for our
+                        autograder to work!</p>
+                </li>
+                <li>
+                    <p><strong>DELETE the data folder</strong> before you zip up your code; it might be too big to
+                        upload to Gradescope.</p>
+                </li>
+            </ol>
+            <p>IF YOU ARE IN 2470: PLEASE REMEMBER TO ADD A BLANK FILE CALLED “2470student” IN THE hw4/code DIRECTORY, WE ARE USING THIS AS A FLAG TO GRADE 2470 SPECIFIC REQUIREMENTS, FAILURE TO DO SO MEANS LOSING POINTS ON THIS ASSIGNMENT.</p>
+            <h2 id="acknowledgements">Acknowledgements</h2>
+            <p>This assignment was created by Brian Oppenheim and Josh Roy, with edits by Amy Pu. Revisions and message
+                passing implementation by Antony Sagayaraj, Griffin Kupsaw, Raymond Cao, Bryce Blinn, and Tyler Jiang.
+            </p>
+            <p>Cleaned version of the NCI1 Dataset is courtesy of Shirui Pan:</p>
+            <ul>
+                <li>Shirui Pan, Jia Wu, Xingquan Zhu, Chengqi Zhang, Philip S. Yu. &quot;Joint Structure Feature
+                    Exploration and Regularization for Multi-Task Graph Classification.&quot; IEEE Trans. Knowl. Data
+                    Eng. 28(3): 715-728 (2016)</li>
+                <li>Shirui Pan, Jia Wu, and Xingquan Zhu “CogBoost: Boosting for Fast Cost-sensitive Graph
+                    Classification&quot;, IEEE Transactions on Knowledge and Data Engineering (TKDE), 27(11): 2933-2946
+                    (2015)</li>
+            </ul>
+        </section>
+        <aside class="not-mobile">
+        </aside>
+    </main>
+
+    <footer class="dark-footer">
+        <img id="footer-earmuffs" class="random-earmuffs" src="http://cs.brown.edu/courses/cs1470/img/sparkle.png">
+        <ul class="menu">
+            <li>&copy; 2019 CS1470/2470 TA Staff | Computer Science Department | Brown University</li>
+        </ul>
+        <br>
+    </footer>
+
+</body>
+
+</html>

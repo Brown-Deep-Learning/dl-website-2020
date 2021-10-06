@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>CS147 - Deep Learning | Brown University</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="../../../style.css">
+    <link rel="stylesheet" type="text/css" href="../../../normalize.css">
+    <!-- for syntax highlighting of code blocks -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script charset="UTF-8"
+        src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/languages/go.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
+
+    <!-- MathJax -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+        </script>
+
+    <!-- NOTE: Script closing tags need to be on separate line for markdown-to-html script to process them properly :-(  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js">
+    </script>
+    <script type="text/javascript" src="../../../random-bowties.js">
+    </script>
+    <script type="text/javascript" src="../../../create-sidebar.js">
+    </script>
+    <script type="text/javascript" src="../../../common.js">
+    </script>
+
+</head>
+
+<body>
+    <header>
+        <div class="page__header">
+            <div class="page__title">
+                <img src="../../../assets/planets/3.png" />
+                Assignment 3
+            </div>
+
+
+            <!-- kept for spacing-->
+            <div class="page__header__quote">
+            </div>
+
+            <nav id="navbar">
+                <button id="hamburger" onclick="toggleMobileMenu(this)">
+                    <div id="hamburger-bar-1"></div>
+                    <div id="hamburger-bar-2"></div>
+                    <div id="hamburger-bar-3"></div>
+                </button>
+                <a class="nav-link" href="../../../index.html">Home</a>
+                <a class="nav-link" href="../../../resources.html">Resources</a>
+                <a class="nav-link" href="../../../lectures.html">Lectures</a>
+                <a class="nav-link" href="../../../assignments.html">Assignments</a>
+                <a class="nav-link" href="../../../labs.html">Labs</a>
+                <a class="nav-link" href="../../../calendar.html">Calendar &amp; Hours</a>
+                <a class="nav-link" href="../../../staff.html">Staff</a>
+            </nav>
+        </div>
+    </header>
+    <main class="hw3-content">
+        <section class="has-sidebar">
+            <h1 id="hw3-language-models">HW3: Language Models</h1>
+            <!-- Oct. 19th/Oct. 23rd -->
+            <p><strong>Conceptual Questions</strong> due <strong>Tuesday, 10/20/20 at 11:59pm AoE</strong></p>
+            <p><strong>Code</strong> due <strong>Friday, 10/23/20 at 11:59pm AoE</strong></p>
+            <p>Is that Matthew McCounaughey right outside of Blueno's spaceship? Is this the plot of Interstellar?</p>
+            <p>Legally, no, as we do not want to get in trouble for copyright infringement. 
+                But those words made you think so huh? If Blueno encountered extraterrestrial or even terrestrial (The Martian?) 
+                life out in the cosmos, he may want to use such words and share important knowledge about his home and native language 
+                and love of the Neil deGrasse Tyson show "Cosmos"! We will be building a model that can generate language almost as 
+                coherent as this as coherent as this as coherent as this is!</p>
+            <h2 id="conceptual-questions">Conceptual Questions</h2>
+            <p>Please fill out the conceptual questions on Gradescope under Hw3 Conceptual Questions: Language Models.
+                You should be
+                able to type in the questions and use latex with $$[LaTeX]$$ or upload photos of written work. The
+                conceptual
+                questions are due <strong>Tuesday, 10/20/20 at 11:59pm AoE</strong>.</p>
+            <p>If you are a 1470 student, submit your assignment through the "[CS1470]" version. If you are a 2470 student,
+                submit your assignment through the "[CS2470]" version.
+            <p>Your README should just contain your accuracy and any bugs you have.</p>
+            <h2 id="getting-the-stencil">Getting the stencil</h2>
+            <p>Please click on <a href="https://classroom.github.com/a/peKSf1fK">link to GitHub Classroom link</a> to
+                get the
+                stencil code. Reference this <a
+                    href="https://docs.google.com/document/d/1HnBhzdOGbUrTwh9TaaxrSusn8TObltn3c7FgKjdVImI/edit?usp=sharing">guide</a>
+                or these <a
+                    href="https://docs.google.com/presentation/d/1w_dzls2rfabUrhrQz9f5QU71t7HmLdHJFS8BnHz_q7E/edit?usp=sharing">slides</a>
+                for more information about GitHub and GitHub Classroom. There are two bash scripts in the root directory
+                of the hw
+                repository, create_venv.sh for creating a virtual environment and download.sh for downloading the data
+                (if it exists
+                for that homework). Students need to run download.sh to get the data, but they might not need to run
+                create_venv.sh
+                as we would also provide our course’s public virtual environment that they can use. </p>
+            <h2 id="setup">Setup</h2>
+            <p>Work on this assignment off of the stencil code provided, but <strong>do not change the stencil except
+                    where
+                    specified.</strong> Changing the stencil will result in incompatiblity with the autograder and
+                result in a low
+                grade. You shouldn't change any method signatures.</p>
+            <p> To run the virtual environment on a department machine, you can run:</p>
+            <code>source /course/cs1470/tf-2.3/bin/activate</code>
+            <p>You can also check out the Python virtual environment guide to set up TensorFlow 2.0 on your local machine.</p>
+            
+            <h2 id="assignment-overview">Assignment Overview</h2>
+            
+            <p>Your task is a language modeling problem. This assignment has 1 preprocessing part and <strong>2 main parts</strong>. 
+                You will implement two different types of language models and train them on the modified Simple
+                English Wikipedia corpus we have provided. Both language model implementations will share a preprocessing file.</p>
+            
+            <h2 id="roadmap">Roadmap</h2>
+            
+            <h3 id="step-1-preprocessing">Step 1: Preprocessing</h3>
+            <p><strong>The Corpus:</strong> When it comes to language modeling, there is a LOT of data out there! In language modeling, we take some set of words, and train our model to predict the next, so almost any large text corpus will do. </p>
+<p>Our data comes from the Simple English Wikipedia corpus, and comprises articles about various earthly topics. English, and all natural languages, are tricky! To make things easier, we have simplified the already-simple Simple Wiki! You will notice a few strange things in the corpus:  inflectional morphology, numbers, and pronouns have been &quot;lemmatized&quot; (e.g. &quot;I am teleporting&quot; --&gt; &quot;<PRON> be teleport&quot;). Lemmatization is based on the principle that &quot;teleport&quot;, &quot;teleports&quot;, &quot;teleported&quot;, and &quot;teleporting&quot; all contribute similar content to the sentence; rather than learn 4 words, the model only needs to learn one! Additionally, you will find things that look like this: <em>\<_UNK\></em>.</p>
+<p>Uncommon words have been <em>UNKed.</em> This is a common preprocessing technique to remove rare words while preserving basic information about their role in the sentence; this will help the model focus more on learning patterns in general, common language. Because of this &#39;UNKing&#39; there are no words in the testing corpus that are not in the training corpus!</p>
+<p>Lastly, you will notice that each text file has one article per line, followed by a &#39;STOP&#39;. For this assignment, we don&#39;t need to worry about where some articles end and others begin. Thus, in preprocessing, you should concatenate all the words from all the articles together. (Doing this will mean that you can avoid padding and masking, but have no fear--these will figure into our next assignment!).</p>
+<p><strong>Preprocessing:</strong> 
+Your preprocessing file should contain a get_data() function. This function takes a training file and testing file.</p>
+<p>In this function you should:</p>
+<ol>
+<li><p>Load the train words and split the words on whitespace.</p>
+</li>
+<li><p>Load the test words and split the words on whitespace.</p>
+</li>
+<li><p>Create a vocab dictionary that maps each word in the corpus to a unique index (its id). <strong>Only one dictionary is needed for training and testing</strong> as the testing set should only test on words in the training set.</p>
+</li>
+<li><p>Convert the list of training and test words to their indeces, making a 1-d list/array for each. (i.e. each sentence is concatenated together to form one long string).</p>
+</li>
+<li><p>Return an iterable of training ids, an iterable of testing ids, and the vocab dict.</p>
+</li>
+</ol>
+<h3 id="mandatory-hyperparameters">Mandatory Hyperparameters</h3>
+<p>When creating your each of your Trigram/RNN models, you must use a single embedding matrix (meaning one embedding matrix for each model). Remember that there should be a nonlinear function (in our case RelU), applied between the feed-forward layers, but never applied after the last feed-forward layer.</p>
+<p>For your Trigram, you must use two words to predict a third.
+For your RNN, you must use a window size of 20.
+You can have any batch size for either of these models.</p>
+<p><strong>However, your models must train in under 10 minutes on a department machine!</strong></p>
+<h3 id="step-2-trigram-language-model">Step 2: Trigram Language Model</h3>
+<p>In the Trigam Language Model part of the assignment, you will build a neural network that takes two words and predicts the third. It should do this by looking up the input words in the embedding matrix, and feeding the result into a set of feed-forward layers. You can look up words in an embedding matrix with their ids using the function <a href="https://www.tensorflow.org/api_docs/python/tf/nn/embedding_lookup">tf.nn.embedding_lookup</a>.</p>
+<p>Create your model</p>
+<ul>
+<li>Fill out the init function, and define your trainable variables. This will include an embedding matrix.</li>
+<li>Fill out the call function using the trainable variables you&#39;ve created.</li>
+<li>Calculate the cross-entropy loss on the <strong>probabilities</strong> compared to the labels (These should NOT be one hot vectors). We recommend using <code>tf.keras.losses.sparse_categorical_crossentropy</code>. <em>Note that this function can take in logits or probabilities depending on the arguments you pass in, but we want you to use probabilities.</em></li>
+<li><strong>You are required to take the mean of the loss, do not return the sum</strong>
+</ul>
+<p>Train and test</p>
+<ul>
+<li>In the main function, you will want to get your train and test data, initialize your model, and train it for <strong>1 epoch</strong>. We have provided you with a train and test method to fill out. The train method will take in the model and do the forward and backward pass.</li>
+</ul>
+<h3 id="step-3-rnn-language-model-with-keras-layers-">Step 3: RNN Language Model...with Keras Layers!</h3>
+<p>What is Keras, you ask? An open-source neural-network library primarily authored and maintained by Google engineer François Chollet. This library allows us to add in a little more abstraction when implementing more complex architectures, like LSTMs and GRUs. Going forward, unless otherwise specified, you can use <a href="https://www.tensorflow.org/api_docs/python/tf/keras/layers">keras layers</a> in your model. Isn't that tres bien?!</p>
+<p>For these assignment, the relevant layers are:</p>
+<ul>
+<li><p><a href="https://www.tensorflow.org/api_docs/python/tf/keras/layers/GRU">tf.keras.layers.GRU</a> OR <a href="https://www.tensorflow.org/api_docs/python/tf/keras/layers/LSTM">tf.keras.layers.LSTM</a> for your RNN</p>
+</li>
+<li><p><a href="https://www.tensorflow.org/api_docs/python/tf/keras/layers/Dense">tf.keras.layers.Dense</a> for feedforward layers.</p>
+</li>
+</ul>
+<p>You can define these layers in your init, then call them on your inputs in your model.call function.</p>
+<p>Note: <strong>Do not use the sequential API or you will be heavily penalized.</strong></p>
+<p>Create your model</p>
+<ul>
+<li>Fill out the init function, and define your trainable variables. As for trigrams, this will include an embedding matrix. However, for this part assignment, you will now want to define an RNN Keras layer, along with dense layers. How many dense layers you use is up to you, but remember to use activation functions between layers, but not after the last layer.</li>
+</ul>
+<p><strong>When you define your keras layer, make sure that you initialize it with return_sequences=True, return_state=True.</strong></p>
+<ul>
+<li>Fill out the call function using the trainable variables you&#39;ve created.</li>
+</ul>
+<p><strong>Note that the final state from an LSTM has two components, the last output and cell state. These are the second and third outputs of calling the RNN. If you use a GRU, the final state is the second output returned by the RNN layer. 
+We require that you return the probabilities and the cell state. This is a standardization thing, we do not actually test the cell state, it is there for you to use for the generate_sentences function. 
+But if some students returned it and some did not, our autograder would break. So you must return both.</strong></p>
+<p>Additionally, you may want to include logic for handling when the initial state is None.</p>
+<ul>
+<li>Calculate the average softmax cross-entropy loss on the probabilities compared to the labels. Again, we suggest using <code>tf.keras.losses.sparse_categorical_crossentropy</code>.</li>
+<li><strong>You are required to take the mean of the loss, do not return the sum</strong>
+</ul>
+<p>Train and test</p>
+<ul>
+<li><p>In the main function, you will want to get your train and test data, initialize your model, and train it for <strong>1 epoch</strong>. We have provided for you a train and test method to fill out. The train method will take in the model and do the forward and backward pass.
+The train function and the test function take in (num_inputs) shaped inputs and (num_labels) shaped labels, do not reshape them to be of (-1,window_size) until you're in the train/test function.</p>
+</li>
+<li><p><strong>You do not need to pass your hidden state between batches!</strong></p>
+</li>
+</ul>
+<h2 id="visualizing-results">Visualizing Results</h2>
+<ul>
+<li>We&#39;ve provided a generation function for this part of the assignment. You can pass your model to this function to see sample generations. If you see lot&#39;s of <em>UNKs</em>, have no fear! These are common symbols in the corpus.</li>
+</ul>
+<h2 id="cs2470-students">CS2470 Students</h2>
+<p>Please complete the CS2470-only conceptual questions <strong>in addition</strong> to the coding assignment and the CS1470 conceptual questions.
+ <strong>Note: Questions about 2470 will only be answered on Piazza, or by TAs marked with an asterisk (*) on the calendar.</strong></p>
+<h2 id="grading">Grading</h2>
+<p><strong>Code:</strong> You will be primarily graded on functionality. <strong>Your Trigram model should have a test perplexity &lt; 165, and your RNN model should have a perplexity &lt; 90.</strong></p>
+<p><strong>Conceptual:</strong> You will be primarily graded on correctness (when applicable), thoughtfulness, and clarity.</p>
+<h2 id="autograder">Autograder</h2>
+<p><strong>Your model must complete training within 10 minutes for your Trigram Model, and 10 minutes for the RNN.</strong></p>
+<p>Our autograder will import your model and your preprocessing functions. We will feed the result of your <code>get_data</code> function called on a path to our data and pass the result to your train method in order to return a fully trained model. This will just batch the testing data using YOUR batch size and run it through your model&#39;s <code>call</code> function. The <strong>probabilities</strong> which are returned will then be fed through an accuracy function. In order to ensure you don&#39;t lose points, you need to make sure that you... A) correctly return training inputs and labels from <code>get_data</code>, B ) ensure that your model&#39;s <code>call</code> function returns probabilities from the inputs specified, and C) it does not rely on any packages outside of tensorflow, numpy, matplotlib, or the python standard library.</p>
+<h2 id="handing-in">Handing In</h2>
+<p>You should submit the assignment via Gradescope under the corresponding project assignment by zipping up your hw3 folder.</p>
+<p>IMPORTANT!
+Please make sure your preprocess.py, trigam.py, and rnn.py are in “hw3/code” this is very important for our autograder to work!
+DELETE the data folder before you zip up your code, it might be too big to upload to Gradescope</p>
+<p><strong>IF YOU ARE IN 2470: PLEASE REMEMBER TO ADD A BLANK FILE CALLED “2470student” IN THE hw3/code DIRECTORY, WE ARE USING THIS AS A FLAG TO GRADE 2470 SPECIFIC REQUIREMENTS, FAILURE TO DO SO MEANS LOSING POINTS ON THIS ASSIGNMENT</strong></p>
+        </section>
+        <aside class="not-mobile">
+        </aside>
+    </main>
+
+    <footer class="dark-footer">
+        <img id="footer-earmuffs" class="random-earmuffs" src="http://cs.brown.edu/courses/cs1470/img/sparkle.png">
+        <ul class="menu">
+            <li>&copy; 2019 CS1470/2470 TA Staff | Computer Science Department | Brown University</li>
+        </ul>
+        <br>
+    </footer>
+
+</body>
+
+</html>

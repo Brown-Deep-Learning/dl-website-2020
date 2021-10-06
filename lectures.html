@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Lectures | CS147 - Deep Learning | Brown University</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,700,700i&display=swap" rel="stylesheet">
+    <link rel="preload" as="font" type="font/woff2" href="assets/inter-latin.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="assets/krona-one-latin.woff2" crossorigin>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="normalize.css">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="random-bowties.js"></script>
+    <script type="text/javascript" src="common.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="page__header">
+            <div class="page__title">
+                <img src="assets/sparkles/sparkle4.png" />
+                Lectures
+            </div>
+            <div class="page__header__quote">
+                "To go where no untitled lamp/bear has gone before, Deep (Learning) Space!"
+            </div>
+            <nav id="navbar">
+                <button id="hamburger" onclick="toggleMobileMenu(this)">
+                    <div id="hamburger-bar-1"></div>
+                    <div id="hamburger-bar-2"></div>
+                    <div id="hamburger-bar-3"></div>
+                </button>
+                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="resources.html">Resources</a>
+                <a class="nav-link" href="lectures.html">Lectures</a>
+                <a class="nav-link" href="assignments.html">Assignments</a>
+                <a class="nav-link" href="labs.html">Labs</a>
+                <a class="nav-link" href="calendar.html">Calendar &amp; Hours</a>
+                <a class="nav-link" href="staff.html">Staff</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="dark">
+        <section>
+            <h1>Lectures</h1>
+
+            <b>Time:</b> MWF 12:00pm &ndash; 12:50pm
+            <br/>
+            <i>Lecture given live and recorded for asynchronous viewing. Live participation welcome but not required.</i>
+            <br/>
+            <b>Zoom Link:</b> <a href='https://brown.zoom.us/j/96237682852'>https://brown.zoom.us/j/96237682852</a>
+            <br/>
+            <b>Zoom Password:</b> The name of our beloved lamp/bear who has recently departed campus to explore deep space (all lowercase)
+            <br/>
+            <i>Note: You must be logged into Zoom via your Brown account to access the Zoom meeting, as well as to access the lecture recordings.</i>
+            <br />
+            <br />
+
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width:10%">Date</th>
+                        <th style="width:60%">Topic</th>
+                        <th style="width:20%">Slides</th>
+                        <th style="width:10%">Recording</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="week-header">
+                        <td>Week 1</td>
+                        <td>Introduction</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Wed, 9/9 </td>
+                        <td>Introduction to deep learning</td>
+                        <td>
+                             <a target='_blank' href="https://drive.google.com/file/d/19y242uV4EOgKTyQbZv5z4g_sVp22nTNl/view?usp=sharing">pptx</a> | <a target='_blank' href="https://drive.google.com/file/d/1KyGuspKfYtlWG7IUdMNJ5r2Dt6EwKici/view?usp=sharing">pdf</a> | <a target='_blank' href="https://drive.google.com/file/d/1L75Pi3gon1mogrivUEDQL5f87wIXLUcY/view?usp=sharing">pdf↓</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="https://drive.google.com/drive/folders/1QxQHgobw8CRgVSIZ5HopGZta3o_n4She?usp=sharing">video</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Fri, 9/11 </td>
+                        <td>MNIST & Perceptrons</td>
+                        <td>
+                            <a target='_blank' href="https://drive.google.com/file/d/1A3rCIkH1oRih9PIhgkAJ0Wodu-h8UDI6/view?usp=sharing">pptx</a> | <a target='_blank' href="https://drive.google.com/file/d/1L8kX7186CsjCJgpWEyHT40bmiJDN1MFU/view?usp=sharing">pdf</a> | <a target='_blank' href="https://drive.google.com/file/d/1LCraQMrCjFN4ZUD46bFIa5H8CSkkT0ID/view?usp=sharing">pdf↓</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="https://drive.google.com/drive/folders/1Oaiu71l2-laKYOs1rF_bAeRYPJ1OF4RI?usp=sharing">video</a>
+                        </td>
+                    </tr>
+                    <tr class="week-header">
+                        <td>Week 2 </td>
+                        <td>Deep Learning Fundamentals</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Mon, 9/14</td>
+                        <td>Loss functions, cross entropy loss, backprop</td>
+                        <td>
+                            <a target='_blank' href="https://drive.google.com/file/d/1A-UbPyUROPZw9_2iwab1V1J2P5XLS-ZJ/view?usp=sharing">pptx</a> | <a target='_blank' href="https://drive.google.com/file/d/1LHyyRNwG8AOAs7Wj-ZyTDd3SMkYMJtP_/view?usp=sharing">pdf</a> | <a target='_blank' href="https://drive.google.com/file/d/1LQw0FGpSAErQoXzScZoDXwmp5CTaCOWV/view?usp=sharing">pdf↓</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="https://drive.google.com/drive/folders/1_Skqjmt1CY58AufMVUZZGdqZNQw-V4qb?usp=sharing">video</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Wed, 9/16</td>
+                        <td>Backprop continued</td>
+                        <td>
+                            <a target='_blank' href="https://drive.google.com/file/d/1A-UbPyUROPZw9_2iwab1V1J2P5XLS-ZJ/view?usp=sharing">pptx</a> | <a target='_blank' href="https://drive.google.com/file/d/1LHyyRNwG8AOAs7Wj-ZyTDd3SMkYMJtP_/view?usp=sharing">pdf</a> | <a target='_blank' href="https://drive.google.com/file/d/1LQw0FGpSAErQoXzScZoDXwmp5CTaCOWV/view?usp=sharing">pdf↓</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="https://drive.google.com/drive/folders/1ythArZoQ-v8puNJJuu3eftb20P53MWVe?usp=sharing">video</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Fri, 9/18</td>
+                        <td>Automatic differentiation, Brunoflow</td>
+                        <td>
+                            <a target='_blank' href="https://drive.google.com/file/d/19yNb5PM1xGb6BI3W5q0a1hLb1Hqhutsd/view?usp=sharing">pptx</a> | <a target='_blank' href="https://drive.google.com/file/d/1LlPjaL-UzhrHa_ShuvPzLsthK3JieUTE/view?usp=sharing">pdf</a> | <a target='_blank' href="https://drive.google.com/file/d/1LrWB4eXOMju9IQwmKvBrXp_EMJlFA4vN/view?usp=sharing">pdf↓</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="https://drive.google.com/drive/folders/1V1kTDpbeOqSJVMGd1hQoEZSMoeBnIUaj?usp=sharing">video</a>
+                        </td>
+                    </tr>
+                    </tr>
+                    <tr class="week-header">
+                        <td>Week 3</td>
+                        <td>Feed-Forward Neural Networks + Tensorflow</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Mon, 9/21</td>
+                        <td>
+                            Brunoflow continued, matrix representation of NNs + GPUs
+                        </td>
+                        <td>
+                            <a target='_blank' href="https://drive.google.com/file/d/1AFHY90MasW7E0BfdYF7jVfc5mXws1cau/view?usp=sharing">pptx</a> | <a target='_blank' href="https://drive.google.com/file/d/1LulGPKSvuN1W3YLGy1HUMSh12Vk6A9H4/view?usp=sharing">pdf</a> | <a target='_blank' href="https://drive.google.com/file/d/1Lw2CuYaE5_buGpXnDJjqWtd0HKQ82p7r/view?usp=sharing">pdf↓</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="https://drive.google.com/drive/folders/1PD6lrCHo8PGszBNEdTA6upFOaB72bYyg?usp=sharing">video</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Wed, 9/23</td>
+                        <td>
+                            The life cycle of machine learning systems
+                        </td>
+                        <td>
+                            <a target='_blank' href="https://drive.google.com/file/d/1BoNd6SLDNcTPrb-gTQ6T_V6paJZLjhoQ/view?usp=sharing">pptx</a> | <a target='_blank' href="https://drive.google.com/file/d/1LwdSt0mcVNIFZCTzzuVdQVyHYct4vZt8/view?usp=sharing">pdf</a> | <a target='_blank' href="https://drive.google.com/file/d/1M1sbjZdsjbaFNTvkOP_oFDFrhH8T1Cqr/view?usp=sharing">pdf↓</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="https://drive.google.com/drive/folders/1ovS_dyrfPYzlccnQyRXPADXMj2KJ8AQe?usp=sharing">video</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Fri, 9/25</td>
+                        <td>
+                            Intro to Tensorflow
+                        </td>
+                        <td>
+                            <a target='_blank' href="https://drive.google.com/file/d/1EA4obVcAI6kIRXy_GDdx9OKMHZgalgne/view?usp=sharing">pptx</a> | <a target='_blank' href="https://drive.google.com/file/d/1M2HL26rEgK9wFXLaXz3x-6mFRuEh1SFz/view?usp=sharing">pdf</a> | <a target='_blank' href="https://drive.google.com/file/d/1M67LWZnX6G0U9MpANlx8t5eLoIersKEq/view?usp=sharing">pdf↓</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="https://drive.google.com/drive/folders/1_m-a-BPgI2TAiXl-7kDCkj-os_4NWq82?usp=sharing">video</a>
+                        </td>
+                    </tr>
+                    <tr class="week-header">
+                        <td>Week 4</td>
+                        <td>Convolutional Neural Networks 1</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Mon, 9/28</td>
+                        <td>
+                            Activation functions, multilayer NN's
+                            <br/>
+                            Practical neural net miscellanea
+                            <br/>
+                            Higher-rank tensors + tensordot
+                        </td>
+                        <td>
+                            <a target='_blank' href="https://drive.google.com/file/d/1clOLOhZJOB8qNIa8FTh92vt180cAX6T-/view?usp=sharing">pptx</a> | <a target='_blank' href="https://drive.google.com/file/d/1MFLx5tZsg8DnegcmqVXPzMJEr11-KjBk/view?usp=sharing">pdf</a> | <a target='_blank' href="https://drive.google.com/file/d/1MGqwDyH49CgsGziClBFgWeIQfz6iCtCO/view?usp=sharing">pdf↓</a>
+                            <br/>
+                            <a target='_blank' href="https://drive.google.com/file/d/1AMApE9d-A-ZfZjc4yDDtMaUGpyq7LDKe/view?usp=sharing">pptx</a> | <a target='_blank' href="https://drive.google.com/file/d/1MUbjENXACQSbD8LwE2ACuuZiKApMg0aU/view?usp=sharing">pdf</a> | <a target='_blank' href="https://drive.google.com/file/d/1MW65_cqV5UNDn8VKhj7kN5jyBEhn7MUs/view?usp=sharing">pdf↓</a>
+                            <br/>
+                            <a target='_blank' href="https://drive.google.com/file/d/1MQbY8bAo83DkPQox2hDGpHpB2uOl7xMs/view?usp=sharing">pptx</a> | <a target='_blank' href="https://drive.google.com/file/d/1MXwBxpWdVWZTIiTcaT_qRKF9QBX71FhQ/view?usp=sharing">pdf</a> | <a target='_blank' href="https://drive.google.com/file/d/1MYoHpaIgqJaWZlAvxU21ZAplVcQ9FlDs/view?usp=sharing">pdf↓</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="https://drive.google.com/drive/folders/11LIsXeGvAcMtyA_49cBblgphZNppfUje?usp=sharing">video</a>
+                            <br/> &nbsp;
+                            <br/> &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Wed, 9/30</td>
+                        <td>
+                            Convolution and CNNs
+                        </td>
+                        <td>
+                            <a target='_blank' href="https://drive.google.com/file/d/1MSWFVgWHEvF9Dy0l8R1gruxRlUgJkT67/view?usp=sharing">pptx</a> | <a target='_blank' href="https://drive.google.com/file/d/1MaUArTx-glN0QK7ucpm-gy6fNe7qsO1k/view?usp=sharing">pdf</a> | <a target='_blank' href="https://drive.google.com/file/d/1McXG-Csh60qhouNPWy756MIk8FffsjVw/view?usp=sharing">pdf↓</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="https://drive.google.com/drive/folders/1hJwStAZythfq6mUPZZNv1iVurlcJdvmE?usp=sharing">video</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Fri 10/2</td>
+                        <td>
+                            Multi-layer CNNs
+                        </td>
+                        <td>
+                            <a target='_blank' href="https://drive.google.com/file/d/1AS-sR2-EJWINkztW3Bg6aTxCMFi9O4hT/view?usp=sharing">pptx</a> | <a target='_blank' href="https://drive.google.com/file/d/1MfPZoRkumSwFGXbz_d_etzH2PQJEErID/view?usp=sharing">pdf</a> | <a target='_blank' href="https://drive.google.com/file/d/1MgpxcBa7Xmb-viUuDltAgkSUvyHliqSn/view?usp=sharing">pdf↓</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="https://drive.google.com/drive/folders/1b_hWckGGla5RzL8UJZ7iB0qXK9unIQwy?usp=sharing">video</a>
+                        </td>
+                    </tr>
+                    <tr class="week-header">
+                        <td>Week 5</td>
+                        <td>CNNs, Language Models</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Mon, 10/5</td>
+                        <td>
+                            CNNs in the Real World
+                        </td>
+                        <td>
+                            <a target='_blank' href="https://drive.google.com/file/d/1AOV880CbmzSRgYm6-O3qwsUVwNw4AT7J/view?usp=sharing">pptx</a> | <a target='_blank' href="https://drive.google.com/file/d/1MhMfq_3_8y9cnxnrhKIZFiMrQGwg7J_s/view?usp=sharing">pdf</a> | <a target='_blank' href="https://drive.google.com/file/d/1Mw0QSgJn-JJISLxppWlwAViT8VmwiV8c/view?usp=sharing">pdf↓</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="https://drive.google.com/drive/folders/1xkRk_uVCcjwaaFAoPXECYiB6AzugQp4a?usp=sharing">video</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Wed, 10/7</td>
+                        <td>
+                            Language models, word embeddings
+                        </td>
+                        <td>
+                            <a target='_blank' href="https://drive.google.com/file/d/1AgitClVaKAMI_YHBkjCA_m1iG_d45OFj/view?usp=sharing">pptx</a> | <a target='_blank' href="https://drive.google.com/file/d/1N433C8CD4lhuYwoTF7HOfI2z4kmj5yPe/view?usp=sharing">pdf</a> | <a target='_blank' href="https://drive.google.com/file/d/1N66Cyn23TW2KGmhfr2qiyJelnghwfTTV/view?usp=sharing">pdf↓</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="https://drive.google.com/drive/folders/1s3lWnPQn0G_DPyYB0rdh1SsaTrCMe1WB?usp=sharing">video</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Fri, 10/9</td>
+                        <td>
+                            Overfitting and regularization, algorithmic fairness
+                        </td>
+                        <td>
+                            <a target='_blank' href="https://drive.google.com/file/d/1Agb1OH76wG_LCZOaKzuZ5fXXYOBBbh9F/view?usp=sharing">pptx</a> | <a target='_blank' href="https://drive.google.com/file/d/1ND1x0K0_DIlCi04sfpJFTqrWPoC9G1fK/view?usp=sharing">pdf</a> | <a target='_blank' href="https://drive.google.com/file/d/1NGdOPPzYnklSl8v4arqK95L_Xz83Bxgb/view?usp=sharing">pdf↓</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="https://drive.google.com/drive/folders/15yxsUU7j_ouM9LLhNJXoW8Ha73J9jtqd?usp=sharing">video</a>
+                        </td>
+                    </tr>
+                    <tr class="week-header">
+                        <td>Week 6</td>
+                        <td>Language Models, Recurrent Networks</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <!-- <tr class="no-lecture"> -->
+                    <tr>
+                    <tr class="no-lecture">
+                        <td>Mon, 10/12</td>
+                        <td>No class (Indigenous Peoples' Day)</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Weds, 10/14</td>
+                        <td>Feedforward language models</td>
+                        <td>
+                            <a target='_blank' href="https://drive.google.com/file/d/1B9dREzzS17XdWSZmlFvBVbNe-l-e_atn/view?usp=sharing">pptx</a> | <a target='_blank' href="https://drive.google.com/file/d/1NI2YFD98hPgh64myv1swlyvoD-FlGDC2/view?usp=sharing">pdf</a> | <a target='_blank' href="https://drive.google.com/file/d/1NJCyau_TPzWi0p9nlju1lmnRZcaCrWNc/view?usp=sharing">pdf↓</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="https://drive.google.com/drive/folders/1O-YwL3sU4FDcfdMlda1ibWGU0eMYs6RU?usp=sharing">video</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Fri, 10/16</td>
+                        <td>
+                            Recurrent neural networks
+                        </td>
+                        <td>
+                            <a target='_blank' href="https://drive.google.com/file/d/1B0o8CvCTbyjXxFTlaiojG5c3r4sZhKCJ/view?usp=sharing">pptx</a> | <a target='_blank' href="https://drive.google.com/file/d/1NNFmGuNMSmpozOg2OxF4ETIbPH-GVCz4/view?usp=sharing">pdf</a> | <a target='_blank' href="https://drive.google.com/file/d/1NNQ_GNeAQnxDBD5pL_cT4NaykFM1qRlB/view?usp=sharing">pdf↓</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="https://drive.google.com/drive/folders/1SxgxpQrg-3ymp49degyFEBFxBe-rMcL5?usp=sharing">video</a>
+                        </td>
+                    </tr>
+                    <tr class="week-header">
+                        <td>Week 7</td>
+                        <td>Recurrent Networks, Sequence-to-Sequence Models</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Mon, 10/19</td>
+                        <td>LSTMs</td>
+                        <td>
+                            <a target='_blank' href="https://drive.google.com/file/d/17QNdHn4CHWCbnZlQ0wca9QlhD_eRjSRw/view?usp=sharing">pptx</a> | <a target='_blank' href="https://drive.google.com/file/d/1NOOr_gl3E2qbdgu7QGuXVk3H8NBwVKoP/view?usp=sharing">pdf</a> | <a target='_blank' href="https://drive.google.com/file/d/1NQr2FcVHM8cRiWOWL3IGoYqijabfPnOw/view?usp=sharing">pdf↓</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="https://drive.google.com/drive/folders/1az6Dh2NEhcxXn6XMvyqjOLFF3bw5Vtpc?usp=sharing">video</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Wed, 10/21</td>
+                        <td>Machine translation; seq2seq</td>
+                        <td>
+                            <a target='_blank' href="https://drive.google.com/file/d/1AhEKN3BH0_KBOEEJ252e0tKAHuON_WcL/view?usp=sharing">pptx</a> | <a target='_blank' href="https://drive.google.com/file/d/1NS5lHHrIlVbgVe0y4WL3aBibf-nvRYW6/view?usp=sharing">pdf</a> | <a target='_blank' href="https://drive.google.com/file/d/1N__3CgyLrBbJuZIwwoBvN2DGNZJvqm6q/view?usp=sharing">pdf↓</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="https://drive.google.com/drive/folders/19BOzyRQ-DWmhaPM0KTZ7sl3Y_7n4PgBW?usp=sharing">video</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Fri, 10/23</td>
+                        <td>Attention; transformers</td>
+                        <td>
+                            <a target='_blank' href="https://drive.google.com/file/d/1BBU9kUG52jH69vS1sj8rqPJCN9k7ExHM/view?usp=sharing">pptx</a> | <a target='_blank' href="https://drive.google.com/file/d/1NeDvjpoLoZ_heOnUeSkWopsQANmVZU1h/view?usp=sharing">pdf</a> | <a target='_blank' href="https://drive.google.com/file/d/1Nk0CJ0pUhJddY2EVTtedDIuWig5mMKcD/view?usp=sharing">pdf↓</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="https://drive.google.com/drive/folders/1rnuhku3sIb89xGoIYci3tws29K2aZenY?usp=sharing">video</a>
+                        </td>
+                    </tr>
+                    <tr class="week-header">
+                        <td>Week 8</td>
+                        <td>Sequence-to-Sequence Models, Deep Learning on Structured Data</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Mon, 10/26</td>
+                        <td>Transformers continued</td>
+                        <td>
+                            <a target='_blank' href="https://drive.google.com/file/d/1BBU9kUG52jH69vS1sj8rqPJCN9k7ExHM/view?usp=sharing">pptx</a> | <a target='_blank' href="https://drive.google.com/file/d/1NeDvjpoLoZ_heOnUeSkWopsQANmVZU1h/view?usp=sharing">pdf</a> | <a target='_blank' href="https://drive.google.com/file/d/1Nk0CJ0pUhJddY2EVTtedDIuWig5mMKcD/view?usp=sharing">pdf↓</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="https://drive.google.com/drive/folders/1d08-CVfwZkNzHo4BchKVobCx-LEm4X69?usp=sharing">video</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Wed, 10/28</td>
+                        <td>
+                            Scaling deep learning systems
+                            <br/>
+                            Sustainable deep learning
+                        </td>
+                        <td>
+                            <a target='_blank' href="https://drive.google.com/file/d/1NyU6UzcwgTFGX8DTUlZcWarVGGaCQZan/view?usp=sharing">pptx</a> | <a target='_blank' href="https://drive.google.com/file/d/1O3SJeoRUHWwYHBJFG84GBsAHnM-Uear3/view?usp=sharing">pdf</a> | <a target='_blank' href="https://drive.google.com/file/d/1ONdGKW8aptMHebCG74gQGAns_-Zfo90m/view?usp=sharing">pdf↓</a>
+                            <br/>
+                            <a target='_blank' href="https://drive.google.com/file/d/1BtkoVtuv9TsVnXPermTSAXVlPN3EVTAJ/view?usp=sharing">pptx</a> | <a target='_blank' href="https://drive.google.com/file/d/1OP1-of8wuiV6L-FIVoPntuu97M9Sf-8t/view?usp=sharing">pdf</a> | <a target='_blank' href="https://drive.google.com/file/d/1OPRz_vbZUzadh3TxVs6Ln9ibS2hSEE4p/view?usp=sharing">pdf↓</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="https://drive.google.com/drive/folders/17QC3ThUNgw3_an0j6bZ7qQgvm1PuFqS_?usp=sharing">video</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Fri, 10/30</td>
+                        <td>
+                            Deep learning on trees: Recursive neural nets (RvNNs)
+                        </td>
+                        <td>
+                            <a target='_blank' href="https://drive.google.com/file/d/1BA_ItF1DYzq66d46DHO08_1W1o7k_1PP/view?usp=sharing">pptx</a> | <a target='_blank' href="https://drive.google.com/file/d/1OZ3TiYq8FiJqdlDT-0PtvIvfXJVPifI7/view?usp=sharing">pdf</a> | <a target='_blank' href="https://drive.google.com/file/d/1ObOwGYO2uR4hBkcuuGQKjyHCSa4c1nEL/view?usp=sharing">pdf↓</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="https://drive.google.com/drive/folders/13pKy5zxltKLze1cfPub5Et_3k0-4mN_x?usp=sharing">video</a>
+                        </td>
+                    </tr>
+                    <tr class="week-header">
+                        <td>Week 9</td>
+                        <td>Deep Learning on Structured Data, Reinforcement Learning</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Mon, 11/2</td>
+                        <td>Deep learning on graphs: Graph convolutional nets (GCNs)</td>
+                        <td>
+                            <a target='_blank' href="https://drive.google.com/file/d/1B9n0MA9EbLpp98fgJArMhMVDzDxPivkF/view?usp=sharing">pptx</a> | <a target='_blank' href="https://drive.google.com/file/d/1OqOwOKClu5wWCuPYQXXOR0P2JkRsC3nl/view?usp=sharing">pdf</a> | <a target='_blank' href="https://drive.google.com/file/d/1OxGi_ho1ERcPX0oSKZT0WzNf1RRGNtWE/view?usp=sharing">pdf↓</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="https://drive.google.com/drive/folders/1zsPa-G-aZyJ30IYQJ9AAIbGohfvm_DUk?usp=sharing">video</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Wed, 11/4</td>
+                        <td>
+                            Intro to RL
+                        </td>
+                        <td>
+                            <a target='_blank' href="https://drive.google.com/file/d/1BRadnCiNnFTJEkzsALJWV-PrsdHqhd-0/view?usp=sharing">pptx</a> | <a target='_blank' href="https://drive.google.com/file/d/1P7mqfIlQvXdVOXegFtHdDqn8q_4V-7rl/view?usp=sharing">pdf</a> | <a target='_blank' href="https://drive.google.com/file/d/1PANZVdBYI4Wt_ihbI6jFcYR5FVIJXkfF/view?usp=sharing">pdf↓</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="https://drive.google.com/drive/folders/1Jtk1rJxDC-6BS87nYPqAFrZZe_bjkMkW?usp=sharing">video</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Fri, 11/6</td>
+                        <td>
+                            Rl intro continued; value iteration
+                            <br/>
+                            Model interpretability
+                        </td>
+                        <td>
+                            <a target='_blank' href="https://drive.google.com/file/d/1BRadnCiNnFTJEkzsALJWV-PrsdHqhd-0/view?usp=sharing">pptx</a> | <a target='_blank' href="https://drive.google.com/file/d/1P7mqfIlQvXdVOXegFtHdDqn8q_4V-7rl/view?usp=sharing">pdf</a> | <a target='_blank' href="https://drive.google.com/file/d/1PANZVdBYI4Wt_ihbI6jFcYR5FVIJXkfF/view?usp=sharing">pdf↓</a>
+                            <br/>
+                            <a target='_blank' href="https://drive.google.com/file/d/1BtUktgI5n42cIWGrhn3L9BtGRD9gIN0I/view?usp=sharing">pptx</a> | <a target='_blank' href="https://drive.google.com/file/d/1PAXVnMI6yWts2tlpIlobLG2KP4YrAZnk/view?usp=sharing">pdf</a> | <a target='_blank' href="https://drive.google.com/file/d/1PBLuxsh1mlHunxMNC0-hHlKewI9q-4z9/view?usp=sharing">pdf↓</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="https://drive.google.com/drive/folders/1TlaE-EIyeO3c-9_ERHZPivBrhIEACekA?usp=sharing">video</a>
+                        </td>
+                    </tr>
+                    <tr class="week-header">
+                        <td>Week 10</td>
+                        <td>Reinforcement Learning Continued</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Mon, 11/9</td>
+                        <td>
+                            Tabular Q learning
+                            <br/>
+                            Deep Q learning
+                        </td>
+                        <td>
+                            <a target='_blank' href="https://drive.google.com/file/d/1BJqmyOQ51EmShY6yoXSekLC9WZI5WHnx/view?usp=sharing">pptx</a> | <a target='_blank' href="https://drive.google.com/file/d/1PRvsarlWXra9ud326q8MkyZJraci6cw-/view?usp=sharing">pdf</a> | <a target='_blank' href="https://drive.google.com/file/d/1PYqPtZ2akDtDxU0KMBNRYyL4vDEZpFKz/view?usp=sharing">pdf↓</a>
+                            <br/>
+                            <a target='_blank' href="https://drive.google.com/file/d/1BIJEQO-XmVmhumuiebD9ioXbQ569JcRT/view?usp=sharing">pptx</a> | <a target='_blank' href="https://drive.google.com/file/d/1PSzxB3N0P2yojdGdEMcKSsvXxYG_BGwq/view?usp=sharing">pdf</a> | <a target='_blank' href="https://drive.google.com/file/d/1PbBvSKnSkatbPy_NSC67_Yar497UgZmc/view?usp=sharing">pdf↓</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="https://drive.google.com/drive/folders/1tUqR0RkAcSQboWkdAV6E3oRso09wD34w?usp=sharing">video</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Wed, 11/11</td>
+                        <td>Policy gradient methods, REINFORCE</td>
+                        <td>
+                            <a target='_blank' href="https://drive.google.com/file/d/1Bca4mCRZDBknumQw1rDTaM_ioR09Tceq/view?usp=sharing">pptx</a> | <a target='_blank' href="https://drive.google.com/file/d/1Pbe6rGgpFz4z6ZSSctQHJflYJSC8tTK9/view?usp=sharing">pdf</a> | <a target='_blank' href="https://drive.google.com/file/d/1Pgkv4sjA2-2arHtp3zj5GcwOx-xwSanN/view?usp=sharing">pdf↓</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="https://drive.google.com/drive/folders/1SJAu5yUEKdmA8WpJctmUXexjIQ9eFCdd?usp=sharing">video</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Fri, 11/13</td>
+                        <td>Actor-critic methods
+                        <td>
+                            <a target='_blank' href="https://drive.google.com/file/d/1BYkRwjgnidoduQacBsb-JjsIj15bRH6H/view?usp=sharing">pptx</a> | <a target='_blank' href="https://drive.google.com/file/d/1Pit3XBqWhgUE_I_ODaro0UMpvsBPYYeW/view?usp=sharing">pdf</a> | <a target='_blank' href="https://drive.google.com/file/d/1Ppsn0EbIheScywDaXGwRFBpo_R0efyGd/view?usp=sharing">pdf↓</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="https://drive.google.com/drive/folders/18asTIDu5SPR7HzBAvkjcpkTKLLwls6nq?usp=sharing">video</a>
+                        </td>
+                    </tr>
+                    <tr class="week-header">
+                        <td>Week 11</td>
+                        <td>Unsupervised Learning</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Mon, 11/16</td>
+                        <td>RL conclusion</td>
+                        <td>
+                            <a target='_blank' href="https://drive.google.com/file/d/1BtPJlY9bFjNPiquzVzqYef7YOkqBnQWf/view?usp=sharing">pptx</a> | <a target='_blank' href="https://drive.google.com/file/d/1PuZOiAODE5bHhnHemBhpqq6A3W5Ekdim/view?usp=sharing">pdf</a> | <a target='_blank' href="https://drive.google.com/file/d/1PwjHtesv2gLBsvkS9kmTxtDaeFUnI53q/view?usp=sharing">pdf↓</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="https://drive.google.com/drive/folders/1Z3vtoY-EISgAQa-LFAvkzYCdJzQSbl7a?usp=sharing">video</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Wed, 11/18</td>
+                        <td>Autoencoders</td>
+                        <td>
+                            <a target='_blank' href="https://drive.google.com/file/d/1BfbDwCBUTiLsNte7SrM0-pKuO91lKmuo/view?usp=sharing">pptx</a> | <a target='_blank' href="https://drive.google.com/file/d/1Q0MQY8Altq4jCJ5b_JQvK654bYcaHtMs/view?usp=sharingg">pdf</a> | <a target='_blank' href="https://drive.google.com/file/d/1Q0MfUQYk1BIMjIr2EsodavPdFl4frrek/view?usp=sharing">pdf↓</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="https://drive.google.com/drive/folders/1-Zf1S-iwM01GbanBUAcoQo-ejjXqWopL?usp=sharing">video</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Fri, 11/20</td>
+                        <td>GANs</td>
+                        <td>
+                            <a target='_blank' href="https://drive.google.com/file/d/1BfjPBYG9VKGs1QngQvw9wGkCd2u7EqBS/view?usp=sharing">pptx</a> | <a target='_blank' href="https://drive.google.com/file/d/1Q9OG1loS5cs5BX1yiGqwe_8eCBo58BJu/view?usp=sharing">pdf</a> | <a target='_blank' href="https://drive.google.com/file/d/1Q9Q8aRNHIexaFOAVyf6iX12Rfhc_bzlY/view?usp=sharing">pdf↓</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="https://drive.google.com/drive/folders/1N2cVzYAIY4QUTJIPhU-batTdu1UTI_MI?usp=sharing">video</a>
+                        </td>
+                    </tr>
+                    <tr class="week-header">
+                        <td>Week 12</td>
+                        <td>Thanksgiving Week</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Mon, 11/23</td>
+                        <td>VAEs</td>
+                        <td>
+                            <a target='_blank' href="https://drive.google.com/file/d/1BglRO08Ti98HRViUPowrjChUJfcPCplm/view?usp=sharing">pptx</a> | <a target='_blank' href="https://drive.google.com/file/d/1QJRU4GkkPs609VXKPTuI0b9l7Yt2DC0A/view?usp=sharing">pdf</a> | <a target='_blank' href="https://drive.google.com/file/d/1QOLr1PK26eSuZ36l2umBAc2pLIHPLgJ6/view?usp=sharing">pdf↓</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="https://drive.google.com/drive/folders/1grdOrp36A7Rj8h-OkroNxnkWt4t68rnV?usp=sharing">video</a>
+                        </td>
+                    </tr>
+                    <tr class="no-lecture">
+                        <td>Wed, 11/25</td>
+                        <td>No class (Thanksgiving 🦃🦃🦃)</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="no-lecture">
+                        <td>Fri, 11/27</td>
+                        <td>No class (Thanksgiving 🦃🦃🦃)</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="week-header">
+                        <td>Week 13</td>
+                        <td>Conclusion</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Mon, 11/30</td>
+                        <td>Deepfakes</td>
+                        <td>
+                            <a target='_blank' href="https://drive.google.com/file/d/1Bi6vBDYk6oheXZn9H2PdHEXeWKEw2_do/view?usp=sharing">pptx</a> | <a target='_blank' href="https://drive.google.com/file/d/1QmEBUwJ8MDYbHh0i7ZN56mfjuXfpigtF/view?usp=sharing">pdf</a> | <a target='_blank' href="https://drive.google.com/file/d/1QmKI9GxqkZiAcZFKsPg5vbdww8avJCaN/view?usp=sharing">pdf↓</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="https://drive.google.com/drive/folders/1grdOrp36A7Rj8h-OkroNxnkWt4t68rnV?usp=sharing">video</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Wed, 12/2 </td>
+                        <td>[Slack day] </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Fri, 12/4</td>
+                        <td>[Slack day] </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="week-header">
+                        <td>Week 14</td>
+                        <td>Finals week</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Mon, 12/7</td>
+                        <td>No class </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Wed, 12/9</td>
+                        <td>No class </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Fri, 12/11</td>
+                        <td>Deep Learning Day! (Final project presentations / mini conference)</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer class="dark-footer">
+        <img id="footer-earmuffs" class="random-earmuffs" src="img/sparkle.png">
+        <ul class="menu">
+            <li>&copy; 2020 CS1470/2470 TA Staff | Computer Science Department | Brown University</li>
+        </ul>
+        <br>
+    </footer>
+</body>
+
+</html>

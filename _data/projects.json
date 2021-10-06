@@ -1,0 +1,866 @@
+[
+   {
+      "title": "Get Your Head in the Clouds: Cloud image synthesis with conditional adversarial networks",
+      "members": "Aidan Cassel-Mace, Ezra Marks",
+      "mentor": "Steven Cheung",
+      "area": "Graphics",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/get-your-head-in-the-clouds"
+   },
+   {
+      "title": "Of Mice and Men: Analysis on dehumanization in the language of New York Times articles",
+      "members": "Holly Zheng, Becky Mathew, Ethan Pan, Andy Knoblock",
+      "mentor": "Koyena Pal",
+      "area": "Natural Language Processing",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/of-mice-and-men"
+   },
+   {
+      "title": "The Sound of Music: Creating An Interpretable CNN Model for Audio",
+      "members": "Johnny Ren, David Moon, Clara Guo",
+      "mentor": "Wenhuang Zeng",
+      "area": "Music & Audio",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/blink-1470"
+   },
+   {
+      "title": "TempleFlow: An AI Player for the game Temple Run",
+      "members": "Hunter Karas, Arun Kavishwar",
+      "mentor": "Griffin Kupsaw",
+      "area": "Vision",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/templeflow"
+   },
+   {
+      "title": "Et tu, Daniel? Text style transfer from Shakespearean English to Modern English",
+      "members": "Sohum Gupta, Jusung Lee, Ryan Kim, Kushagra Agarwal",
+      "mentor": "Raymond Cao",
+      "area": "Natural Language Processing",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/et-tu-daniel"
+   },
+   {
+      "title": "Lootbox: Automated package counting for shipping logistics",
+      "members": "Jorge Isaac Chang Ortega, Eric Wang, Ruotao Zhang",
+      "mentor": "George Lee",
+      "area": "Vision",
+      "is_oral": true,
+      "devpost": "https://devpost.com/software/lootbox"
+   },
+   {
+      "title": "U^2-Net: Going Deeper with Nested U-Structure for Salient Object Detection",
+      "members": "Jiaju Ma, Carrie Zhuang, Shuyan Wang",
+      "mentor": "Harman Suri",
+      "area": "Vision",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/u-2-2"
+   },
+   {
+      "title": "Crypto-Predicto: Predicting Bitcoin Transactions using Deep Learning on Graphs",
+      "members": "Raghav Pemmireddy, Jacob Good, Maximo Moyer, Grant Sterman",
+      "mentor": "Arvind Yalavarti",
+      "area": "Data Science",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/predicting-bitcoin-transactions-using-dl"
+   },
+   {
+      "title": "Agent of Capitalism",
+      "members": "Andrew Cooke, Daniya Seitova, Long Do, Maxime Hendrikse Liu",
+      "mentor": "Gene Siriviboon",
+      "area": "Reinforcement Learning",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/artificially-deep-learning-machines"
+   },
+   {
+      "title": "MineSweeper",
+      "members": "Yuchen Zhou, Wei Li",
+      "mentor": "George Lee",
+      "area": "Reinforcement Learning",
+      "is_oral": true,
+      "devpost": "https://devpost.com/software/minesweeper-ogjcq3"
+   },
+   {
+      "title": "Detecting Early Onset of Depression from Social Media Text",
+      "members": "sarah branse, andrew liu, tzuhwan seet, kalvin lam",
+      "mentor": "Cindy Li",
+      "area": "Natural Language Processing",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/detecting-early-onset-of-depression-from-social-media-text"
+   },
+   {
+      "title": "Seq2Seq Improvement Seqers",
+      "members": "Brynn Chernosky, Sarah Rockhill, Jack Webster",
+      "mentor": "Sonny Mo",
+      "area": "Natural Language Processing",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/seq2seq-improvement-seqers"
+   },
+   {
+      "title": "Ishara: Arabic sign language translation model",
+      "members": "Moustafa Makhlouf, Fatimah Alshaikh, Muhammad Haider Asif",
+      "mentor": "Greyson Gerhard-Young",
+      "area": "Natural Language Processing",
+      "is_oral": true,
+      "devpost": "https://devpost.com/software/ishara"
+   },
+   {
+      "title": "GPT-0.3",
+      "members": "John Fay, Christopher Avalos, John Zhou",
+      "mentor": "Sally Zhi",
+      "area": "Natural Language Processing",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/gpt-0-3"
+   },
+   {
+      "title": "Effectiveness of Meta-Learning with BERT",
+      "members": "Tian Yun, Sinan Pehlivanoglu, Gaurav Sharma",
+      "mentor": "Kevin Du",
+      "area": "Natural Language Processing",
+      "is_oral": true,
+      "devpost": "https://devpost.com/software/metabert"
+   },
+   {
+      "title": "The Chat in the Hat: A Neural Chatbot",
+      "members": "Anya Li, Kalli Feinberg, Miku Takabayashi",
+      "mentor": "Willem Speckmann",
+      "area": "Natural Language Processing",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/chat-in-the-hat"
+   },
+   {
+      "title": "DRL for Automated Portfolio Management",
+      "members": "Adam Wang, Andrew Yuan, Sean Zhan, Paul Zhou",
+      "mentor": "Antony Sagayaraj",
+      "area": "Reinforcement Learning",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/drl-for-automated-portfolio-management"
+   },
+   {
+      "title": "Exemplary Learning: Emulating the brain using Prototypes and Exemplars",
+      "members": "Thomas Summe, Victor Mora, William Zhang",
+      "mentor": "Suhye Park",
+      "area": "Foundations",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/whweoh?ref_content=user-portfolio&ref_feature=in_progress"
+   },
+   {
+      "title": "Glorious Ghibli Generation: Producing some cool computer generated Ghibli tunes.",
+      "members": "Gavin Lee, Andrew Kim",
+      "mentor": "Katherine Sang",
+      "area": "Music & Audio",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/glorious-ghibli-generation"
+   },
+   {
+      "title": "Eyelearner: Use machine learning method to characterize the high speed link",
+      "members": "Xiaoyu Lian, Kangping Hu",
+      "mentor": "Bryce Blinn",
+      "area": "Data Science",
+      "is_oral": true,
+      "devpost": "https://devpost.com/software/eyelearner-li7xqs"
+   },
+   {
+      "title": "An Image is Worth 16x16 Letters: Reinventing state of the art American Sign Language recognition",
+      "members": "Sami Bou Ghanem, Dhruv Kharabanda, Serge Belin, Jon Kim",
+      "mentor": "Gabriel Rizk",
+      "area": "Vision",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/an-image-is-worth-16x16-letters-by-sami-and-the-bou-s"
+   },
+   {
+      "title": "Image COLORing",
+      "members": "Kaki Su, Kota Soda, Miku Suga, March Boonyapaluk",
+      "mentor": "Isaac Hilton-VanOsdall",
+      "area": "Graphics",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/image-coloring"
+   },
+   {
+      "title": "WasteNet: a deep learning neural network for waste classification",
+      "members": "Yiran Wang, Yuanhao Wang, Yutang Liu",
+      "mentor": "Top Piriyakulkij",
+      "area": "Vision",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/vastum-photographers"
+   },
+   {
+      "title": "Predicting Effectiveness of Outfield Shifts for MLB At-Bat Scenarios",
+      "members": "Rishi Jain, Phil Yang, Prashanth Ramireddy, John Graves",
+      "mentor": "Andrew Canino",
+      "area": "Data Science",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/woba-boba-baby-yodas"
+   },
+   {
+      "title": "BACHPropagation: Generating music with harmony and structure",
+      "members": "Xinru Li, Carter Cobb, Kimberly Brown, Luke Eller",
+      "mentor": "Jason Manuel",
+      "area": "Music & Audio",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/bachpropagation-ok9dgv"
+   },
+   {
+      "title": "Classifying fonts with neural network",
+      "members": "Yanze Liu,  Zhouqi Gong, Baokun Huang, Lan Wei",
+      "mentor": "Daniel Smits",
+      "area": "Vision",
+      "is_oral": true,
+      "devpost": "https://devpost.com/software/classifying-fonts-with-neural-network"
+   },
+   {
+      "title": "Knowledged-GPT2: Communication with GPT-2",
+      "members": "Yuanqi Li, Yifan Jiang, Weike Dai, Zhe Hu",
+      "mentor": "Qingyi Lu",
+      "area": "Natural Language Processing",
+      "is_oral": true,
+      "devpost": "https://devpost.com/software/dl-fall-flat"
+   },
+   {
+      "title": "LSTockMarket Predictions",
+      "members": "Dylan Brady, Armaan Dhillon, Filip Kierzenka",
+      "mentor": "Emily Reed",
+      "area": "Data Science",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/lstockmarket-predictions"
+   },
+   {
+      "title": "Predicting Political Party Affiliation Using Tweets",
+      "members": "Marina Triebenbacher, Zachary Mothner, Rachel Yan",
+      "mentor": "Isaac Hilton-VanOsdall",
+      "area": "Natural Language Processing",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/predicting-political-party-affiliation-using-tweets"
+   },
+   {
+      "title": "Gutout",
+      "members": "Benjamin Bodner, Esther Choi, Jerry Chu, Shiqin Yan",
+      "mentor": "Qian Zhang",
+      "area": "Vision",
+      "is_oral": true,
+      "devpost": "https://devpost.com/software/gutout"
+   },
+   {
+      "title": "Image Captioning with Deep learning",
+      "members": "Aakansha Mathur , Hiloni Mehta",
+      "mentor": "Cindy Li",
+      "area": "Vision",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/image-captioning-with-deep-learning"
+   },
+   {
+      "title": "To be DeepFake or not to be DeepFake",
+      "members": "Jefferson Bernard, Nastassia Goodson, Huy Pham, Monica Roy",
+      "mentor": "Antony Sagayaraj",
+      "area": "Vision",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/to-be-deepfake-or-not-to-be-deepfake"
+   },
+   {
+      "title": "Bringing Emotion Back into Sentiment Analysis",
+      "members": "Clive Johnston, Damian Wasilewicz",
+      "mentor": "Arvind Yalavarti",
+      "area": "Natural Language Processing",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/peglegs"
+   },
+   {
+      "title": "Classifying Political Party Affiliation from Politician\u2019s Tweets",
+      "members": "Laura Wilson,Sarah Bawabe,Anjali Mohan,Connor Johnson",
+      "mentor": "Tucker Berckmann",
+      "area": "Natural Language Processing",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/classifying-political-party-from-politician-s-tweets"
+   },
+   {
+      "title": "Vocal Isolation",
+      "members": "Aaron Jennis, Ben Hurd",
+      "mentor": "Wenhuang Zeng",
+      "area": "Music & Audio",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/vocal-isolation"
+   },
+   {
+      "title": "Picky Eats: Predicting Yelp Restaurant Ratings with Photos",
+      "members": "Brandon Lee, Erica Li, Daniel Chey, Seo Hyun (Lina) Lim",
+      "mentor": "Emily Reed",
+      "area": "Vision",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/picky-eats"
+   },
+   {
+      "title": "Transformers for Music Generation",
+      "members": "Grace Bramley-Simmons, Dante Rousseve, Ryan Sawyer, Joseph Feinstein",
+      "mentor": "Kyle Qian",
+      "area": "Music & Audio",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/transformers-for-music-generation"
+   },
+   {
+      "title": "Instagram on the DL: Generate captions for instagram",
+      "members": "Tali Bers, Eyal Levin",
+      "mentor": "Andrew Canino",
+      "area": "Vision",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/instagram-on-the-dl"
+   },
+   {
+      "title": "Deep F: Merging Deep Neural Networks & Random Forests",
+      "members": "Shalin Patel, Hannah Gross, Kyran Flynn",
+      "mentor": "Kotone Ninagawa",
+      "area": "Foundations",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/deep-f-an-adventure-into-less-is-more"
+   },
+   {
+      "title": "Few Shot Learning with LSTMs for Image Classification",
+      "members": "Alexander Madoff, Justin Sanders, Gus VanNewkirk",
+      "mentor": "Top Piriyakulkij",
+      "area": "Vision",
+      "is_oral": true,
+      "devpost": "https://devpost.com/software/geoyessir"
+   },
+   {
+      "title": "DeepKart64: Reinforcement learning neural network that plays Mario Kart 64",
+      "members": "Raj Paul, Kyle Reyes, Floria Tsui, Nick Young",
+      "mentor": "Antony Sagayaraj",
+      "area": "Reinforcement Learning",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/deepkart64"
+   },
+   {
+      "title": "Stonks! Using Stock History and Twitter Sentiment Analysis to Predict Weekly Changes in Stock Price",
+      "members": "Jack Dermer, Georgia Gallant, Ben Givertz",
+      "mentor": "Koyena Pal",
+      "area": "Data Science",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/stonks-7p5n9s"
+   },
+   {
+      "title": "Deep Codi (Coronavirus Diagnostic)",
+      "members": "Adam Berkley, Chris Cataldo, Matthew Rodrigues, Aaron Wang",
+      "mentor": "Andrew Canino",
+      "area": "Science & Medicine",
+      "is_oral": true,
+      "devpost": "https://devpost.com/software/deep-codi-coronavirus-diagnostic"
+   },
+   {
+      "title": "Improve ICU Prediction Tasks Using Clinical Notes",
+      "members": "Neal Mahajan, Solomon Boukman, Drake Wilde",
+      "mentor": "Kevin Du",
+      "area": "Science & Medicine",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/improve-icu-prediction-tasks-using-clinical-notes"
+   },
+   {
+      "title": "Liszt Comprehension: Generating classical piano music using Attention",
+      "members": "Aryan Srivastava, Dhruv Bhatia, Herbert Traub, Noah Medina",
+      "mentor": "Willem Speckmann",
+      "area": "Music & Audio",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/liszt-comprehension-r1q2pd?ref_content=user-portfolio&ref_feature=in_progress"
+   },
+   {
+      "title": "Paradigm Rhymes with Abstract Extracts and GPT",
+      "members": "Bashar Zaidat, Isaac Nathoo, Luke West, Bilal Lafta",
+      "mentor": "Joy Zheng",
+      "area": "Natural Language Processing",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/paradigm-rhymes-with-abstract-extracts-and-gpt"
+   },
+   {
+      "title": "Stock Market Prediction with LSTMs",
+      "members": "Uttam Bhetuwal, Hakan Samli, Chun Park",
+      "mentor": "Kyle Qian",
+      "area": "Data Science",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/stock-market-prediction-with-lstms"
+   },
+   {
+      "title": "BlueNose: A deep learning model to classify the smell of a molecule",
+      "members": "William Hayward, Christos Michealides, Kaan Ozulkulu",
+      "mentor": "Gabriel Rizk",
+      "area": "Science & Medicine",
+      "is_oral": true,
+      "devpost": "https://devpost.com/software/bluenose-c0bpaz"
+   },
+   {
+      "title": "NLP Oncology",
+      "members": "Sunny Deng, Spencer Cheleden, Yutong Liang, Jasrine Kaur Dham",
+      "mentor": "Qian Zhang",
+      "area": "Science & Medicine",
+      "is_oral": true,
+      "devpost": "https://devpost.com/software/nlp-oncology"
+   },
+   {
+      "title": "Deep Image clustering of Mars Orbital Survey (DeIMOS)",
+      "members": "George Hu, Joe Han, Lee Ding",
+      "mentor": "Tyler Jiang",
+      "area": "Science & Medicine",
+      "is_oral": true,
+      "devpost": "https://devpost.com/software/deep-image-clustering-of-mars-orbital-survey-deimos"
+   },
+   {
+      "title": "Optimizer^3: an architecture for LSTM based meta-learning",
+      "members": "David Gao, Chace Hayhurst, Alex Young, Alex Brown",
+      "mentor": "Harman Suri",
+      "area": "Foundations",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/optimizer-3"
+   },
+   {
+      "title": "Motion of the Ocean: Use deep learning to train a visual model to move naturally like a human",
+      "members": "Peter Zubiago, Lucas Schroeder, Chris Luke",
+      "mentor": "Eliot Laidlaw",
+      "area": "Reinforcement Learning",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/motion-of-the-ocean"
+   },
+   {
+      "title": "DeepWIFF",
+      "members": "Jacob Dichiacchio, Shreyas Rao, Tej Stead",
+      "mentor": "Sally Zhi",
+      "area": "Science & Medicine",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/deepwiff"
+   },
+   {
+      "title": "Deep Thoughts: Generating Poetry from Non-poetic Text",
+      "members": "Erika Bussmann, Abby Goldberg",
+      "mentor": "Kei Nawa",
+      "area": "Natural Language Processing",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/automatic-poetry-generation-provisional"
+   },
+   {
+      "title": "LSTM networks on religious documents(LSTM NORD)",
+      "members": "Justin Liao, Isabella Ting, Deniz Ozturk",
+      "mentor": "Daniel Smits",
+      "area": "Natural Language Processing",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/lstm-networks-on-religious-documents-lstm-nord"
+   },
+   {
+      "title": "Bumpy Dim+: model-based human pose estimation from natural images",
+      "members": "Anna Swanson, Grishka Barboy, Thomas Jenkins",
+      "mentor": "Katherine Sang",
+      "area": "Vision",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/bumpy-dim"
+   },
+   {
+      "title": "GoDeep: Implementing 9x9 Go with self-play only",
+      "members": "Idil Cakmur, Jason Singer",
+      "mentor": "Tyler Jiang",
+      "area": "Reinforcement Learning",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/godeep"
+   },
+   {
+      "title": "Learning Average Course Load Hours from Student Responses",
+      "members": "Kitty Moy, Rujul Singh, Nicholas Romig, Noelle Jung",
+      "mentor": "Greyson Gerhard-Young",
+      "area": "Natural Language Processing",
+      "is_oral": true,
+      "devpost": "https://devpost.com/software/deep-learning-final-project"
+   },
+   {
+      "title": "Automatic Classical Music Generation with Era Characteristics",
+      "members": "Zihan Hu, Huiyuan Wu",
+      "mentor": "Raymond Cao",
+      "area": "Music & Audio",
+      "is_oral": true,
+      "devpost": "https://devpost.com/software/123-n7okrh"
+   },
+   {
+      "title": "Watermark detection and addition",
+      "members": "Will Glaser, Sophia Skwarchuk, Camille Fougere",
+      "mentor": "Greyson Gerhard-Young",
+      "area": "Vision",
+      "is_oral": true,
+      "devpost": "https://devpost.com/software/embarassingly-parallel-penguins-change-later"
+   },
+   {
+      "title": "Pretty Please: Politeness Transfer",
+      "members": "Ishan Hasan, Tom Liu, Matteo Lunghi",
+      "mentor": "Jason Manuel",
+      "area": "Natural Language Processing",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/pretty-please-gxpflv"
+   },
+   {
+      "title": "Linformer: Self-Attention with Linear Complexity",
+      "members": "Shihchien Chang, Yiyin Zhang, Yunyan Zhang, Yue Yu",
+      "mentor": "Qingyi Lu",
+      "area": "Natural Language Processing",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/linformer-self-attention-with-linear-complexity"
+   },
+   {
+      "title": "Trader Joe's Fantastic Stock Market Predictor: Predicting Trading Prices based on COVID-19 Cases",
+      "members": "William Yang, Colin Arwood, Benjamin Hayes",
+      "mentor": "Kei Nawa",
+      "area": "Data Science",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/trader-joe-s-fantastic-stock-market-predictor"
+   },
+   {
+      "title": "Attention, Attention: summary text of images",
+      "members": "Hannah Connolly, Ashley Oelrich, Chihao Sun, James Yang",
+      "mentor": "Benjamin Silverman",
+      "area": "Vision",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/attention-attention"
+   },
+   {
+      "title": "SharpieNet: Single Image Super-Resolution",
+      "members": "Xinzhe Chai, Elliot Jinoo Hong",
+      "mentor": "Kotone Ninagawa",
+      "area": "Graphics",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/sharpienet"
+   },
+   {
+      "title": "Flexibly: Automatic Calendar Optimization Using Deep Reinforcement Learning",
+      "members": "Th\u00e9o Gu\u00e9rin, Levon Brunson",
+      "mentor": "Sally Zhi",
+      "area": "Reinforcement Learning",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/flexibly"
+   },
+   {
+      "title": "LipGANg: Lip-syncing Videos",
+      "members": "Alex Wey, Ethan Chung, Robert Wang",
+      "mentor": "Joy Zheng",
+      "area": "Graphics",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/lipgang"
+   },
+   {
+      "title": "The chef: Deep learning for recognizing recipes and food images",
+      "members": "Bojun Lin,  Yichen Chai, Peter Lyu",
+      "mentor": "Eliot Laidlaw",
+      "area": "Vision",
+      "is_oral": true,
+      "devpost": "https://devpost.com/software/chef-vgyqzd"
+   },
+   {
+      "title": "Analyzing Model Performances for Protein Classification",
+      "members": "Jen Kaplan, Stephanie Carrero, Connor Jordan, Ishaani Khatri",
+      "mentor": "Top Piriyakulkij",
+      "area": "Science & Medicine",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/analyzing-model-performances-for-protein-classification"
+   },
+   {
+      "title": "Video clip generation from a still image",
+      "members": "Mason Zhang, Jessica Li",
+      "mentor": "Joy Zheng",
+      "area": "Graphics",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/video-clip-generation-from-a-still-image"
+   },
+   {
+      "title": "VJAM MeshTexture: Learning to Texture 3D Shapes from 2D Images",
+      "members": "Angelina Grosso, Joshua Pierce, Vikas Thamizharasan, Moyi Tian",
+      "mentor": "Eliot Laidlaw",
+      "area": "Graphics",
+      "is_oral": true,
+      "devpost": "https://devpost.com/software/vjam-meshtexture"
+   },
+   {
+      "title": "CNN Galaxy Classification",
+      "members": "Ilya Bodo",
+      "mentor": "Bryce Blinn",
+      "area": "Science & Medicine",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/cnn-galaxy-classification"
+   },
+   {
+      "title": "MusicBot by Producer 404: An Auto Music Segment Generator",
+      "members": "Xingyan Wang, Wenjun Ma, Haoxue Wu",
+      "mentor": "Qingyi Lu",
+      "area": "Music & Audio",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/music-generator-by-producer-4040"
+   },
+   {
+      "title": "What\u2019s the vibe? Twitter Sentiment Analysis Final Project",
+      "members": "James Pirozzolo, William Kantaros, Julian Croonenberghs",
+      "mentor": "Emily Reed",
+      "area": "Natural Language Processing",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/what-s-the-vibe-twitter-sentiment-analysis-final-project"
+   },
+   {
+      "title": "Song Masher: Combiniing Two Songs into a Fun Mashup",
+      "members": "Inho David Lee, Amanda Lee, Kate Nelson, James Cai",
+      "mentor": "Gene Siriviboon",
+      "area": "Music & Audio",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/song-masher-rm3cg2"
+   },
+   {
+      "title": "NBA Player Facial Recognition and Authentication",
+      "members": "Alan Tang, Taegon Kim",
+      "mentor": "Suhye Park",
+      "area": "Vision",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/nba-player-facial-recognition"
+   },
+   {
+      "title": "DeepTrex: Playing the card game Trex with RL",
+      "members": "Mohammad Amoush, Aryaman Dutta, Sam Wilkins",
+      "mentor": "Gene Siriviboon",
+      "area": "Reinforcement Learning",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/deeptrex"
+   },
+   {
+      "title": "Blueno Mars: Lyrics generation",
+      "members": "William Buerger, Cecilia Vogler, Star Su",
+      "mentor": "Daniel Smits",
+      "area": "Natural Language Processing",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/blueno-mars"
+   },
+   {
+      "title": "How to Write SciFI 101",
+      "members": "Sam Wertheimer, David Grinstead, Isatou Saho",
+      "mentor": "Kei Nawa",
+      "area": "Natural Language Processing",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/how-to-write-scifi-101"
+   },
+   {
+      "title": "Emotion in Motion: Speech Emotion Recognition Using Attention-Based Fully Convolutional Neural Network",
+      "members": "Matan Gans, George Rusu, Peter Theodores",
+      "mentor": "Tyler Jiang",
+      "area": "Vision",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/emotion-in-motion"
+   },
+   {
+      "title": "Detecting Credit Card Fraud",
+      "members": "Ryan Simpson, Colby Anderson",
+      "mentor": "Kyle Qian",
+      "area": "Data Science",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/credit-card-fraud"
+   },
+   {
+      "title": "X-Ray Bone Suppression and Classification",
+      "members": "Nasheath Ahmed, Andrew Aoun, Mohamad Abouelafia, Hossam Zaki",
+      "mentor": "Steven Cheung",
+      "area": "Science & Medicine",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/bone-suppression-on-x-ray-images-and-classification"
+   },
+   {
+      "title": "Language Detection",
+      "members": "Rahul Krishnan, Yifan Ruan",
+      "mentor": "Tucker Berckmann",
+      "area": "Natural Language Processing",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/language-detection"
+   },
+   {
+      "title": "Wow, I love that: detecting sarcasm and irony with neural networks",
+      "members": "Ariana Barzinpour, Charlie Cutting, Jacob DiSpirito",
+      "mentor": "Tucker Berckmann",
+      "area": "Natural Language Processing",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/wow-i-love-that-detecting-sarcasm-with-transformers"
+   },
+   {
+      "title": "Traffic Sign Classification and Detection",
+      "members": "Sahil Bansal, Shreyas Raman, Emily Zhang",
+      "mentor": "Benjamin Silverman",
+      "area": "Vision",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/traffic-sign-classification-and-detection"
+   },
+   {
+      "title": "Album Cover Generator",
+      "members": "James Tsatsaros, Dan Flores, Ben Smith",
+      "mentor": "Steven Cheung",
+      "area": "Graphics",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/album-generator?ref_content=user-portfolio&ref_feature=in_progress"
+   },
+   {
+      "title": "Double Deep Q-learning",
+      "members": "Evan Dong, Hwai-Liang Tung",
+      "mentor": "Arvind Yalavarti",
+      "area": "Reinforcement Learning",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/double-deep-q-learning"
+   },
+   {
+      "title": "A Sixth Sense for Stroke: Utilizing Deep Learning to Predict Functional Outcomes of Mechanical Thrombectomy",
+      "members": "Pete Harinsuit, Chris Nivera, Garrett Warren",
+      "mentor": "Sonny Mo",
+      "area": "Science & Medicine",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/predicting-functional-outcomes-of-mechanical-thrombectomy"
+   },
+   {
+      "title": "DIY SqueezeNet",
+      "members": "Stephen Lee, Eli Zucker, Jing Wei Nicholas Lim, Leonard So",
+      "mentor": "Raymond Cao",
+      "area": "Vision",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/diy-squeezenet"
+   },
+   {
+      "title": "Network Must Have Spine",
+      "members": "Zezhi Wang, Xiaoyan Zhao, Changhao Wu",
+      "mentor": "Isaac Hilton-VanOsdall",
+      "area": "Vision",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/network-must-have-spine"
+   },
+   {
+      "title": "Generating Genres: Can Machines Learn Music?",
+      "members": "Jordan Idehen, Cole Horvitz",
+      "mentor": "Willem Speckmann",
+      "area": "Music & Audio",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/generating-genres-can-machines-learn-music"
+   },
+   {
+      "title": "Classification of Alzheimer\u2019s Disease from Speech Data",
+      "members": "Ally Zhu, Sierra Rowley, Usha Bhalla",
+      "mentor": "Cindy Li",
+      "area": "Science & Medicine",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/classification-of-alzheimer-s-disease-from-speech-data#updates"
+   },
+   {
+      "title": "Reinforcement Learning with Value Distributions",
+      "members": "Eric Hsiung, Bowen He, Hanyu Liu, Shangqun Yu",
+      "mentor": "Griffin Kupsaw",
+      "area": "Reinforcement Learning",
+      "is_oral": true,
+      "devpost": "https://devpost.com/software/placeholder-w6p0ht"
+   },
+   {
+      "title": "Shallow Residual-Network For Image Classification",
+      "members": "Min Seong Kang, Yingjie Xue",
+      "mentor": "Sonny Mo",
+      "area": "Vision",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/shallow-residual-network-for-image-classification?ref_content=user-portfolio&ref_feature=in_progress"
+   },
+   {
+      "title": "Let There Be Light: enhancing short exposure digital images in low light environments",
+      "members": "Jeremy Lutz, Juan Minas, Truong Cai, Jose Celaya-Alcala",
+      "mentor": "Jason Manuel",
+      "area": "Graphics",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/let-there-be-light"
+   },
+   {
+      "title": "Yolo Bridge: Mapping vehicle loads to bridge by using object detection based on Yolov4",
+      "members": "Yijia Zhang, Sijie Ding, Canjie Sun, Teresa Amor",
+      "mentor": "Suhye Park",
+      "area": "Vision",
+      "is_oral": true,
+      "devpost": "https://devpost.com/software/yolo-bridge"
+   },
+   {
+      "title": "Sequential Music Recommendations using a Transformer",
+      "members": "Tucker Weed, Jack Murphy",
+      "mentor": "Gabriel Rizk",
+      "area": "Data Science",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/sequential-music-recommendation-system?ref_content=user-portfolio&ref_feature=in_progress"
+   },
+   {
+      "title": "Network Geometry",
+      "members": "Xiaoyu Wei, Yihao Zhou, Miles Miller-Dickson",
+      "mentor": "Griffin Kupsaw",
+      "area": "Vision",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/network-geometry?ref_content=user-portfolio&ref_feature=in_progress"
+   },
+   {
+      "title": "Inverse Cooking: Recipe Generation from Food Images",
+      "members": "Nishant Govind, Luca Fonstad, Thomas Vandermillen",
+      "mentor": "Wenhuang Zeng",
+      "area": "Vision",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/nishant-luca-thomas"
+   },
+   {
+      "title": "Sound Classification for Hazardous Environmental Sound",
+      "members": "Melissa Cui, Mary Lou, Yasmin Karasu, Leila Kim",
+      "mentor": "Kotone Ninagawa",
+      "area": "Music & Audio",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/sound-classification-for-hazardous-environmental-sound"
+   },
+   {
+      "title": "Time Series Classification: Hierarchical Attention with TCN",
+      "members": "Jacob Zeldin, Juan Muneton, Julia Windham",
+      "mentor": "Katherine Sang",
+      "area": "Science & Medicine",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/time-series-classification-hierarchical-attention-with-tcn?ref_content=user-portfolio&ref_feature=in_progress"
+   },
+   {
+      "title": "Deep Yelping",
+      "members": "Abby Dichter, Sara Syed, Cameron Wenzel, Micah Bruning",
+      "mentor": "Koyena Pal",
+      "area": "Natural Language Processing",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/deep-yelping"
+   },
+   {
+      "title": "Awesome VQA: A Re-Implementation of Visual Question Answering",
+      "members": "Jane Yang, Jayden Yi, Linghai Liu, Jacob Yu",
+      "mentor": "Benjamin Silverman",
+      "area": "Vision",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/jkjk"
+   },
+   {
+      "title": "Using MSRN to extract Oncological Outcomes from Medical Data",
+      "members": "Alexandra Rodriguez, Malcolm Meyerson, Vedraman Narayan , Singh Saluja",
+      "mentor": "Kevin Du",
+      "area": "Science & Medicine",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/using-msrn-to-extract-oncological-outcomes-from-medical-data"
+   },
+   {
+      "title": "scHVAE: Hierarchical probabilistic clustering of single-cell transcriptomics across batches via nested nonparametric variational autoencoders",
+      "members": "Pinar Demetci",
+      "mentor": "Qian Zhang",
+      "area": "Science & Medicine",
+      "is_oral": true,
+      "devpost": "https://devpost.com/software/schvae"
+   },
+   {
+      "title": "Team Ankylosaurus: Implementation of Point2Mesh",
+      "members": "David Charatan, Solon James, Grace Deng",
+      "mentor": "Bryce Blinn",
+      "area": "Graphics",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/team-ankylosaurus"
+   },
+   {
+      "title": "Classifying Cardiac Arrhythmias using Spectral Imaging",
+      "members": "William Rudman, John Merullo",
+      "mentor": "George Lee",
+      "area": "Science & Medicine",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/classifying-cardiac-arrhythmias-using-spectral-imaging"
+   },
+   {
+      "title": "A Persona-Based Neural Conversation Model",
+      "members": "Yuxiao Cui, Sally Chen, Mindy Li",
+      "mentor": "Harman Suri",
+      "area": "Natural Language Processing",
+      "is_oral": false,
+      "devpost": "https://devpost.com/software/a-persona-based-neural-conversation-model?ref_content=user-portfolio&ref_feature=in_progress"
+   }
+]

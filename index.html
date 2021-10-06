@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CS147 - Deep Learning | Brown University</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preload" as="font" type="font/woff2" href="assets/inter-latin.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="assets/krona-one-latin.woff2" crossorigin>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="normalize.css">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="random-bowties.js"></script>
+    <script type="text/javascript" src="common.js"></script>
+    <script type="text/javascript" src="orbit.js"></script>
+
+</head>
+
+<body>
+    <header id="orbit-container">
+        <div class="home__header" style="z-index: 1; position: relative;">
+
+            <div class="header__content">
+                <div class="header__image"><img src="assets/blueno.png" /></div>
+                <div class="header__text">
+                    <div class="header__subtitle">Welcome to</div>
+                    <div class="header__maintitle">
+                        Deep Learning
+                        <div class="header__sparkle not-mobile">
+                            <img src="assets/sparkles/sparkle3.png" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <nav id="navbar">
+                <button id="hamburger" onclick="toggleMobileMenu(this)">
+                    <div id="hamburger-bar-1"></div>
+                    <div id="hamburger-bar-2"></div>
+                    <div id="hamburger-bar-3"></div>
+                </button>
+                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="resources.html">Resources</a>
+                <a class="nav-link" href="lectures.html">Lectures</a>
+                <a class="nav-link" href="assignments.html">Assignments</a>
+                <a class="nav-link" href="labs.html">Labs</a>
+                <a class="nav-link" href="calendar.html">Calendar &amp; Hours</a>
+                <a class="nav-link" href="staff.html">Staff</a>
+            </nav>
+        </div>
+    </header>
+    <div class="dark">
+        <main>
+            <section>
+                <div class="announcement">
+                    Check out the final projects for
+                    <a href="https://brown-deep-learning.github.io/dl-website-2020/dlday/"
+                        target="_blank">Deep Learning Day</a>! 
+                </div>
+            </section>
+
+            <section>
+                <h1>Welcome! </h1>
+
+                <div class="dark__content">
+                    <div class="dark__welcome">
+                        <p>
+                            Welcome to CS147! Over the past few years, Deep Learning has become a popular area, with
+                            deep neural network methods obtaining state-of-the-art results on applications in computer
+                            vision (Self-Driving Cars), natural language processing (Google Translate), and
+                            reinforcement learning (AlphaGo). These technologies are having transformative effects on
+                            our society, including some undesirable ones (e.g. deep fakes).
+                        </p>
+                        <p>
+                            This course intends to give students a practical understanding of how Deep Learning works,
+                            how to implement deep neural networks, and how to apply them ethically. We introduce
+                            students to the core concepts of deep neural networks, including the backpropagation
+                            algorithm for training neural networks, as well as specific operations such as convolution
+                            (in the context of computer vision) and word embeddings and recurrent neural networks (in
+                            the context of natural language processing).
+                        </p>
+                        <p>
+                            Throughout the lectures, labs, and assignments, we emphasize and require students to think
+                            critically about potential ethical pitfalls that can result from mis-application of these
+                            powerful models. The course is taught using the TensorFlow deep learning framework.
+                        </p>
+                    </div>
+
+                    <div class="dark__sidebar">
+                        <p>
+                            <b> Professor:</b> Daniel Ritchie (<a href="#" class="cryptedmail"
+                                data-name="daniel_ritchie"
+                                data-domain="brown"
+                                data-tld="edu"
+                                onclick="window.location.href = 'mailto:' + this.dataset.name + '@' + this.dataset.domain + '.' + this.dataset.tld; return false;"></a>)
+                            <br />
+                            <b>Time:</b> MWF 12:00pm &ndash; 12:50pm
+                            <br/>
+                            <i>Lecture given live and recorded for asynchronous viewing. Live participation welcome but not required.</i>
+                            <br/>
+                            <b>Zoom Link:</b> <a href='https://brown.zoom.us/j/96237682852'>
+                                <span class="not-mobile">https://brown.zoom.us/j/96237682852</span><span class="mobile">96237682852</span></a>
+                            <br/>
+                            <b>Zoom Password:</b> The name of our beloved lamp/bear who has recently departed campus to explore deep space (all lowercase)
+                            <br/>
+                            <i>Note: You must be logged into Zoom via your Brown account to access the Zoom meeting.</i>
+                            <br />
+                            <br />
+                            <a target="_blank" href="docs/missive.pdf">Course Missive / Syllabus</a>
+                            <br />
+                            <a target="_blank" href="http://piazza.com/brown/fall2020/csci1470csci2470">Piazza</a>
+                            <br />
+                            <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSfgRHlgmKZEnNjhGzICNn8oT-Yye0l5K-VG4bLqnOpmybtDIg/viewform?usp=sf_link">Anonymous Feedback Form</a>
+                            <br />
+                            <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScvXlyg0mHBwFUBj9tr_MQ96mLBWa9xHD4RtVYppXPtSX6EXQ/viewform?usp=sf_link">Capstone Declaration Form</a>
+                            <br />
+                            <!-- <a target="_blank"
+                                href="https://brown.hosted.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID=%22b26cde64-9b50-4bf4-a5a0-aab50105e7ab%22">Lecture
+                                Capture (Brown Panopto)</a> -->
+                            <!-- <br /> -->
+                            <br />
+                            <b> Contact:</b>
+                            <br />
+                            Course staff:
+                            <a href="#" class="cryptedmail"
+                                data-name="cs1470tas"
+                                data-domain="lists.brown"
+                                data-tld="edu"
+                                onclick="window.location.href = 'mailto:' + this.dataset.name + '@' + this.dataset.domain + '.' + this.dataset.tld; return false;"></a>
+                            <br />
+                            HTAs + Professor:
+                            <a href="#" class="cryptedmail"
+                                data-name="cs1470headtas"
+                                data-domain="lists.brown"
+                                data-tld="edu"
+                                onclick="window.location.href = 'mailto:' + this.dataset.name + '@' + this.dataset.domain + '.' + this.dataset.tld; return false;"></a>
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <footer class="dark-footer">
+        <img id="footer-earmuffs" class="random-earmuffs" src="img/sparkle.png">
+        <ul class="menu">
+            <li>&copy; 2020 CS1470/2470 TA Staff | Computer Science Department | Brown University</li>
+        </ul>
+        <br>
+    </footer>
+</body>
+
+</html>
